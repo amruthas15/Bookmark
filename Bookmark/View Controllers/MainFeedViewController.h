@@ -6,8 +6,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FeedCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@protocol FeedCellProtocol
+
+-(void)didLike: (FeedCell *)cell;
+
+@end
 
 @interface MainFeedViewController : UIViewController
 

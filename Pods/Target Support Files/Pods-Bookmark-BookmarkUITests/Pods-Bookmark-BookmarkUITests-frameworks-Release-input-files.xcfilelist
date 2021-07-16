@@ -1,3 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-Bookmark-BookmarkUITests/Pods-Bookmark-BookmarkUITests-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework
+${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework
+${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework
+${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework
 ${BUILT_PRODUCTS_DIR}/Parse/Parse.framework

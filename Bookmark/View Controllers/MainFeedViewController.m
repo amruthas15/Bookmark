@@ -6,8 +6,15 @@
 //
 
 #import "MainFeedViewController.h"
+#import "FeedCell.h"
+#import "Review.h"
+#import "Parse/Parse.h"
+#import "Post.h"
 
-@interface MainFeedViewController ()
+@interface MainFeedViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSArray *posts;
+
 
 @end
 
@@ -16,7 +23,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [super viewDidLoad];
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    PFQuery *postQuery = [Post query];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery includeKey:@"author"];
+    [postQuery includeKey:@"createdAt"];
+    postQuery.limit = 20;
+
+
+    // fetch data asynchronously
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            self.posts = posts;
+            NSLog(@"😎😎😎 Successfully loaded home timeline");
+
+            [self.tableView reloadData];
+        }
+        else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
+
+
+
+- (IBAction)composeButtonClicked:(id)sender {
+    [self performSegueWithIdentifier:@"postSegue" sender:nil];
+}
+
 
 /*
 #pragma mark - Navigation
@@ -27,5 +66,23 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    FeedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"feedCell" forIndexPath:indexPath];
+    Post *currentPost = self.posts[indexPath.row];
+    
+    if(currentPost.reviewStatus.boolValue == TRUE) {
+        [cell initWithReview:self.posts[indexPath.row]];
+    }
+    else if(currentPost.reviewStatus.boolValue == FALSE) {
+        [cell initWithList:self.posts[indexPath.row]];
+    }
+
+    return cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.posts.count;
+}
 
 @end

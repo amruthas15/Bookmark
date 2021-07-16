@@ -7,6 +7,7 @@
 
 #import "LoginViewController.h"
 #import "Parse/Parse.h"
+#import "Review.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -21,6 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     NSLog(@"at login");
+    
 
 }
 - (IBAction)loginButtonClicked:(id)sender {

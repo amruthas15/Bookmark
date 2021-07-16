@@ -11,6 +11,9 @@
 		580F28DE269E595F0052404A /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28DD269E595F0052404A /* Review.m */; };
 		580F28E1269E596B0052404A /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28E0269E596B0052404A /* List.m */; };
 		580F28E4269E59760052404A /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28E3269E59760052404A /* Book.m */; };
+		580F28E7269F40BF0052404A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28E6269F40BF0052404A /* User.m */; };
+		580F28F0269F5A850052404A /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28EF269F5A850052404A /* FeedCell.m */; };
+		580F28F326A0F5C10052404A /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28F226A0F5C10052404A /* Post.m */; };
 		58204138269C9B6B00161EF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58204137269C9B6B00161EF8 /* AppDelegate.m */; };
 		5820413B269C9B6B00161EF8 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5820413A269C9B6B00161EF8 /* SceneDelegate.m */; };
 		5820413E269C9B6B00161EF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5820413D269C9B6B00161EF8 /* ViewController.m */; };
@@ -58,6 +61,12 @@
 		580F28E0269E596B0052404A /* List.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = List.m; sourceTree = "<group>"; };
 		580F28E2269E59760052404A /* Book.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		580F28E3269E59760052404A /* Book.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+		580F28E5269F40BF0052404A /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		580F28E6269F40BF0052404A /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		580F28EE269F5A850052404A /* FeedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedCell.h; sourceTree = "<group>"; };
+		580F28EF269F5A850052404A /* FeedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedCell.m; sourceTree = "<group>"; };
+		580F28F126A0F5C10052404A /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		580F28F226A0F5C10052404A /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		58204133269C9B6B00161EF8 /* Bookmark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookmark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58204136269C9B6B00161EF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		58204137269C9B6B00161EF8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -224,12 +233,16 @@
 		5820416C269E260800161EF8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				580F28F126A0F5C10052404A /* Post.h */,
+				580F28F226A0F5C10052404A /* Post.m */,
 				580F28DC269E595F0052404A /* Review.h */,
 				580F28DD269E595F0052404A /* Review.m */,
 				580F28DF269E596B0052404A /* List.h */,
 				580F28E0269E596B0052404A /* List.m */,
 				580F28E2269E59760052404A /* Book.h */,
 				580F28E3269E59760052404A /* Book.m */,
+				580F28E5269F40BF0052404A /* User.h */,
+				580F28E6269F40BF0052404A /* User.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -237,6 +250,8 @@
 		5820416D269E261400161EF8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				580F28EE269F5A850052404A /* FeedCell.h */,
+				580F28EF269F5A850052404A /* FeedCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -493,9 +508,12 @@
 				5820413E269C9B6B00161EF8 /* ViewController.m in Sources */,
 				58204138269C9B6B00161EF8 /* AppDelegate.m in Sources */,
 				5820417C269E501B00161EF8 /* PostCreationViewController.m in Sources */,
+				580F28E7269F40BF0052404A /* User.m in Sources */,
 				58204173269E439C00161EF8 /* SignUpViewController.m in Sources */,
 				580F28DE269E595F0052404A /* Review.m in Sources */,
 				58204149269C9B6C00161EF8 /* main.m in Sources */,
+				580F28F0269F5A850052404A /* FeedCell.m in Sources */,
+				580F28F326A0F5C10052404A /* Post.m in Sources */,
 				58204176269E4F6A00161EF8 /* MainFeedViewController.m in Sources */,
 				5820413B269C9B6B00161EF8 /* SceneDelegate.m in Sources */,
 				58204182269E514900161EF8 /* ProfileViewController.m in Sources */,

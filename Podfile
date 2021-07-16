@@ -7,6 +7,11 @@ target 'Bookmark' do
 
   # Pods for Bookmark
   pod 'Parse'
+  pod 'Parse/UI'
+  pod 'DateTools'
+  pod 'GoogleAPIClientForREST'
+
+
 
   target 'BookmarkTests' do
     inherit! :search_paths

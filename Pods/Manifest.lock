@@ -1,22 +1,44 @@
 PODS:
   - Bolts/Tasks (1.9.1)
+  - DateTools (2.0.0)
+  - GoogleAPIClientForREST (1.5.2):
+    - GoogleAPIClientForREST/Core (= 1.5.2)
+    - GTMSessionFetcher (>= 1.1.7)
+  - GoogleAPIClientForREST/Core (1.5.2):
+    - GTMSessionFetcher (>= 1.1.7)
+  - GTMSessionFetcher (1.6.1):
+    - GTMSessionFetcher/Full (= 1.6.1)
+  - GTMSessionFetcher/Core (1.6.1)
+  - GTMSessionFetcher/Full (1.6.1):
+    - GTMSessionFetcher/Core (= 1.6.1)
   - Parse (1.19.2):
     - Parse/Core (= 1.19.2)
   - Parse/Core (1.19.2):
     - Bolts/Tasks (= 1.9.1)
+  - Parse/UI (1.19.2):
+    - Parse/Core
 
 DEPENDENCIES:
+  - DateTools
+  - GoogleAPIClientForREST
   - Parse
+  - Parse/UI
 
 SPEC REPOS:
   trunk:
     - Bolts
+    - DateTools
+    - GoogleAPIClientForREST
+    - GTMSessionFetcher
     - Parse
 
 SPEC CHECKSUMS:
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
+  DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
+  GoogleAPIClientForREST: 538a8ad0014fd88b78894e77100775a6b0a4f7ed
+  GTMSessionFetcher: 36689134877faeb055b27dfa4ccc9ceaa42e029e
   Parse: 081fb8755c3000fd11df817eec235def233d0af3
 
-PODFILE CHECKSUM: 0e0378b8010e65a1d97565724fa48ecde42df1e0
+PODFILE CHECKSUM: 7bd17e5f747f9a6f25d9558cd3c89c1947141cae
 
 COCOAPODS: 1.10.1
