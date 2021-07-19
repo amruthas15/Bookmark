@@ -6,10 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XLForm.h"
+#import "XLFormViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PostCreationViewController : UIViewController
+@interface PostCreationViewController : XLFormViewController
 
 @end
 

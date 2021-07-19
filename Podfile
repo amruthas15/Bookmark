@@ -10,6 +10,8 @@ target 'Bookmark' do
   pod 'Parse/UI'
   pod 'DateTools'
   pod 'GoogleAPIClientForREST'
+  pod 'XLForm', '~> 4.3'
+
 
 
 

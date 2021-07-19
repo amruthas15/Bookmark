@@ -61,6 +61,4 @@
 }
 */
 
-- (IBAction)usernameField:(UITextField *)sender {
-}
 @end

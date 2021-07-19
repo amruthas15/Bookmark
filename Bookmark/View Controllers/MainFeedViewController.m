@@ -7,7 +7,6 @@
 
 #import "MainFeedViewController.h"
 #import "FeedCell.h"
-#import "Review.h"
 #import "Parse/Parse.h"
 #import "Post.h"
 
