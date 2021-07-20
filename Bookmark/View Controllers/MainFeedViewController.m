@@ -9,6 +9,8 @@
 #import "FeedCell.h"
 #import "Parse/Parse.h"
 #import "Post.h"
+#import "ReviewDetailsViewController.h"
+#import "ListDetailsViewController.h"
 
 @interface MainFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -56,15 +58,27 @@
 }
 
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+     if([sender isKindOfClass:[UITableViewCell class]])
+     {
+         UITableViewCell *tappedCell = sender;
+         NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+         Post *currentPost = self.posts[indexPath.row];
+         
+         if([segue.identifier isEqualToString: @"feedReviewCellSegue"]) {
+             ReviewDetailsViewController *reviewDetailsViewController = [segue destinationViewController];
+             reviewDetailsViewController.review = currentPost;
+         }
+         else if([segue.identifier isEqualToString: @"feedListCellSegue"]){
+             ListDetailsViewController *listDetailsViewController = [segue destinationViewController];
+             listDetailsViewController.list = currentPost;
+         }
+     }
+ }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     FeedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"feedCell" forIndexPath:indexPath];
@@ -82,6 +96,16 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.posts.count;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Post *currentPost = self.posts[indexPath.row];
+    if(currentPost.reviewStatus.boolValue){
+        [self performSegueWithIdentifier:@"feedReviewCellSegue" sender:[tableView cellForRowAtIndexPath:indexPath]];
+    }
+    else {
+        [self performSegueWithIdentifier:@"feedListCellSegue" sender:[tableView cellForRowAtIndexPath:indexPath]];
+    }
 }
 
 @end

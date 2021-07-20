@@ -30,6 +30,8 @@
 		5820417C269E501B00161EF8 /* PostCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5820417B269E501B00161EF8 /* PostCreationViewController.m */; };
 		5820417F269E50A800161EF8 /* PopularScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5820417E269E50A800161EF8 /* PopularScreenViewController.m */; };
 		58204182269E514900161EF8 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58204181269E514900161EF8 /* ProfileViewController.m */; };
+		5870868A26A66858000C69AA /* ReviewDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5870868926A66858000C69AA /* ReviewDetailsViewController.m */; };
+		5870868D26A68E3A000C69AA /* ListDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5870868C26A68E3A000C69AA /* ListDetailsViewController.m */; };
 		6379FA900A222EA87E1D7A35 /* Pods_BookmarkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4783FF575043ADDF2FE0D724 /* Pods_BookmarkTests.framework */; };
 		C98464EDBA79117B97DE097D /* Pods_Bookmark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CD0D00CAE4D697F632D253 /* Pods_Bookmark.framework */; };
 /* End PBXBuildFile section */
@@ -99,6 +101,10 @@
 		5820417E269E50A800161EF8 /* PopularScreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PopularScreenViewController.m; sourceTree = "<group>"; };
 		58204180269E514900161EF8 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		58204181269E514900161EF8 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		5870868826A66858000C69AA /* ReviewDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReviewDetailsViewController.h; sourceTree = "<group>"; };
+		5870868926A66858000C69AA /* ReviewDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReviewDetailsViewController.m; sourceTree = "<group>"; };
+		5870868B26A68E3A000C69AA /* ListDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListDetailsViewController.h; sourceTree = "<group>"; };
+		5870868C26A68E3A000C69AA /* ListDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListDetailsViewController.m; sourceTree = "<group>"; };
 		731449577341F760E0B7D832 /* Pods-Bookmark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookmark.debug.xcconfig"; path = "Target Support Files/Pods-Bookmark/Pods-Bookmark.debug.xcconfig"; sourceTree = "<group>"; };
 		74CD0D00CAE4D697F632D253 /* Pods_Bookmark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookmark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		832CAF7146A9E1692B3ADB32 /* Pods-BookmarkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookmarkTests.release.xcconfig"; path = "Target Support Files/Pods-BookmarkTests/Pods-BookmarkTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -214,8 +220,12 @@
 			children = (
 				5820416E269E40D700161EF8 /* LoginViewController.h */,
 				5820416F269E40D700161EF8 /* LoginViewController.m */,
+				5870868826A66858000C69AA /* ReviewDetailsViewController.h */,
+				5870868926A66858000C69AA /* ReviewDetailsViewController.m */,
 				58204171269E439C00161EF8 /* SignUpViewController.h */,
 				58204172269E439C00161EF8 /* SignUpViewController.m */,
+				5870868B26A68E3A000C69AA /* ListDetailsViewController.h */,
+				5870868C26A68E3A000C69AA /* ListDetailsViewController.m */,
 				58204174269E4F6A00161EF8 /* MainFeedViewController.h */,
 				58204175269E4F6A00161EF8 /* MainFeedViewController.m */,
 				58204180269E514900161EF8 /* ProfileViewController.h */,
@@ -512,7 +522,9 @@
 				58204173269E439C00161EF8 /* SignUpViewController.m in Sources */,
 				580F28DE269E595F0052404A /* Review.m in Sources */,
 				58204149269C9B6C00161EF8 /* main.m in Sources */,
+				5870868A26A66858000C69AA /* ReviewDetailsViewController.m in Sources */,
 				580F28F0269F5A850052404A /* FeedCell.m in Sources */,
+				5870868D26A68E3A000C69AA /* ListDetailsViewController.m in Sources */,
 				580F28F326A0F5C10052404A /* Post.m in Sources */,
 				58204176269E4F6A00161EF8 /* MainFeedViewController.m in Sources */,
 				5820413B269C9B6B00161EF8 /* SceneDelegate.m in Sources */,
