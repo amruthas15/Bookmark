@@ -6,7 +6,6 @@
 //
 
 #import "PostCreationViewController.h"
-#import "Post.h"
 
 @interface PostCreationViewController ()
 
@@ -104,6 +103,7 @@
         NSString *reviewText = [formResults valueForKey:@"reviewText"];
         NSNumber *reviewRating = [formResults valueForKey:@"ratingStep"];
         [Post postNewReview:reviewText withBook:Nil withRating:reviewRating withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
+            [self.delegate didPost];
             [self dismissViewControllerAnimated:true completion:nil];
         }];
     }
@@ -111,6 +111,7 @@
         NSString *listTitle = [formResults valueForKey:@"listTitle"];
         NSString *listText = [formResults valueForKey:@"listText"];
         [Post postNewList:listTitle withBooks:Nil withDescription:listText withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
+            [self.delegate didPost];
             [self dismissViewControllerAnimated:true completion:nil];
         }];
     }

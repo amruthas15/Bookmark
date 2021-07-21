@@ -11,8 +11,9 @@
 #import "Post.h"
 #import "ReviewDetailsViewController.h"
 #import "ListDetailsViewController.h"
+#import "PostCreationViewController.h"
 
-@interface MainFeedViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface MainFeedViewController () <UITableViewDelegate, UITableViewDataSource, PostCreationViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *posts;
 
@@ -30,6 +31,10 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    [self fetchData];
+}
+
+-(void)fetchData {
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
@@ -78,6 +83,13 @@
              listDetailsViewController.list = currentPost;
          }
      }
+     else if ([segue.identifier isEqualToString: @"postSegue"])
+     {
+         UINavigationController *navigationController = [segue destinationViewController];
+         PostCreationViewController *postCreationViewController = (PostCreationViewController*)navigationController.topViewController;
+         postCreationViewController.delegate = self;
+
+     }
  }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -106,6 +118,10 @@
     else {
         [self performSegueWithIdentifier:@"feedListCellSegue" sender:[tableView cellForRowAtIndexPath:indexPath]];
     }
+}
+- (void)didPost {
+    NSLog(@"made it to the delegate");
+    [self fetchData];
 }
 
 @end

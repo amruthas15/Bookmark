@@ -8,10 +8,18 @@
 #import <UIKit/UIKit.h>
 #import "XLForm.h"
 #import "XLFormViewController.h"
+#import "Post.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol PostCreationViewControllerDelegate
+
+-(void)didPost;
+
+@end
+
 @interface PostCreationViewController : XLFormViewController
+@property (nonatomic, weak) id<PostCreationViewControllerDelegate> delegate;
 
 @end
 
