@@ -11,17 +11,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Book : NSObject
+@interface Book : PFObject<PFSubclassing>
 
 @property (nonatomic, strong) NSString *bookID;
 @property (nonatomic, strong) NSString *bookTitle;
-@property (nonatomic, strong) NSString *bookAuthor;
-//@property (nonatomic, strong) PFFileObject *bookCover;
+@property (nonatomic, strong) NSArray *bookAuthors;
+@property (nonatomic, strong) PFFileObject *bookCover;
 
 
-@property (nonatomic, strong) NSNumber *publicationYear;
+@property (nonatomic, strong) NSNumber *publicationDate;
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, strong) NSDate *updatedAt;
+
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+
++ (NSMutableArray *)booksWithArray:(NSDictionary *)dictionaries;
+
+- (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
 
 @end
 

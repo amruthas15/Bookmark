@@ -9,6 +9,15 @@
 
 @implementation Book
 
+@dynamic bookID;
+@dynamic bookTitle;
+@dynamic bookAuthors;
+@dynamic bookCover;
+
+@dynamic publicationDate;
+@dynamic createdAt;
+@dynamic updatedAt;
+
 + (nonnull NSString *)parseClassName {
     return @"Book";
 }
@@ -25,56 +34,62 @@
 //    [newList saveInBackgroundWithBlock: completion];
 //}
 
-//- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-//     self = [super init];
-//     if (self) {
-//
-//         // Is this a re-tweet?
-//         NSDictionary *originalTweet = dictionary[@"retweeted_status"];
-//         if(originalTweet != nil){
-//             NSDictionary *userDictionary = dictionary[@"user"];
-//             self.retweetedByUser = [[User alloc] initWithDictionary:userDictionary];
-//
-//             // Change tweet to original tweet
-//             dictionary = originalTweet;
-//         }
-//         self.idStr = dictionary[@"id_str"];
-//         self.text = dictionary[@"full_text"];
-//         self.favoriteCount = [dictionary[@"favorite_count"] intValue];
-//         self.favorited = [dictionary[@"favorited"] boolValue];
-//         self.retweetCount = [dictionary[@"retweet_count"] intValue];
-//         self.retweeted = [dictionary[@"retweeted"] boolValue];
-//
-//         // initialize user
-//         NSDictionary *user = dictionary[@"user"];
-//         self.user = [[User alloc] initWithDictionary:user];
-//
-//         // Format and set createdAtString
-//
-//         // Format createdAt date string
-//         NSString *createdAtOriginalString = dictionary[@"created_at"];
-//         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//         // Configure the input format to parse the date string
-//         formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
-//         // Convert String to Date
-//         NSDate *tweetDate = [formatter dateFromString:createdAtOriginalString];
-//         NSString *timeDiff = [tweetDate shortTimeAgoSinceNow];
-//         // Configure output format
-//         formatter.dateStyle = NSDateFormatterShortStyle;
-//         formatter.timeStyle = NSDateFormatterShortStyle;
-//         // Convert Date to String
-//         self.createdAtString = timeDiff;
-//     }
-//     return self;
-// }
-//
-//+ (NSMutableArray *)tweetsWithArray:(NSArray *)dictionaries{
-//    NSMutableArray *tweets = [NSMutableArray array];
-//    for (NSDictionary *dictionary in dictionaries) {
-//        Tweet *tweet = [[Tweet alloc] initWithDictionary:dictionary];
-//        [tweets addObject:tweet];
-//    }
-//    return tweets;
-//}
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+     self = [super init];
+     if (self) {
+         
+         NSDictionary *volumeInfo = dictionary[@"volumeInfo"];
+         self.bookTitle = volumeInfo[@"title"];
+         
+         NSDictionary *bookAuthorList = volumeInfo[@"authors"];
+         NSMutableArray *authorList = [[NSMutableArray alloc] init];
+         for(id key in bookAuthorList)
+         {
+             [authorList addObject:key];
+         }
+         self.bookAuthors = authorList;
+         
+         NSDictionary *coverImages = volumeInfo[@"imageLinks"];
+         NSString *urlString = coverImages[@"thumbnail"];
+         if([urlString containsString:@"http:"])
+         {
+             urlString = [urlString substringFromIndex:4];
+             urlString = [@"https" stringByAppendingString:urlString];
+         }
+         NSURL *imageURL = [NSURL URLWithString: urlString];
+         NSData* imageData = [[NSData alloc] initWithContentsOfURL: imageURL];
+         UIImage *bookCoverImage = [UIImage imageWithData: imageData];
+         self.bookCover = [self getPFFileFromImage:bookCoverImage];
+         
+         self.publicationDate = volumeInfo[@"publishedDate"];
+     }
+     return self;
+ }
+
++ (NSMutableArray *)booksWithArray:(NSDictionary *)dictionaries{
+    NSMutableArray *books = [NSMutableArray array];
+    NSArray *bookResults = dictionaries[@"items"];
+    for (NSDictionary *dictionary in bookResults) {
+        Book *book = [[Book alloc] initWithDictionary:dictionary];
+        [books addObject:book];
+    }
+    return books;
+}
+
+- (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
+ 
+    // check if image is not nil
+    if (!image) {
+        return nil;
+    }
+    
+    NSData *imageData = UIImagePNGRepresentation(image);
+    // get image data and check if that is not nil
+    if (!imageData) {
+        return nil;
+    }
+    
+    return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
+}
 
 @end

@@ -32,6 +32,8 @@
 		5870868A26A66858000C69AA /* ReviewDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5870868926A66858000C69AA /* ReviewDetailsViewController.m */; };
 		5870868D26A68E3A000C69AA /* ListDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5870868C26A68E3A000C69AA /* ListDetailsViewController.m */; };
 		5870868F26A74E5A000C69AA /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5870868E26A74E5A000C69AA /* keys.plist */; };
+		5870869526A7DD0E000C69AA /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5870869426A7DD0E000C69AA /* APIManager.m */; };
+		5870869826A9331F000C69AA /* BookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5870869726A9331F000C69AA /* BookCell.m */; };
 		6379FA900A222EA87E1D7A35 /* Pods_BookmarkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4783FF575043ADDF2FE0D724 /* Pods_BookmarkTests.framework */; };
 		C98464EDBA79117B97DE097D /* Pods_Bookmark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CD0D00CAE4D697F632D253 /* Pods_Bookmark.framework */; };
 /* End PBXBuildFile section */
@@ -104,6 +106,10 @@
 		5870868B26A68E3A000C69AA /* ListDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListDetailsViewController.h; sourceTree = "<group>"; };
 		5870868C26A68E3A000C69AA /* ListDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListDetailsViewController.m; sourceTree = "<group>"; };
 		5870868E26A74E5A000C69AA /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
+		5870869326A7BDCB000C69AA /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		5870869426A7DD0E000C69AA /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		5870869626A9331F000C69AA /* BookCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookCell.h; sourceTree = "<group>"; };
+		5870869726A9331F000C69AA /* BookCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookCell.m; sourceTree = "<group>"; };
 		731449577341F760E0B7D832 /* Pods-Bookmark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookmark.debug.xcconfig"; path = "Target Support Files/Pods-Bookmark/Pods-Bookmark.debug.xcconfig"; sourceTree = "<group>"; };
 		74CD0D00CAE4D697F632D253 /* Pods_Bookmark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookmark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		832CAF7146A9E1692B3ADB32 /* Pods-BookmarkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookmarkTests.release.xcconfig"; path = "Target Support Files/Pods-BookmarkTests/Pods-BookmarkTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -182,8 +188,10 @@
 				5820416C269E260800161EF8 /* Models */,
 				5820416B269E0B5500161EF8 /* View Controllers */,
 				58204136269C9B6B00161EF8 /* AppDelegate.h */,
-				5870868E26A74E5A000C69AA /* keys.plist */,
 				58204137269C9B6B00161EF8 /* AppDelegate.m */,
+				5870868E26A74E5A000C69AA /* keys.plist */,
+				5870869326A7BDCB000C69AA /* APIManager.h */,
+				5870869426A7DD0E000C69AA /* APIManager.m */,
 				58204139269C9B6B00161EF8 /* SceneDelegate.h */,
 				5820413A269C9B6B00161EF8 /* SceneDelegate.m */,
 				5820413F269C9B6B00161EF8 /* Main.storyboard */,
@@ -260,6 +268,8 @@
 			children = (
 				580F28EE269F5A850052404A /* FeedCell.h */,
 				580F28EF269F5A850052404A /* FeedCell.m */,
+				5870869626A9331F000C69AA /* BookCell.h */,
+				5870869726A9331F000C69AA /* BookCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -513,12 +523,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				580F28E1269E596B0052404A /* List.m in Sources */,
+				5870869526A7DD0E000C69AA /* APIManager.m in Sources */,
 				5820417F269E50A800161EF8 /* PopularScreenViewController.m in Sources */,
 				58204138269C9B6B00161EF8 /* AppDelegate.m in Sources */,
 				5820417C269E501B00161EF8 /* PostCreationViewController.m in Sources */,
 				580F28E7269F40BF0052404A /* User.m in Sources */,
 				58204173269E439C00161EF8 /* SignUpViewController.m in Sources */,
 				580F28DE269E595F0052404A /* Review.m in Sources */,
+				5870869826A9331F000C69AA /* BookCell.m in Sources */,
 				58204149269C9B6C00161EF8 /* main.m in Sources */,
 				5870868A26A66858000C69AA /* ReviewDetailsViewController.m in Sources */,
 				580F28F0269F5A850052404A /* FeedCell.m in Sources */,

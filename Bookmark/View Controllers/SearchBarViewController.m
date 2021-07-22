@@ -8,6 +8,8 @@
 #import "SearchBarViewController.h"
 #import "Parse/Parse.h"
 #import "Book.h"
+#import "APIManager.h"
+#import "BookCell.h"
 
 @interface SearchBarViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -27,13 +29,27 @@
     self.tableView.dataSource = self;
     self.searchBar.delegate = self;
     
-    self.data = @[@"New York, NY", @"Los Angeles, CA", @"Chicago, IL", @"Houston, TX",
-                      @"Philadelphia, PA", @"Phoenix, AZ", @"San Diego, CA", @"San Antonio, TX",
-                      @"Dallas, TX", @"Detroit, MI", @"San Jose, CA", @"Indianapolis, IN",
-                      @"Jacksonville, FL", @"San Francisco, CA", @"Columbus, OH", @"Austin, TX",
-                      @"Memphis, TN", @"Baltimore, MD", @"Charlotte, ND", @"Fort Worth, TX"];
-    
-    
+    PFQuery *bookQuery = [Book query];
+    [bookQuery orderByDescending:@"updatedAt"];
+    [bookQuery includeKey:@"bookAuthor"];
+    [bookQuery includeKey:@"bookTitle"];
+    bookQuery.limit = 20;
+
+
+    // fetch data asynchronously
+    [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
+        if (books) {
+            self.data = books;
+            self.filteredData = self.data;
+
+            NSLog(@"😎😎😎 Successfully loaded search bar table");
+
+            [self.tableView reloadData];
+        }
+        else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 
     self.filteredData = self.data;
 }
@@ -44,21 +60,46 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SearchTableViewCell"
+    BookCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SearchTableViewCell"
                                                                  forIndexPath:indexPath];
-    cell.textLabel.text = self.filteredData[indexPath.row];
+    Book *currentBook = self.filteredData[indexPath.row];
     
+    cell.coverPhotoImageView.file = currentBook.bookCover;
+    [cell.coverPhotoImageView loadInBackground];
+    
+    cell.book = currentBook;
+    cell.bookTitleLabel.text = currentBook.bookTitle;
+    NSArray *originalAuthors = currentBook.bookAuthors;
+    NSString *authorString = [originalAuthors firstObject];
+    int additionalAuthors = originalAuthors.count - 1;
+    while(additionalAuthors > 0)
+    {
+        authorString = [authorString stringByAppendingString:@", "];
+        authorString = [authorString stringByAppendingString:[originalAuthors objectAtIndex:(originalAuthors.count - additionalAuthors)]];
+        additionalAuthors--;
+    }
+    cell.bookAuthorLabel.text = authorString;
     return cell;
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    NSString *searchText = searchBar.text;
     
     if (searchText.length != 0) {
         
-        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSString *evaluatedObject, NSDictionary *bindings) {
-            return [evaluatedObject containsString:searchText];
+        [[APIManager shared] getBookSearchQueries:searchText completion:^(NSArray *books, NSError *error) {
+            if (books) {
+                self.filteredData = [[NSMutableArray alloc] initWithArray:books];
+                NSLog(@"😎😎😎 Successfully loaded search bar table");
+                
+                self.tableView.dataSource = self;
+                self.tableView.delegate = self;
+                
+                [self.tableView reloadData];
+            } else {
+                NSLog(@"😫😫😫 Error getting search bar table: %@", error.localizedDescription);
+            }
         }];
-        self.filteredData = [self.data filteredArrayUsingPredicate:predicate];
         
         NSLog(@"%@", self.filteredData);
         
@@ -68,8 +109,36 @@
     }
     
     [self.tableView reloadData];
- 
 }
+
+//- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+//    
+//    if (searchText.length != 0) {
+//        
+//        [[APIManager shared] getBookSearchQueries:searchText completion:^(NSArray *books, NSError *error) {
+//            if (books) {
+//                self.filteredData = [[NSMutableArray alloc] initWithArray:books];
+//                NSLog(@"😎😎😎 Successfully loaded search bar table");
+//                
+//                self.tableView.dataSource = self;
+//                self.tableView.delegate = self;
+//                
+//                [self.tableView reloadData];
+//            } else {
+//                NSLog(@"😫😫😫 Error getting search bar table: %@", error.localizedDescription);
+//            }
+//        }];
+//        
+//        NSLog(@"%@", self.filteredData);
+//        
+//    }
+//    else {
+//        self.filteredData = self.data;
+//    }
+//    
+//    [self.tableView reloadData];
+// 
+//}
 
 /*
 #pragma mark - Navigation

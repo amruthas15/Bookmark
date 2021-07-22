@@ -11,6 +11,7 @@ target 'Bookmark' do
   pod 'DateTools'
   pod 'GoogleAPIClientForREST'
   pod 'XLForm', '~> 4.3'
+  pod 'AFNetworking'
 
 
 

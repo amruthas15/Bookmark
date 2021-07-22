@@ -28,7 +28,7 @@
     //[self.photoImageView loadInBackground];
 
     self.postTitleLabel.text = newReview.book.bookTitle;
-    self.postDescriptionTextView.text = newReview.postText;
+    self.postDescriptionLabel.text = newReview.postText;
     [self.ratingLabel setHidden:FALSE];
     self.ratingLabel.text = [[newReview.rating stringValue] stringByAppendingString:@"★"];
     self.usernameLabel.text = newReview.author.username;
@@ -50,7 +50,7 @@
     //self.bookCoverImageView.file = newReview.book[@"bookCover"];
     //[self.photoImageView loadInBackground];
     self.postTitleLabel.text = newList.listTitle;
-    self.postDescriptionTextView.text = newList.postText;
+    self.postDescriptionLabel.text = newList.postText;
     [self.ratingLabel setHidden:TRUE];
     self.usernameLabel.text = newList.author.username;
     self.likeCountLabel.text = [newList.likeCount stringValue];
