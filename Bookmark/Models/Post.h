@@ -18,10 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) PFUser *author;
 @property (nonatomic, strong) NSNumber *reviewStatus;
 
-@property (nonatomic, strong) Book *book;
+//@property (nonatomic, strong) Book *book;
+@property (nonatomic, strong) NSString *bookID;
 @property (nonatomic, strong) NSNumber *rating;
 
-@property (nonatomic, strong) NSArray<Book *> *books;
+//@property (nonatomic, strong) NSArray<Book *> *books;
+@property (nonatomic, strong) NSArray<NSString *> *arrayOfBookIDs;
 @property (nonatomic, strong) NSString *listTitle;
 
 @property (nonatomic, strong) NSString *postText;
@@ -29,9 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, strong) NSDate *updatedAt;
 
-+ (void) postNewReview: ( NSString * _Nullable )review withBook: ( Book * _Nullable )book withRating: (NSNumber *)rating withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (void) postNewReview: ( NSString * _Nullable )review withBook: ( NSString * _Nullable )bookID withRating: (NSNumber *)rating withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
-+ (void) postNewList: ( NSString * _Nullable )listTitle withBooks: ( NSArray<Book *>* _Nullable )books withDescription: ( NSString * _Nullable )listText withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (void) postNewList: ( NSString * _Nullable )listTitle withBooks: ( NSArray<NSString *>* _Nullable )arrayOfBookIDs withDescription: ( NSString * _Nullable )listText withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end
 

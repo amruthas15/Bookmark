@@ -10,11 +10,13 @@
 @implementation Book
 
 @dynamic bookID;
-@dynamic bookTitle;
-@dynamic bookAuthors;
-@dynamic bookCover;
+@dynamic googleBookID;
+@dynamic coverURL;
+@dynamic popularityIndex;
+@dynamic numReviews;
+@dynamic numLists;
+@dynamic avgRating;
 
-@dynamic publicationDate;
 @dynamic createdAt;
 @dynamic updatedAt;
 
@@ -37,31 +39,29 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
      self = [super init];
      if (self) {
-         
-         NSDictionary *volumeInfo = dictionary[@"volumeInfo"];
-         self.bookTitle = volumeInfo[@"title"];
-         
-         NSDictionary *bookAuthorList = volumeInfo[@"authors"];
-         NSMutableArray *authorList = [[NSMutableArray alloc] init];
-         for(id key in bookAuthorList)
-         {
-             [authorList addObject:key];
-         }
-         self.bookAuthors = authorList;
-         
-         NSDictionary *coverImages = volumeInfo[@"imageLinks"];
-         NSString *urlString = coverImages[@"thumbnail"];
-         if([urlString containsString:@"http:"])
-         {
-             urlString = [urlString substringFromIndex:4];
-             urlString = [@"https" stringByAppendingString:urlString];
-         }
-         NSURL *imageURL = [NSURL URLWithString: urlString];
-         NSData* imageData = [[NSData alloc] initWithContentsOfURL: imageURL];
-         UIImage *bookCoverImage = [UIImage imageWithData: imageData];
-         self.bookCover = [self getPFFileFromImage:bookCoverImage];
-         
-         self.publicationDate = volumeInfo[@"publishedDate"];
+//
+//         NSDictionary *volumeInfo = dictionary[@"volumeInfo"];
+//         self.bookTitle = volumeInfo[@"title"];
+//
+//         NSDictionary *bookAuthorList = volumeInfo[@"authors"];
+//         NSMutableArray *authorList = [[NSMutableArray alloc] init];
+//         for(id key in bookAuthorList)
+//         {
+//             [authorList addObject:key];
+//         }
+//         self.bookAuthors = authorList;
+//
+//         NSDictionary *coverImages = volumeInfo[@"imageLinks"];
+//         NSString *urlString = coverImages[@"thumbnail"];
+//         if([urlString containsString:@"http:"])
+//         {
+//             urlString = [urlString substringFromIndex:4];
+//             urlString = [@"https" stringByAppendingString:urlString];
+//         }
+//
+//         self.coverURL = urlString;
+//
+//         self.publicationDate = volumeInfo[@"publishedDate"];
      }
      return self;
  }
@@ -76,20 +76,12 @@
     return books;
 }
 
-- (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
+- (UIImage *)getCoverImage {
  
-    // check if image is not nil
-    if (!image) {
-        return nil;
-    }
-    
-    NSData *imageData = UIImagePNGRepresentation(image);
-    // get image data and check if that is not nil
-    if (!imageData) {
-        return nil;
-    }
-    
-    return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
+    NSURL *imageURL = [NSURL URLWithString: self.coverURL];
+    NSData* imageData = [[NSData alloc] initWithContentsOfURL: imageURL];
+    UIImage *bookCoverImage = [UIImage imageWithData: imageData];
+    return bookCoverImage;
 }
 
 @end

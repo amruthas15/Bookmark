@@ -27,7 +27,7 @@
     //self.bookCoverImageView.file = newReview.book[@"bookCover"];
     //[self.photoImageView loadInBackground];
 
-    self.postTitleLabel.text = newReview.book.bookTitle;
+    //self.postTitleLabel.text = newReview.book.bookTitle;
     self.postDescriptionLabel.text = newReview.postText;
     [self.ratingLabel setHidden:FALSE];
     self.ratingLabel.text = [[newReview.rating stringValue] stringByAppendingString:@"★"];

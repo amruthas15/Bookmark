@@ -13,4 +13,6 @@
 
 - (void)getBookSearchQueries:(NSString *)searchQuery completion:(void(^)(NSArray *books, NSError *error))completion;
 
+- (void)getBookInformation:(NSString *)bookID completion:(void(^)(NSDictionary *book, NSError *error))completion;
+
 @end

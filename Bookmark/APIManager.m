@@ -9,7 +9,8 @@
 #import "APIManager.h"
 #import "Book.h"
 
-static NSString * const baseURLString = @"https://www.googleapis.com/books/v1/volumes?q=";
+static NSString * const baseURLString = @"https://www.googleapis.com/books/v1/volumes";
+
 
 @interface APIManager()
 @property (nonatomic, strong) NSMutableArray *arrayOfTweets;
@@ -55,13 +56,15 @@ static NSString * const baseURLString = @"https://www.googleapis.com/books/v1/vo
 }
 
 - (void)getBookSearchQueries:(NSString *)searchQuery completion:(void(^)(NSArray *books, NSError *error))completion {
-        
+
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
     NSString *formattedQuery = [searchQuery stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     
-    NSURL *URL = [NSURL URLWithString:[baseURLString stringByAppendingString:[formattedQuery stringByAppendingString:@"&maxResults=20"]]];
+    NSString *urlString = [baseURLString stringByAppendingString: @"?q="];
+    urlString = [urlString stringByAppendingString:[formattedQuery stringByAppendingString:@"&maxResults=20"]];
+    NSURL *URL = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request
@@ -72,12 +75,37 @@ static NSString * const baseURLString = @"https://www.googleapis.com/books/v1/vo
                                                             NSLog(@"Error: %@", error);
                                                         } else {
                                                             NSLog(@"%@ %@", response, bookDictionaries);
-                                                            NSMutableArray *books = [Book booksWithArray:bookDictionaries];
+                                                            NSMutableArray *bookResults = bookDictionaries[@"items"];
+                                                            //NSMutableArray *books = [Book booksWithArray:bookDictionaries];
                                                             
-                                                            completion(books, nil);
+                                                            completion(bookResults, nil);
                                                         }
                                                 }];
     [dataTask resume];
 }
 
+- (void)getBookInformation:(NSString *)bookID completion:(void(^)(NSDictionary *book, NSError *error))completion {
+        
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSString *urlString = [baseURLString stringByAppendingString:[@"/" stringByAppendingString:bookID]];
+    
+    NSURL *URL = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request
+                                                   uploadProgress:nil
+                                                 downloadProgress:nil
+                                                completionHandler:^(NSURLResponse *response, NSDictionary *  _Nullable bookDictionary, NSError *error) {
+                                                        if (error) {
+                                                            NSLog(@"Error: %@", error);
+                                                        } else {
+                                                            NSLog(@"%@ %@", response, bookDictionary);
+                                                            
+                                                            completion(bookDictionary, nil);
+                                                        }
+                                                }];
+    [dataTask resume];
+}
 @end

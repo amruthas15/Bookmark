@@ -26,20 +26,20 @@ Bookmark is a entertainment-based app focused on building a community through bo
 **Required Must-have Stories**
 
 - [ ] User sees app icon in home screen and styled launch screen
-- [ ] User can sign in using proper login flow
-- [ ] New Account creation page
-- [ ] User can Logout
+- [X] User can sign in using proper login flow
+- [X] New Account creation page
+- [X] User can Logout
 
 - [ ] User can view all reviews and lists from followed users in their main feed (User can load more posts once they reach the bottom of the feed using infinite loading)
-- [ ] In the main feed, user can view review with the user profile picture, username, star ranking, review text, and timestamp.
-- [ ] In the main feed, user can view book list with the user profile picture, username, list title, picture of first book cover, and timestamp.
+- [X] In the main feed, user can view review with the user profile picture, username, star ranking, review text, and timestamp.
+- [X] In the main feed, user can view book list with the user profile picture, username, list title, picture of first book cover, and timestamp.
 - [ ] User can pull to refresh.
 - [ ] User can tap the like button in the review cell or list cell to "like" the post.
 - [ ] User can unlike the review/list, decrementing the like count.
-- [ ] User can create a new review or list by tapping on the post button.
-- [ ] User should display the relative timestamp for each post "8m", "7h"
-- [ ] Review Details Page: User can tap on a review to view it, with controls to like.
-- [ ] List Details Page: User can tap on a list to view it, with pictures of all books included in a collection view and controls to like the list.
+- [X] User can create a new review or list by tapping on the post button.
+- [X] User should display the relative timestamp for each post "8m", "7h"
+- [X] Review Details Page: User can tap on a review to view it, with controls to like.
+- [X] List Details Page: User can tap on a list to view it, with pictures of all books included in a collection view and controls to like the list.
 - [ ] User can view their profile in a *profile tab*
   - Contains the user header view: picture and username and bio
   - Contains a section with the users basic stats: # review, # lists, # users following, # followers
@@ -54,9 +54,10 @@ Bookmark is a entertainment-based app focused on building a community through bo
   - Contains a section with the users basic stats: # review, # lists, # users following, # followers
 - [ ] Option to post review/list privately with only personal access
 - [ ] After creating a new review or list, a user should be able to view it in the feed immediately without refetching the timeline from the network.
-- [ ] User can switch between popular page (if created), main feed, and personal profile view through a tab bar
-- [ ] User can view 10 popular books and 10 popular lists from popular content page
-- [ ] Link to amazon page to buy book- [ ] User can comment on review with proper formatting on comment (profile picture and username 
+- [X] User can switch between popular page (if created), main feed, and personal profile view through a tab bar
+- [X] User can view 10 popular books and 10 popular lists from popular content page
+- [ ] Link to amazon page to buy book
+- [ ] User can comment on review with proper formatting on comment (profile picture and username 
     - [ ] User can delete comment.
 
 ### 2. Screen Archetypes

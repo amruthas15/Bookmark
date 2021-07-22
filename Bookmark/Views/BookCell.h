@@ -13,10 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BookCell : UITableViewCell
 
-@property (strong, nonatomic) Book *book;
+@property (strong, nonatomic) NSString *bookID;
 @property (weak, nonatomic) IBOutlet UILabel *bookTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bookAuthorLabel;
-@property (weak, nonatomic) IBOutlet PFImageView *coverPhotoImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *coverPhotoImageView;
 
 
 @end
