@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *bookID;
 @property (nonatomic, strong) NSString *googleBookID;
 @property (nonatomic, strong) NSString *coverURL;
+@property (nonatomic, strong) NSString *bookTitle;
+@property (nonatomic, strong) NSDictionary *bookAuthors;
 @property (nonatomic, strong) NSNumber *popularityIndex;
 @property (nonatomic, strong) NSNumber *numReviews;
 @property (nonatomic, strong) NSNumber *numLists;
@@ -25,8 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDate *updatedAt;
 
 + (void) postNewBook: ( NSString * _Nullable )bookID withCompletion: (PFBooleanResultBlock  _Nullable)completion;
-
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 + (NSMutableArray *)booksWithArray:(NSDictionary *)dictionaries;
 

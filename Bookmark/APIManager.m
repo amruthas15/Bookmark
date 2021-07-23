@@ -32,24 +32,7 @@ static NSString * const baseURLString = @"https://www.googleapis.com/books/v1/vo
     
     NSURL *baseURL = [NSURL URLWithString:baseURLString];
     
-    // TODO: fix code below to pull API Keys from your new Keys.plist file
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
-         NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
-         
-         NSString *key= [dict objectForKey: @"consumer_Key"];
-         NSString *secret = [dict objectForKey: @"consumer_Secret"];
-    
-    // Check for launch arguments override
-    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"consumer-key"]) {
-        key = [[NSUserDefaults standardUserDefaults] stringForKey:@"consumer-key"];
-    }
-    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"consumer-secret"]) {
-        secret = [[NSUserDefaults standardUserDefaults] stringForKey:@"consumer-secret"];
-    }
-    
-    self = [super initWithBaseURL:baseURL];
-    if (self) {
+    if (self = [super initWithBaseURL:baseURL]) {
         
     }
     return self;
@@ -76,7 +59,6 @@ static NSString * const baseURLString = @"https://www.googleapis.com/books/v1/vo
                                                         } else {
                                                             NSLog(@"%@ %@", response, bookDictionaries);
                                                             NSMutableArray *bookResults = bookDictionaries[@"items"];
-                                                            //NSMutableArray *books = [Book booksWithArray:bookDictionaries];
                                                             
                                                             completion(bookResults, nil);
                                                         }
@@ -85,27 +67,29 @@ static NSString * const baseURLString = @"https://www.googleapis.com/books/v1/vo
 }
 
 - (void)getBookInformation:(NSString *)bookID completion:(void(^)(NSDictionary *book, NSError *error))completion {
+    if(bookID)
+    {
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
         
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-    
-    NSString *urlString = [baseURLString stringByAppendingString:[@"/" stringByAppendingString:bookID]];
-    
-    NSURL *URL = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-    
-    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request
-                                                   uploadProgress:nil
-                                                 downloadProgress:nil
-                                                completionHandler:^(NSURLResponse *response, NSDictionary *  _Nullable bookDictionary, NSError *error) {
-                                                        if (error) {
-                                                            NSLog(@"Error: %@", error);
-                                                        } else {
-                                                            NSLog(@"%@ %@", response, bookDictionary);
-                                                            
-                                                            completion(bookDictionary, nil);
-                                                        }
-                                                }];
-    [dataTask resume];
+        NSString *urlString = [baseURLString stringByAppendingString:[@"/" stringByAppendingString:bookID]];
+        
+        NSURL *URL = [NSURL URLWithString:urlString];
+        NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+        
+        NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request
+                                                       uploadProgress:nil
+                                                     downloadProgress:nil
+                                                    completionHandler:^(NSURLResponse *response, NSDictionary *  _Nullable bookDictionary, NSError *error) {
+                                                            if (error) {
+                                                                NSLog(@"Error: %@", error);
+                                                            } else {
+                                                                NSLog(@"%@ %@", response, bookDictionary);
+                                                                
+                                                                completion(bookDictionary, nil);
+                                                            }
+                                                    }];
+        [dataTask resume];
+    }
 }
 @end

@@ -14,11 +14,9 @@
 @dynamic author;
 @dynamic reviewStatus;
 
-//@dynamic book;
 @dynamic bookID;
 @dynamic rating;
 
-//@dynamic books;
 @dynamic arrayOfBookIDs;
 @dynamic listTitle;
 
@@ -36,12 +34,13 @@
     Post *newReview = [Post new];
     newReview.author = [PFUser currentUser];
     newReview.reviewStatus = @(YES);
-    newReview.bookID = bookID;
     newReview.rating = rating;
     newReview.postText = review;
     newReview.likeCount = @(0);
-    
-    [newReview saveInBackgroundWithBlock: completion];
+    newReview.bookID = bookID;
+    [Book postNewBook:bookID withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
+        [newReview saveInBackgroundWithBlock: completion];
+    }];
 }
 
 + (void) postNewList: ( NSString * _Nullable )listTitle withBooks: ( NSArray<NSString *>* _Nullable )arrayOfBookIDs withDescription: ( NSString * _Nullable )listText withCompletion: (PFBooleanResultBlock  _Nullable)completion {
@@ -53,6 +52,11 @@
     newList.listTitle = listTitle;
     newList.postText = listText;
     newList.likeCount = @(0);
+    
+    // TODO: change book posting in list to post all books in list to database if not already posted
+    [Book postNewBook:[arrayOfBookIDs objectAtIndex:0] withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
+        [newList saveInBackgroundWithBlock: completion];
+    }];
     
     [newList saveInBackgroundWithBlock: completion];
 }

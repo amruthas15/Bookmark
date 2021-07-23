@@ -21,7 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     PFUser *currentUser = [PFUser currentUser];
     self.usernameLabel.text = currentUser.username;

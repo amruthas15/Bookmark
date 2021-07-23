@@ -13,6 +13,8 @@
 @dynamic bookID;
 @dynamic googleBookID;
 @dynamic coverURL;
+@dynamic bookTitle;
+@dynamic bookAuthors;
 @dynamic popularityIndex;
 @dynamic numReviews;
 @dynamic numLists;
@@ -33,9 +35,6 @@
     [[APIManager shared] getBookInformation:bookID completion:^(NSDictionary *book, NSError *error) {
         if (book) {
             NSDictionary *volumeInfo = book[@"volumeInfo"];
-            newBook.avgRating = volumeInfo[@"averageRating"];
-            newBook.numReviews = volumeInfo[@"ratingsCount"];
-            newBook.numReviews = @(newBook.numReviews.intValue % 100);
 
             NSDictionary *coverImages = volumeInfo[@"imageLinks"];
             NSString *urlString = coverImages[@"thumbnail"];
@@ -45,6 +44,12 @@
                 urlString = [@"https" stringByAppendingString:urlString];
             }
             newBook.coverURL = urlString;
+            newBook.bookTitle = volumeInfo[@"title"];
+            newBook.bookAuthors = volumeInfo[@"authors"];
+            
+            newBook.numReviews = volumeInfo[@"ratingsCount"];
+            newBook.numReviews = @(newBook.numReviews.intValue % 100);
+            newBook.avgRating = volumeInfo[@"averageRating"];
             [newBook saveInBackgroundWithBlock: completion];
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -52,46 +57,17 @@
     }];
 }
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-     self = [super init];
-     if (self) {
-//
-//         NSDictionary *volumeInfo = dictionary[@"volumeInfo"];
-//         self.bookTitle = volumeInfo[@"title"];
-//
-//         NSDictionary *bookAuthorList = volumeInfo[@"authors"];
-//         NSMutableArray *authorList = [[NSMutableArray alloc] init];
-//         for(id key in bookAuthorList)
-//         {
-//             [authorList addObject:key];
-//         }
-//         self.bookAuthors = authorList;
-//
-//         NSDictionary *coverImages = volumeInfo[@"imageLinks"];
-//         NSString *urlString = coverImages[@"thumbnail"];
-//         if([urlString containsString:@"http:"])
-//         {
-//             urlString = [urlString substringFromIndex:4];
-//             urlString = [@"https" stringByAppendingString:urlString];
-//         }
-//
-//         self.coverURL = urlString;
-//
-//         self.publicationDate = volumeInfo[@"publishedDate"];
-     }
-     return self;
- }
-
+//TODO: restructure to allow for posting of multiple books by list
 + (NSMutableArray *)booksWithArray:(NSDictionary *)dictionaries{
     NSMutableArray *books = [NSMutableArray array];
     NSArray *bookResults = dictionaries[@"items"];
     for (NSDictionary *dictionary in bookResults) {
-        Book *book = [[Book alloc] initWithDictionary:dictionary];
-        [books addObject:book];
+        
     }
     return books;
 }
 
+//TODO: potentially move to apimanager so this function can be accessed by multiple classes
 - (UIImage *)getCoverImage {
  
     NSURL *imageURL = [NSURL URLWithString: self.coverURL];

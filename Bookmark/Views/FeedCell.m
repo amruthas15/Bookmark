@@ -8,62 +8,84 @@
 #import "FeedCell.h"
 #import "Post.h"
 #import "DateTools.h"
+#import "APIManager.h"
 
 @implementation FeedCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
 }
 
 -(void)initWithReview:(Post *)newReview {
     _post = newReview;
-    //self.bookCoverImageView.file = newReview.book[@"bookCover"];
-    //[self.photoImageView loadInBackground];
+    [[APIManager shared] getBookInformation:newReview.bookID completion:^(NSDictionary *book, NSError *error) {
+        if (book) {
+            NSDictionary *volumeInfo = book[@"volumeInfo"];
 
-    //self.postTitleLabel.text = newReview.book.bookTitle;
+            NSDictionary *coverImages = volumeInfo[@"imageLinks"];
+            self.bookCoverImageView.image = [self getBookCoverImage:coverImages];
+            self.postTitleLabel.text = volumeInfo[@"title"];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    
     self.postDescriptionLabel.text = newReview.postText;
     [self.ratingLabel setHidden:FALSE];
     self.ratingLabel.text = [[newReview.rating stringValue] stringByAppendingString:@"★"];
     self.usernameLabel.text = newReview.author.username;
     self.likeCountLabel.text = [newReview.likeCount stringValue];
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    // Configure the input format to parse the date string
-    formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
-    NSString *timeDiff = [self.post.createdAt timeAgoSinceNow];
-    // Configure output format
-    formatter.dateStyle = NSDateFormatterShortStyle;
-    formatter.timeStyle = NSDateFormatterShortStyle;
-    // Convert Date to String
-    self.timeLabel.text = timeDiff;
+    [self setTimeLabel:self.timeLabel];
 }
 
 -(void)initWithList:(Post *)newList {
     _post = newList;
-    //self.bookCoverImageView.file = newReview.book[@"bookCover"];
-    //[self.photoImageView loadInBackground];
+    [[APIManager shared] getBookInformation:[newList.arrayOfBookIDs objectAtIndex:0] completion:^(NSDictionary *book, NSError *error) {
+        if (book) {
+            NSDictionary *volumeInfo = book[@"volumeInfo"];
+
+            NSDictionary *coverImages = volumeInfo[@"imageLinks"];
+            self.bookCoverImageView.image = [self getBookCoverImage:coverImages];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    
     self.postTitleLabel.text = newList.listTitle;
     self.postDescriptionLabel.text = newList.postText;
     [self.ratingLabel setHidden:TRUE];
     self.usernameLabel.text = newList.author.username;
     self.likeCountLabel.text = [newList.likeCount stringValue];
     
+    [self setTimeLabel:self.timeLabel];
+}
+
+-(UIImage *)getBookCoverImage: (NSDictionary *)coverImages {
+    NSString *urlString = coverImages[@"thumbnail"];
+    if([urlString containsString:@"http:"])
+    {
+        urlString = [urlString substringFromIndex:4];
+        urlString = [@"https" stringByAppendingString:urlString];
+    }
+    NSURL *imageURL = [NSURL URLWithString: urlString];
+    NSData* imageData = [[NSData alloc] initWithContentsOfURL: imageURL];
+    return [UIImage imageWithData: imageData];
+}
+
+//TODO: Move time formatting function to api manager and set label in calling function
+-(void)setTimeLabel:(UILabel *)timeLabel {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    // Configure the input format to parse the date string
     formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
     NSString *timeDiff = [self.post.createdAt timeAgoSinceNow];
-    // Configure output format
     formatter.dateStyle = NSDateFormatterShortStyle;
     formatter.timeStyle = NSDateFormatterShortStyle;
-    // Convert Date to String
-    self.timeLabel.text = timeDiff;
+    timeLabel.text = timeDiff;
 }
 
 @end

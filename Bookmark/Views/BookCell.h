@@ -18,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *bookAuthorLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *coverPhotoImageView;
 
+-(void)initWithDictionary:(NSDictionary *)book;
+
+-(void)initWithBook:(Book *)book;
 
 @end
 

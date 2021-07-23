@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		18CDD41D17C50A8BDA6E0604 /* Pods_Bookmark_BookmarkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52FBA5F3DA7723F4A53BF85C /* Pods_Bookmark_BookmarkUITests.framework */; };
-		580F28DE269E595F0052404A /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28DD269E595F0052404A /* Review.m */; };
-		580F28E1269E596B0052404A /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28E0269E596B0052404A /* List.m */; };
 		580F28E4269E59760052404A /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28E3269E59760052404A /* Book.m */; };
 		580F28E7269F40BF0052404A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28E6269F40BF0052404A /* User.m */; };
 		580F28F0269F5A850052404A /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28EF269F5A850052404A /* FeedCell.m */; };
@@ -60,10 +58,6 @@
 		272ABF4F127FCF51D1E3FFC8 /* Pods-Bookmark-BookmarkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookmark-BookmarkUITests.debug.xcconfig"; path = "Target Support Files/Pods-Bookmark-BookmarkUITests/Pods-Bookmark-BookmarkUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4783FF575043ADDF2FE0D724 /* Pods_BookmarkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookmarkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52FBA5F3DA7723F4A53BF85C /* Pods_Bookmark_BookmarkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookmark_BookmarkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		580F28DC269E595F0052404A /* Review.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
-		580F28DD269E595F0052404A /* Review.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
-		580F28DF269E596B0052404A /* List.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
-		580F28E0269E596B0052404A /* List.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = List.m; sourceTree = "<group>"; };
 		580F28E2269E59760052404A /* Book.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		580F28E3269E59760052404A /* Book.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		580F28E5269F40BF0052404A /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -254,10 +248,6 @@
 			children = (
 				580F28F126A0F5C10052404A /* Post.h */,
 				580F28F226A0F5C10052404A /* Post.m */,
-				580F28DC269E595F0052404A /* Review.h */,
-				580F28DD269E595F0052404A /* Review.m */,
-				580F28DF269E596B0052404A /* List.h */,
-				580F28E0269E596B0052404A /* List.m */,
 				580F28E2269E59760052404A /* Book.h */,
 				580F28E3269E59760052404A /* Book.m */,
 				580F28E5269F40BF0052404A /* User.h */,
@@ -527,14 +517,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				580F28E1269E596B0052404A /* List.m in Sources */,
 				5870869526A7DD0E000C69AA /* APIManager.m in Sources */,
 				5820417F269E50A800161EF8 /* PopularScreenViewController.m in Sources */,
 				58204138269C9B6B00161EF8 /* AppDelegate.m in Sources */,
 				5820417C269E501B00161EF8 /* PostCreationViewController.m in Sources */,
 				580F28E7269F40BF0052404A /* User.m in Sources */,
 				58204173269E439C00161EF8 /* SignUpViewController.m in Sources */,
-				580F28DE269E595F0052404A /* Review.m in Sources */,
 				5870869826A9331F000C69AA /* BookCell.m in Sources */,
 				58204149269C9B6C00161EF8 /* main.m in Sources */,
 				5870868A26A66858000C69AA /* ReviewDetailsViewController.m in Sources */,

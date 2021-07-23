@@ -25,14 +25,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    [super viewDidLoad];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
     [self fetchData];
+    
+    //TODO: get rid of following book posting once posting functionality through form is finished
+//    [Book postNewBook:@"-o-2KpQlFNsC" withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
+//        NSLog(@"Book out");
+//    }];
 }
 
 -(void)fetchData {
@@ -47,8 +49,6 @@
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
             self.posts = posts;
-            NSLog(@"😎😎😎 Successfully loaded home timeline");
-
             [self.tableView reloadData];
         }
         else {
@@ -57,17 +57,12 @@
     }];
 }
 
-
-
 - (IBAction)composeButtonClicked:(id)sender {
     [self performSegueWithIdentifier:@"postSegue" sender:nil];
 }
 
-
-
 #pragma mark - Navigation
 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
      if([sender isKindOfClass:[UITableViewCell class]])
      {
@@ -121,7 +116,6 @@
     }
 }
 - (void)didPost {
-    NSLog(@"made it to the delegate");
     [self fetchData];
 }
 

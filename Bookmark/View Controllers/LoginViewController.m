@@ -7,7 +7,6 @@
 
 #import "LoginViewController.h"
 #import "Parse/Parse.h"
-#import "Review.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -20,10 +19,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    NSLog(@"at login");
-    
-
 }
 - (IBAction)loginButtonClicked:(id)sender {
     [self loginUser];
@@ -44,8 +39,6 @@
             NSLog(@"User log in failed: %@", error.localizedDescription);
         } else {
             NSLog(@"User logged in successfully");
-            
-            // display view controller that needs to shown after successful login
             [self performSegueWithIdentifier:@"loginToTabSegue" sender:nil];
         }
     }];

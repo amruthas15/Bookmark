@@ -18,11 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) PFUser *author;
 @property (nonatomic, strong) NSNumber *reviewStatus;
 
-//@property (nonatomic, strong) Book *book;
 @property (nonatomic, strong) NSString *bookID;
 @property (nonatomic, strong) NSNumber *rating;
 
-//@property (nonatomic, strong) NSArray<Book *> *books;
 @property (nonatomic, strong) NSArray<NSString *> *arrayOfBookIDs;
 @property (nonatomic, strong) NSString *listTitle;
 

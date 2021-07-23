@@ -19,7 +19,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 - (IBAction)signUpButtonClicked:(id)sender {
     [self registerUser];
@@ -36,15 +35,11 @@
     }
     else
     {
-        // initialize a user object
         PFUser *newUser = [PFUser user];
         
-        // set user properties
         newUser.username = self.usernameField.text;
-        //newUser.email = self.emailField.text;
         newUser.password = self.passwordField.text;
         
-        // call sign up function on the object
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (error != nil) {
                 [self errorOccured:error.localizedDescription];
@@ -52,7 +47,6 @@
             } else {
                 NSLog(@"User registered successfully");
                 
-                // manually segue to logged in view
                 [self performSegueWithIdentifier:@"signUpToTabSegue" sender:nil];
             
             }
@@ -64,16 +58,14 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Input"
                                                                                message:error
                                                                         preferredStyle:(UIAlertControllerStyleAlert)];
-    // create an OK action
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction * _Nonnull action) {
-                                                             // handle response here.
+                                                             
                                                      }];
-    // add the OK action to the alert controller
     [alert addAction:okAction];
     [self presentViewController:alert animated:YES completion:^{
-        // optional code for what happens after the alert controller has finished presenting
+    
     }];
 }
 

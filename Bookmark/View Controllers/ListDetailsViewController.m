@@ -21,21 +21,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     self.usernameLabel.text = self.list.author.username;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    // Configure the input format to parse the date string
     formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
     NSString *timeDiff = [self.list.createdAt timeAgoSinceNow];
-    // Configure output format
     formatter.dateStyle = NSDateFormatterShortStyle;
     formatter.timeStyle = NSDateFormatterShortStyle;
-    // Convert Date to String
     self.timeLabel.text = timeDiff;
     
     self.listTitle.text = self.list.listTitle;
     self.postDescriptionTextView.text = self.list.postText;
+    
+    //TODO: Add collection view of books in list
 }
 
 /*

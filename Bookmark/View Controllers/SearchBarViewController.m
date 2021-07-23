@@ -23,7 +23,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -41,9 +40,6 @@
         if (books) {
             self.data = books;
             self.filteredData = self.data;
-
-            NSLog(@"😎😎😎 Successfully loaded search bar table");
-
             [self.tableView reloadData];
         }
         else {
@@ -62,44 +58,15 @@
     
     BookCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SearchTableViewCell"
                                                                  forIndexPath:indexPath];
-    NSDictionary *currentBook = self.filteredData[indexPath.row];
-    cell.bookID = currentBook[@"id"];
-    
-    NSDictionary *volumeInfo = currentBook[@"volumeInfo"];
-    cell.bookTitleLabel.text = volumeInfo[@"title"];
-    
-    NSDictionary *bookAuthorList = volumeInfo[@"authors"];
-    cell.bookAuthorLabel.text = [self getAuthorsOfBook:bookAuthorList];
-    
-    NSDictionary *coverImages = volumeInfo[@"imageLinks"];
-    cell.coverPhotoImageView.image = [self getBookCoverImage:coverImages];
+    NSDictionary *book = self.filteredData[indexPath.row];
+    if([book isMemberOfClass:[Book class]]) {
+        Book *modelBook = book;
+        [cell initWithBook:modelBook];
+    }
+    else {
+        [cell initWithDictionary:book];
+    }
     return cell;
-}
-
--(NSString *)getAuthorsOfBook: (NSDictionary *)bookAuthorList {
-    NSString *authorString = @" ";
-    int additionalAuthors = bookAuthorList.count - 1;
-    for(id key in bookAuthorList)
-    {
-        authorString = [authorString stringByAppendingString:key];
-        if(additionalAuthors > 0)
-        {
-            authorString = [authorString stringByAppendingString:@", "];
-        }
-    }
-    return authorString;
-}
-
--(UIImage *)getBookCoverImage: (NSDictionary *)coverImages {
-    NSString *urlString = coverImages[@"thumbnail"];
-    if([urlString containsString:@"http:"])
-    {
-        urlString = [urlString substringFromIndex:4];
-        urlString = [@"https" stringByAppendingString:urlString];
-    }
-    NSURL *imageURL = [NSURL URLWithString: urlString];
-    NSData* imageData = [[NSData alloc] initWithContentsOfURL: imageURL];
-    return [UIImage imageWithData: imageData];
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -110,19 +77,13 @@
         [[APIManager shared] getBookSearchQueries:searchText completion:^(NSArray *books, NSError *error) {
             if (books) {
                 self.filteredData = [[NSMutableArray alloc] initWithArray:books];
-                NSLog(@"😎😎😎 Successfully loaded search bar table");
-                
                 self.tableView.dataSource = self;
                 self.tableView.delegate = self;
-                
                 [self.tableView reloadData];
             } else {
-                NSLog(@"😫😫😫 Error getting search bar table: %@", error.localizedDescription);
+                NSLog(@"%@", error.localizedDescription);
             }
         }];
-        
-        NSLog(@"%@", self.filteredData);
-        
     }
     else {
         self.filteredData = self.data;

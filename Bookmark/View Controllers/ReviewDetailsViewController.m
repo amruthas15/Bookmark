@@ -27,17 +27,16 @@
     
     self.usernameLabel.text = self.review.author.username;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    // Configure the input format to parse the date string
     formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
     NSString *timeDiff = [self.review.createdAt timeAgoSinceNow];
-    // Configure output format
     formatter.dateStyle = NSDateFormatterShortStyle;
     formatter.timeStyle = NSDateFormatterShortStyle;
-    // Convert Date to String
     self.timeLabel.text = timeDiff;
     
     self.ratingLabel.text = [[self.review.rating stringValue] stringByAppendingString:@"★"];
     self.postDescriptionTextView.text = self.review.postText;
+    
+    //TODO: Add Book information label and image updating
 }
 
 /*
