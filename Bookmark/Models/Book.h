@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, strong) NSDate *updatedAt;
 
++ (void) postNewBook: ( NSString * _Nullable )bookID withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

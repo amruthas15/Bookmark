@@ -6,6 +6,7 @@
 //
 
 #import "Book.h"
+#import "APIManager.h"
 
 @implementation Book
 
@@ -24,17 +25,32 @@
     return @"Book";
 }
 
-//+ (void) postNewBook: ( NSString * _Nullable )listTitle withBooks: ( NSArray<Book *>* _Nullable )books withDescription: ( NSString * _Nullable )listText withCompletion: (PFBooleanResultBlock  _Nullable)completion {
-//
-//    List *newList = [List new];
-//    newList.author = [PFUser currentUser];
-//    newList.books = books;
-//    newList.listTitle = listTitle;
-//    newList.listText = listText;
-//    newList.likeCount = @(0);
-//
-//    [newList saveInBackgroundWithBlock: completion];
-//}
++ (void) postNewBook: ( NSString * _Nullable )bookID withCompletion: (PFBooleanResultBlock  _Nullable)completion {
+
+    Book *newBook = [Book new];
+    newBook.googleBookID = bookID;
+    
+    [[APIManager shared] getBookInformation:bookID completion:^(NSDictionary *book, NSError *error) {
+        if (book) {
+            NSDictionary *volumeInfo = book[@"volumeInfo"];
+            newBook.avgRating = volumeInfo[@"averageRating"];
+            newBook.numReviews = volumeInfo[@"ratingsCount"];
+            newBook.numReviews = @(newBook.numReviews.intValue % 100);
+
+            NSDictionary *coverImages = volumeInfo[@"imageLinks"];
+            NSString *urlString = coverImages[@"thumbnail"];
+            if([urlString containsString:@"http:"])
+            {
+                urlString = [urlString substringFromIndex:4];
+                urlString = [@"https" stringByAppendingString:urlString];
+            }
+            newBook.coverURL = urlString;
+            [newBook saveInBackgroundWithBlock: completion];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
      self = [super init];

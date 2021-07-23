@@ -9,6 +9,7 @@
 #import "FeedCell.h"
 #import "Parse/Parse.h"
 #import "Post.h"
+#import "Book.h"
 #import "ReviewDetailsViewController.h"
 #import "ListDetailsViewController.h"
 #import "PostCreationViewController.h"
