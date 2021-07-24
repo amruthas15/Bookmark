@@ -32,7 +32,7 @@
     [self fetchData];
     
     //TODO: get rid of following book posting once posting functionality through form is finished
-//    [Book postNewBook:@"-o-2KpQlFNsC" withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
+//    [Book postNewBook:@"J74zCwAAQBAJ" withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
 //        NSLog(@"Book out");
 //    }];
 }

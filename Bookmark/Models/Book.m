@@ -49,7 +49,8 @@
             
             newBook.numReviews = volumeInfo[@"ratingsCount"];
             newBook.numReviews = @(newBook.numReviews.intValue % 100);
-            newBook.avgRating = volumeInfo[@"averageRating"];
+            newBook.avgRating = volumeInfo[@"averageRating"] ?: @(3);
+            newBook.popularityIndex = @(pow(newBook.avgRating.floatValue - 1, newBook.numReviews.floatValue / 10));
             [newBook saveInBackgroundWithBlock: completion];
         } else {
             NSLog(@"%@", error.localizedDescription);
