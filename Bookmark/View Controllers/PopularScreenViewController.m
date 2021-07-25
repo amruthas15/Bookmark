@@ -8,10 +8,11 @@
 #import "PopularScreenViewController.h"
 #import "PopularCollectionCell.h"
 #import "Book.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface PopularScreenViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (weak, nonatomic) NSArray *books;
+@property (strong, nonatomic) NSArray *books;
 
 @end
 
@@ -26,14 +27,11 @@
     [self fetchPopularBooks];
     
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
-    
-    layout.minimumInteritemSpacing = 0;
-    layout.minimumLineSpacing = 0;
 
     CGFloat cellsPerLine = 3;
-    CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing * (cellsPerLine - 1)) / cellsPerLine;
+    CGFloat itemWidth = self.collectionView.frame.size.width / cellsPerLine;
     CGFloat itemHeight = itemWidth * 1.5;
-    layout.itemSize = CGSizeMake(itemWidth, itemHeight);
+    layout.itemSize = CGSizeMake(itemWidth - 8, itemHeight);
 }
 
 -(void)fetchPopularBooks {
@@ -47,7 +45,7 @@
     [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
         if (books) {
             for(Book *book in books){
-                NSLog(book.bookTitle);
+                NSLog(@"%@", book.bookTitle);
             }
             self.books = books;
             [self.collectionView reloadData];
@@ -72,12 +70,13 @@
     PopularCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PopularCollectionCell" forIndexPath:indexPath];
     Book *book = self.books[indexPath.item];
     cell.googleBookID = book.googleBookID;
-    cell.bookCoverImageView.image = [self getBookCoverImage: book.coverURL];
+//    cell.bookCoverImageView.image = [self getBookCoverImage: book.coverURL];
+    [cell.bookCoverImageView setImageWithURL:[NSURL URLWithString: book.coverURL]];
     return cell;
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 12;
+    return self.books.count;
 }
 
 -(UIImage *)getBookCoverImage: (NSString *)urlString {
