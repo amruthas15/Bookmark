@@ -44,9 +44,6 @@
     // fetch data asynchronously
     [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
         if (books) {
-            for(Book *book in books){
-                NSLog(@"%@", book.bookTitle);
-            }
             self.books = books;
             [self.collectionView reloadData];
         }

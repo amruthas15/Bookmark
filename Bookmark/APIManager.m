@@ -57,7 +57,6 @@ static NSString * const baseURLString = @"https://www.googleapis.com/books/v1/vo
                                                         if (error) {
                                                             NSLog(@"Error: %@", error);
                                                         } else {
-                                                            NSLog(@"%@ %@", response, bookDictionaries);
                                                             NSMutableArray *bookResults = bookDictionaries[@"items"];
                                                             
                                                             completion(bookResults, nil);
@@ -83,9 +82,7 @@ static NSString * const baseURLString = @"https://www.googleapis.com/books/v1/vo
                                                     completionHandler:^(NSURLResponse *response, NSDictionary *  _Nullable bookDictionary, NSError *error) {
                                                             if (error) {
                                                                 NSLog(@"Error: %@", error);
-                                                            } else {
-                                                                NSLog(@"%@ %@", response, bookDictionary);
-                                                                
+                                                            } else {                                                                
                                                                 completion(bookDictionary, nil);
                                                             }
                                                     }];

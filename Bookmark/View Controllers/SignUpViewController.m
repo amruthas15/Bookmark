@@ -44,9 +44,7 @@
             if (error != nil) {
                 [self errorOccured:error.localizedDescription];
                 NSLog(@"Error: %@", error.localizedDescription);
-            } else {
-                NSLog(@"User registered successfully");
-                
+            } else {                
                 [self performSegueWithIdentifier:@"signUpToTabSegue" sender:nil];
             
             }
