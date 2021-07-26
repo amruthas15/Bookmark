@@ -11,6 +11,30 @@
 
 @end
 
+@interface UserTransformer : NSValueTransformer
+@end
+
+@implementation UserTransformer
+
++ (Class)transformedValueClass
+{
+    return [NSString class];
+}
+
++ (BOOL)allowsReverseTransformation
+{
+    return NO;
+}
+
+- (id)transformedValue:(id)value
+{
+    if (!value) return nil;
+    NSDictionary *user = (NSDictionary *) value;
+    return [user valueForKeyPath:@"user.name"];
+}
+
+@end
+
 @implementation PostCreationViewController
 
 - (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -56,9 +80,11 @@
     section = [XLFormSectionDescriptor formSection];
     section.hidden = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"($postType.value.formValue == 1)"]];;
     [form addFormSection:section];
-    
+
     //Book Picker
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"reviewBook" rowType:@"text" title:@"Book-Picking Placeholder for Review"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"reviewBook" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Book"];
+    row.action.viewControllerStoryboardId = @"BookSearchPickerViewController";
+//    row.valueTransformer = [UserTransformer class];
     [section addFormRow:row];
 
     //Rating
@@ -69,7 +95,7 @@
         [row.cellConfigAtConfigure setObject:@1 forKey:@"stepControl.minimumValue"];
         [row.cellConfigAtConfigure setObject:@5 forKey:@"stepControl.maximumValue"];
     [section addFormRow:row];
-    
+
     //Review Text
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"reviewText" rowType:@"textView" title:@"Review:"];
     [section addFormRow:row];
@@ -82,15 +108,15 @@
     //List Title
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"listTitle" rowType:@"text" title:@"List Title"];
     [section addFormRow:row];
-    
+
     //List Text
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"listText" rowType:@"textView" title:@"Description:"];
     [section addFormRow:row];
-    
+
     //Books Picker
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"listBooks" rowType:@"text" title:@"Book-Picking Placeholder for List"];
     [section addFormRow:row];
-    
+
 
     self.form = form;
 }
@@ -99,9 +125,10 @@
     NSDictionary *formResults = [self.form formValues];
     NSString *postType = [formResults valueForKey:@"postType"];
     if(postType.intValue == 0){
+        NSNumber *reviewBook = [formResults valueForKey:@"reviewBook"];
         NSString *reviewText = [formResults valueForKey:@"reviewText"];
         NSNumber *reviewRating = [formResults valueForKey:@"ratingStep"];
-        [Post postNewReview:reviewText withBook:Nil withRating:reviewRating withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
+        [Post postNewReview:reviewText withBook:reviewBook withRating:reviewRating withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
             [self.delegate didPost];
             [self dismissViewControllerAnimated:true completion:nil];
         }];

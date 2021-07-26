@@ -41,8 +41,8 @@ Bookmark is a entertainment-based app focused on building a community through bo
 - [X] Review Details Page: User can tap on a review to view it, with controls to like.
 - [X] List Details Page: User can tap on a list to view it, with pictures of all books included in a collection view and controls to like the list.
 - [ ] User can view their profile in a *profile tab*
-  - Contains the user header view: picture and username and bio
-  - Contains a section with the users basic stats: # review, # lists, # users following, # followers
+  - [X] Contains the user header view: picture and username and bio
+  - [ ] Contains a section with the users basic stats: # review, # lists, # users following, # followers
 - [ ] Page for book that can be accessed by clicking on book cover picture in review/list
     - Contains a section with the books basic stats: author, publication date, average star ranking
 
@@ -55,7 +55,7 @@ Bookmark is a entertainment-based app focused on building a community through bo
 - [ ] Option to post review/list privately with only personal access
 - [ ] After creating a new review or list, a user should be able to view it in the feed immediately without refetching the timeline from the network.
 - [X] User can switch between popular page (if created), main feed, and personal profile view through a tab bar
-- [X] User can view 10 popular books and 10 popular lists from popular content page
+- [X] User can view 10 popular books from popular content page
 - [ ] Link to amazon page to buy book
 - [ ] User can comment on review with proper formatting on comment (profile picture and username 
     - [ ] User can delete comment.

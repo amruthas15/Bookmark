@@ -67,8 +67,9 @@
     PopularCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PopularCollectionCell" forIndexPath:indexPath];
     Book *book = self.books[indexPath.item];
     cell.googleBookID = book.googleBookID;
-//    cell.bookCoverImageView.image = [self getBookCoverImage: book.coverURL];
-    [cell.bookCoverImageView setImageWithURL:[NSURL URLWithString: book.coverURL]];
+    cell.bookCoverImageView.image = [self getBookCoverImage: book.coverURL];
+    cell.rankingLabel.text = [@(indexPath.item + 1) stringValue];
+//    [cell.bookCoverImageView setImageWithURL:[NSURL URLWithString: book.coverURL]];
     return cell;
 }
 

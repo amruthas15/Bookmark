@@ -21,7 +21,7 @@
 }
 
 -(void)initWithDictionary:(NSDictionary *)book {
-    self.bookID = book[@"id"];
+    self.googleBookID = book[@"id"];
     
     NSDictionary *volumeInfo = book[@"volumeInfo"];
     self.bookTitleLabel.text = volumeInfo[@"title"];
@@ -35,7 +35,7 @@
 }
 
 -(void)initWithBook:(Book *)book {
-    self.bookID = book.googleBookID;
+    self.googleBookID = book.googleBookID;
     self.bookTitleLabel.text = book.bookTitle;
     self.bookAuthorLabel.text = [self getAuthorsOfBook:book.bookAuthors];
     self.coverPhotoImageView.image = [self getBookCoverImage:book.coverURL];

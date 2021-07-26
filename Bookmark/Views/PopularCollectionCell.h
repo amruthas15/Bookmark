@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PopularCollectionCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *bookCoverImageView;
 @property (weak, nonatomic) NSString *googleBookID;
+@property (weak, nonatomic) IBOutlet UITextField *rankingLabel;
 
 @end
 

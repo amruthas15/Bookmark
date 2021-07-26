@@ -38,6 +38,7 @@
     newReview.postText = review;
     newReview.likeCount = @(0);
     newReview.bookID = bookID;
+    
     [Book postNewBook:bookID withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
         [newReview saveInBackgroundWithBlock: completion];
     }];
