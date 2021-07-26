@@ -39,8 +39,27 @@
     newReview.likeCount = @(0);
     newReview.bookID = bookID;
     
-    [Book postNewBook:bookID withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
-        [newReview saveInBackgroundWithBlock: completion];
+    PFQuery *bookQuery = [Book query];
+    [bookQuery whereKey:@"googleBookID" equalTo: bookID];
+    [bookQuery orderByDescending:@"updatedAt"];
+    bookQuery.limit = 5;
+    
+    // fetch data asynchronously
+    [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
+        if (books) {
+            Book *modelBook = [books firstObject];
+            modelBook.numReviews = @([modelBook.numReviews intValue] + 1);
+            modelBook.avgRating = @((([modelBook.avgRating intValue] * ([modelBook.numReviews intValue] - 1)) + [newReview.rating intValue]) / [modelBook.numReviews intValue]);
+            modelBook.popularityIndex = @(pow(modelBook.avgRating.floatValue - 1, modelBook.numReviews.floatValue / 10));
+            [modelBook saveInBackgroundWithBlock: completion];
+            [newReview saveInBackgroundWithBlock: completion];
+
+        }
+        else {
+            [Book postNewBook:bookID withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
+                [newReview saveInBackgroundWithBlock: completion];
+            }];
+        }
     }];
 }
 

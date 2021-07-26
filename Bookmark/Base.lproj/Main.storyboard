@@ -628,7 +628,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="fJW-Wt-BOP">
             <objects>
-                <tabBarController storyboardIdentifier="AuthenticatedViewController" automaticallyAdjustsScrollViewInsets="NO" id="LOQ-g9-AJ0" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="AuthenticatedViewController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="LOQ-g9-AJ0" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="vhD-K4-lDh"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qug-Iv-Oeo">
@@ -652,7 +652,7 @@
             <objects>
                 <viewController id="CHN-2H-BcX" customClass="PostCreationViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pKJ-Xl-v5G">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="gIF-5F-r9k"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -660,7 +660,7 @@
                     <navigationItem key="navigationItem" title="New Post" id="tZY-YK-cLI">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="Gje-dA-B8F">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="EuE-qj-m2i">
-                                <rect key="frame" x="302" y="13" width="92" height="30"/>
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Confirm"/>
                                 <connections>
@@ -785,7 +785,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="sCT-Ie-d7B"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YDj-nD-LVv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
