@@ -6,7 +6,7 @@
 //
 
 #import "PopularScreenViewController.h"
-#import "PopularCollectionCell.h"
+#import "BookCollectionCell.h"
 #import "Book.h"
 #import "Utilities.h"
 
@@ -53,7 +53,7 @@
 }
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    PopularCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PopularCollectionCell" forIndexPath:indexPath];
+    BookCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PopularCollectionCell" forIndexPath:indexPath];
     Book *book = self.books[indexPath.item];
     cell.googleBookID = book.googleBookID;
     cell.bookCoverImageView.image = [Utilities getBookCoverImageFromString: book.coverURL];

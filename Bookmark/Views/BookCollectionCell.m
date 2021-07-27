@@ -5,8 +5,8 @@
 //  Created by Amrutha Srikanth on 7/22/21.
 //
 
-#import "PopularCollectionCell.h"
+#import "BookCollectionCell.h"
 
-@implementation PopularCollectionCell
+@implementation BookCollectionCell
 
 @end

@@ -8,7 +8,7 @@
 #import "ListDetailsViewController.h"
 #import "DateTools.h"
 #import "Utilities.h"
-#import "PopularCollectionCell.h"
+#import "BookCollectionCell.h"
 
 @interface ListDetailsViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -57,7 +57,7 @@
 }
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    PopularCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PopularCollectionCell" forIndexPath:indexPath];
+    BookCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ListBookCollectionCell" forIndexPath:indexPath];
     Book *book = self.listOfBooks[indexPath.item];
     cell.googleBookID = book.googleBookID;
     cell.bookCoverImageView.image = [Utilities getBookCoverImageFromString: book.coverURL];
