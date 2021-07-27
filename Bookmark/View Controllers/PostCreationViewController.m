@@ -84,7 +84,7 @@
     //Book Picker
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"reviewBook" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Book"];
     row.action.viewControllerStoryboardId = @"BookSearchPickerViewController";
-    row.valueTransformer = [UserTransformer class];
+//    row.valueTransformer = [UserTransformer class];
     [section addFormRow:row];
 
     //Rating

@@ -28,10 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void) postNewBook: ( NSString * _Nullable )bookID withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
-+ (NSMutableArray *)booksWithArray:(NSDictionary *)dictionaries;
-
-- (UIImage *)getCoverImage;
-
 @end
 
 NS_ASSUME_NONNULL_END

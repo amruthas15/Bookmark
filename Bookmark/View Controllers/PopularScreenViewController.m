@@ -8,6 +8,7 @@
 #import "PopularScreenViewController.h"
 #import "PopularCollectionCell.h"
 #import "Book.h"
+#import "Utilities.h"
 
 @interface PopularScreenViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -55,24 +56,13 @@
     PopularCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PopularCollectionCell" forIndexPath:indexPath];
     Book *book = self.books[indexPath.item];
     cell.googleBookID = book.googleBookID;
-    cell.bookCoverImageView.image = [self getBookCoverImage: book.coverURL];
+    cell.bookCoverImageView.image = [Utilities getBookCoverImageFromString: book.coverURL];
     cell.rankingLabel.text = [@(indexPath.item + 1) stringValue];
     return cell;
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.books.count;
-}
-
--(UIImage *)getBookCoverImage: (NSString *)urlString {
-    if([urlString containsString:@"http:"])
-    {
-        urlString = [urlString substringFromIndex:4];
-        urlString = [@"https" stringByAppendingString:urlString];
-    }
-    NSURL *imageURL = [NSURL URLWithString: urlString];
-    NSData* imageData = [[NSData alloc] initWithContentsOfURL: imageURL];
-    return [UIImage imageWithData: imageData];
 }
 
 @end

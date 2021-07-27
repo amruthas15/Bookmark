@@ -9,6 +9,7 @@
 #import "Post.h"
 #import "DateTools.h"
 #import "APIManager.h"
+#import "Utilities.h"
 
 @implementation FeedCell
 
@@ -26,9 +27,8 @@
     [[APIManager shared] getBookInformation:newReview.bookID completion:^(NSDictionary *book, NSError *error) {
         if (book) {
             NSDictionary *volumeInfo = book[@"volumeInfo"];
-
             NSDictionary *coverImages = volumeInfo[@"imageLinks"];
-            self.bookCoverImageView.image = [self getBookCoverImage:coverImages];
+            self.bookCoverImageView.image = coverImages ? [Utilities getBookCoverImageFromDictionary:coverImages] : [UIImage systemImageNamed:@"book"];
             self.postTitleLabel.text = volumeInfo[@"title"];
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -41,7 +41,7 @@
     self.usernameLabel.text = newReview.author.username;
     self.likeCountLabel.text = [newReview.likeCount stringValue];
     
-    [self setTimeLabel:self.timeLabel];
+    self.timeLabel.text = [Utilities getTimeText:self.post.createdAt];
 }
 
 -(void)initWithList:(Post *)newList {
@@ -50,7 +50,7 @@
         if (book) {
             NSDictionary *volumeInfo = book[@"volumeInfo"];
             NSDictionary *coverImages = volumeInfo[@"imageLinks"];
-            self.bookCoverImageView.image = coverImages ? [self getBookCoverImage:coverImages] : [UIImage systemImageNamed:@"book"];
+            self.bookCoverImageView.image = coverImages ? [Utilities getBookCoverImageFromDictionary:coverImages] : [UIImage systemImageNamed:@"book"];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
@@ -62,29 +62,7 @@
     self.usernameLabel.text = newList.author.username;
     self.likeCountLabel.text = [newList.likeCount stringValue];
     
-    [self setTimeLabel:self.timeLabel];
-}
-
--(UIImage *)getBookCoverImage: (NSDictionary *)coverImages {
-    NSString *urlString = coverImages[@"thumbnail"];
-    if([urlString containsString:@"http:"])
-    {
-        urlString = [urlString substringFromIndex:4];
-        urlString = [@"https" stringByAppendingString:urlString];
-    }
-    NSURL *imageURL = [NSURL URLWithString: urlString];
-    NSData* imageData = [[NSData alloc] initWithContentsOfURL: imageURL];
-    return [UIImage imageWithData: imageData];
-}
-
-//TODO: Move time formatting function to api manager and set label in calling function
--(void)setTimeLabel:(UILabel *)timeLabel {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
-    NSString *timeDiff = [self.post.createdAt timeAgoSinceNow];
-    formatter.dateStyle = NSDateFormatterShortStyle;
-    formatter.timeStyle = NSDateFormatterShortStyle;
-    timeLabel.text = timeDiff;
+    self.timeLabel.text = [Utilities getTimeText:self.post.createdAt];
 }
 
 @end

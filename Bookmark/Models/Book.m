@@ -59,13 +59,4 @@
     }];
 }
 
-//TODO: potentially move to apimanager so this function can be accessed by multiple classes
-- (UIImage *)getCoverImage {
- 
-    NSURL *imageURL = [NSURL URLWithString: self.coverURL];
-    NSData* imageData = [[NSData alloc] initWithContentsOfURL: imageURL];
-    UIImage *bookCoverImage = [UIImage imageWithData: imageData];
-    return bookCoverImage;
-}
-
 @end

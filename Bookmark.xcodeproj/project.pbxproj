@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		18CDD41D17C50A8BDA6E0604 /* Pods_Bookmark_BookmarkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52FBA5F3DA7723F4A53BF85C /* Pods_Bookmark_BookmarkUITests.framework */; };
 		5801807426AF2C9800037A73 /* BookSearchPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5801807326AF2C9800037A73 /* BookSearchPickerViewController.m */; };
+		5801807726AFBEEE00037A73 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5801807626AFBEEE00037A73 /* Utilities.m */; };
 		580F28E4269E59760052404A /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28E3269E59760052404A /* Book.m */; };
 		580F28E7269F40BF0052404A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28E6269F40BF0052404A /* User.m */; };
 		580F28F0269F5A850052404A /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28EF269F5A850052404A /* FeedCell.m */; };
@@ -61,6 +62,8 @@
 		52FBA5F3DA7723F4A53BF85C /* Pods_Bookmark_BookmarkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookmark_BookmarkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5801807226AF2C9800037A73 /* BookSearchPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookSearchPickerViewController.h; sourceTree = "<group>"; };
 		5801807326AF2C9800037A73 /* BookSearchPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookSearchPickerViewController.m; sourceTree = "<group>"; };
+		5801807526AFBEBF00037A73 /* Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		5801807626AFBEEE00037A73 /* Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		580F28E2269E59760052404A /* Book.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		580F28E3269E59760052404A /* Book.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		580F28E5269F40BF0052404A /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -192,6 +195,8 @@
 				5870868E26A74E5A000C69AA /* keys.plist */,
 				5870869326A7BDCB000C69AA /* APIManager.h */,
 				5870869426A7DD0E000C69AA /* APIManager.m */,
+				5801807526AFBEBF00037A73 /* Utilities.h */,
+				5801807626AFBEEE00037A73 /* Utilities.m */,
 				58204139269C9B6B00161EF8 /* SceneDelegate.h */,
 				5820413A269C9B6B00161EF8 /* SceneDelegate.m */,
 				5820413F269C9B6B00161EF8 /* Main.storyboard */,
@@ -534,6 +539,7 @@
 				580F28F0269F5A850052404A /* FeedCell.m in Sources */,
 				58BB908926AA2EC500197C74 /* PopularCollectionCell.m in Sources */,
 				5870868D26A68E3A000C69AA /* ListDetailsViewController.m in Sources */,
+				5801807726AFBEEE00037A73 /* Utilities.m in Sources */,
 				580F28F326A0F5C10052404A /* Post.m in Sources */,
 				58204176269E4F6A00161EF8 /* MainFeedViewController.m in Sources */,
 				5820413B269C9B6B00161EF8 /* SceneDelegate.m in Sources */,

@@ -7,15 +7,18 @@
 
 #import "ReviewDetailsViewController.h"
 #import "DateTools.h"
+#import "APIManager.h"
+#import "Utilities.h"
 
 @interface ReviewDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *postDescriptionTextView;
 @property (weak, nonatomic) IBOutlet UIImageView *bookCoverImageView;
 @property (weak, nonatomic) IBOutlet UILabel *bookTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
-@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
-@property (weak, nonatomic) IBOutlet UILabel *postDescriptionTextView;
+
 
 @end
 
@@ -25,17 +28,26 @@
     [super viewDidLoad];
     
     self.usernameLabel.text = self.review.author.username;
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
-    NSString *timeDiff = [self.review.createdAt timeAgoSinceNow];
-    formatter.dateStyle = NSDateFormatterShortStyle;
-    formatter.timeStyle = NSDateFormatterShortStyle;
-    self.timeLabel.text = timeDiff;
+    self.timeLabel.text = [Utilities getTimeText:self.review.createdAt];
     
     self.ratingLabel.text = [[self.review.rating stringValue] stringByAppendingString:@"★"];
     self.postDescriptionTextView.text = self.review.postText;
     
-    //TODO: Add Book information label and image updating
+    PFQuery *bookQuery = [Book query];
+    [bookQuery whereKey:@"googleBookID" equalTo: self.review.bookID];
+    [bookQuery orderByDescending:@"updatedAt"];
+    bookQuery.limit = 5;
+    
+    [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
+        if (books) {
+            Book *book = [books firstObject];
+            self.bookTitleLabel.text = book.bookTitle;
+            self.bookCoverImageView.image = book.coverURL ? [Utilities getBookCoverImageFromString:book.coverURL] : [UIImage systemImageNamed:@"book"];
+        }
+        else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 @end

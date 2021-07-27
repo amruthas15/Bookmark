@@ -7,6 +7,7 @@
 
 #import "ListDetailsViewController.h"
 #import "DateTools.h"
+#import "Utilities.h"
 
 @interface ListDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -26,12 +27,7 @@
     self.listTitle.text = self.list.listTitle;
     self.postDescriptionTextView.text = self.list.postText;
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
-    NSString *timeDiff = [self.list.createdAt timeAgoSinceNow];
-    formatter.dateStyle = NSDateFormatterShortStyle;
-    formatter.timeStyle = NSDateFormatterShortStyle;
-    self.timeLabel.text = timeDiff;
+    self.timeLabel.text = [Utilities getTimeText:self.list.createdAt];
     
     //TODO: Add collection view of books in list
 }

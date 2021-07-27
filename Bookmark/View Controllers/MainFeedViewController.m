@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *posts;
 
-
 @end
 
 @implementation MainFeedViewController
@@ -117,6 +116,7 @@
         [self performSegueWithIdentifier:@"feedListCellSegue" sender:[tableView cellForRowAtIndexPath:indexPath]];
     }
 }
+
 - (void)didPost {
     [self fetchData];
 }
