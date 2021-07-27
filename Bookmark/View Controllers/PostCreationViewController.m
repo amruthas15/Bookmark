@@ -109,21 +109,29 @@
 
     // List Section
     section = [XLFormSectionDescriptor formSection];
-    section.hidden = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"($postType.value.formValue == 0)"]];;
+    section.hidden = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"($postType.value.formValue == 0)"]];
     [form addFormSection:section];
 
     //List Title
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"listTitle" rowType:@"text" title:@"List Title"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"listTitle" rowType:@"text" title:@"List Title:"];
     [section addFormRow:row];
 
     //List Text
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"listText" rowType:@"textView" title:@"Description:"];
     [section addFormRow:row];
-
+    
     //Books Picker
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"listBooks" rowType:@"text" title:@"Book-Picking Placeholder for List"];
+    section = [XLFormSectionDescriptor formSectionWithTitle:@"List Books"
+                                                 sectionOptions:XLFormSectionOptionCanInsert | XLFormSectionOptionCanDelete | XLFormSectionOptionCanReorder
+                                              sectionInsertMode:XLFormSectionInsertModeButton];
+    section.hidden = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"($postType.value.formValue == 0)"]];
+    section.multivaluedTag = @"textFieldRow";
+    [form addFormSection:section];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:XLFormRowDescriptorTypeSelectorPush title:@"Book:"];
+    row.action.viewControllerStoryboardId = @"BookSearchPickerViewController";
+    row.valueTransformer = [UserTransformer class];
+    section.multivaluedRowTemplate = [row copy];
     [section addFormRow:row];
-
 
     self.form = form;
 }
@@ -151,7 +159,13 @@
         else if([postType.formDisplaytext isEqualToString:@"List"]){
             NSString *listTitle = [formResults valueForKey:@"listTitle"];
             NSString *listText = [formResults valueForKey:@"listText"];
-            [Post postNewList:listTitle withBooks:Nil withDescription:listText withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
+            NSArray *bookList = [formResults valueForKey:@"textFieldRow"];
+            NSMutableArray *bookIDList = [[NSMutableArray alloc]init];
+            for(Book* book in bookList)
+            {
+                [bookIDList addObject:book.googleBookID];
+            }
+            [Post postNewList:listTitle withBooks:bookIDList withDescription:listText withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
                 [self.delegate didPost];
                 [self dismissViewControllerAnimated:true completion:nil];
             }];
