@@ -61,6 +61,8 @@
     else {
         [cell initWithDictionary:book];
     }
+    Book *valueBook = self.rowDescriptor.value;
+    
     cell.accessoryType = [self.rowDescriptor.value isEqual:cell.googleBookID] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     return cell;
 }

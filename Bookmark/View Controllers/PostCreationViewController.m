@@ -29,14 +29,15 @@
 - (id)transformedValue:(id)value
 {
     if (!value) return nil;
-        if([value isMemberOfClass:[Book class]]) {
-            Book *modelBook = value;
-            return modelBook.bookTitle;
-        }
-        else {
-            NSDictionary *volumeInfo = value[@"volumeInfo"];
-            return volumeInfo[@"title"];
-        }
+    if([value isMemberOfClass:[Book class]]) {
+        Book *modelBook = value;
+        return modelBook.bookTitle;
+    }
+    else {
+        NSDictionary *volumeInfo = value[@"volumeInfo"];
+        return volumeInfo[@"title"];
+    }
+
 }
 
 @end
@@ -90,7 +91,7 @@
     //Book Picker
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"reviewBook" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Book"];
     row.action.viewControllerStoryboardId = @"BookSearchPickerViewController";
-//    row.valueTransformer = [UserTransformer class];
+    row.valueTransformer = [UserTransformer class];
     [section addFormRow:row];
 
     //Rating
@@ -131,10 +132,18 @@
     NSDictionary *formResults = [self getFormResults];
         XLFormOptionsObject *postType = [formResults valueForKey:@"postType"];
         if([postType.formDisplaytext isEqualToString:@"Review"]){
-            Book *reviewBook = [formResults valueForKey:@"reviewBook"];
+            NSString *googleBookID;
+            if([[formResults valueForKey:@"reviewBook"] isMemberOfClass:[Book class]]) {
+                Book *reviewBook = [formResults valueForKey:@"reviewBook"];
+                googleBookID = reviewBook.googleBookID;
+            }
+            else {
+                NSDictionary *reviewBook = [formResults valueForKey:@"reviewBook"];
+                googleBookID = reviewBook[@"id"];
+            }
             NSString *reviewText = [formResults valueForKey:@"reviewText"];
             NSNumber *reviewRating = [formResults valueForKey:@"ratingStep"];
-            [Post postNewReview:reviewText withBook:reviewBook.googleBookID withRating:reviewRating withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
+            [Post postNewReview:reviewText withBook:googleBookID withRating:reviewRating withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
                 [self.delegate didPost];
                 [self dismissViewControllerAnimated:true completion:nil];
             }];
