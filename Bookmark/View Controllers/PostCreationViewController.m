@@ -84,7 +84,7 @@
     //Book Picker
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"reviewBook" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Book"];
     row.action.viewControllerStoryboardId = @"BookSearchPickerViewController";
-//    row.valueTransformer = [UserTransformer class];
+    row.valueTransformer = [UserTransformer class];
     [section addFormRow:row];
 
     //Rating
@@ -142,15 +142,5 @@
         }];
     }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

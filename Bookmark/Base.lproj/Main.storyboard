@@ -332,9 +332,10 @@
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A40-YE-FC2">
-                                                    <rect key="frame" x="20" y="75" width="140" height="210"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="A40-YE-FC2">
+                                                    <rect key="frame" x="20" y="76" width="140" height="208"/>
                                                     <color key="backgroundColor" name="LightAccentColor"/>
+                                                    <color key="tintColor" name="MediumDarkAccentColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="140" id="00H-v2-ctq"/>
                                                         <constraint firstAttribute="width" secondItem="A40-YE-FC2" secondAttribute="height" multiplier="6:9" id="AnH-id-X9Y"/>
@@ -463,7 +464,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="229.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yN-SA-XEl">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yN-SA-XEl">
                                                     <rect key="frame" x="20" y="11" width="225.5" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                     <nil key="textColor"/>

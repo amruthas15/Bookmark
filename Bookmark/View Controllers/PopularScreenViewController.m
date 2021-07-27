@@ -8,7 +8,6 @@
 #import "PopularScreenViewController.h"
 #import "PopularCollectionCell.h"
 #import "Book.h"
-#import "UIImageView+AFNetworking.h"
 
 @interface PopularScreenViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -41,7 +40,6 @@
     [bookQuery includeKey:@"googleBookID"];
     bookQuery.limit = 12;
 
-    // fetch data asynchronously
     [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
         if (books) {
             self.books = books;
@@ -53,23 +51,12 @@
     }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PopularCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PopularCollectionCell" forIndexPath:indexPath];
     Book *book = self.books[indexPath.item];
     cell.googleBookID = book.googleBookID;
     cell.bookCoverImageView.image = [self getBookCoverImage: book.coverURL];
     cell.rankingLabel.text = [@(indexPath.item + 1) stringValue];
-//    [cell.bookCoverImageView setImageWithURL:[NSURL URLWithString: book.coverURL]];
     return cell;
 }
 

@@ -35,6 +35,10 @@
 //    [Book postNewBook:@"J74zCwAAQBAJ" withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
 //        NSLog(@"Book out");
 //    }];
+//    NSArray *bookList = [[NSArray alloc] initWithObjects:@"uU3sPAAACAAJ", @"l51szQEACAAJ", nil];
+//    [Post postNewList:@"Wow" withBooks:bookList withDescription:@"Wow" withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
+//        NSLog(@"Book out");
+//    }];
 }
 
 -(void)fetchData {
@@ -44,8 +48,6 @@
     [postQuery includeKey:@"createdAt"];
     postQuery.limit = 20;
 
-
-    // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
             self.posts = posts;

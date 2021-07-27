@@ -23,6 +23,9 @@
     [super viewDidLoad];
     
     self.usernameLabel.text = self.list.author.username;
+    self.listTitle.text = self.list.listTitle;
+    self.postDescriptionTextView.text = self.list.postText;
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
     NSString *timeDiff = [self.list.createdAt timeAgoSinceNow];
@@ -30,20 +33,7 @@
     formatter.timeStyle = NSDateFormatterShortStyle;
     self.timeLabel.text = timeDiff;
     
-    self.listTitle.text = self.list.listTitle;
-    self.postDescriptionTextView.text = self.list.postText;
-    
     //TODO: Add collection view of books in list
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

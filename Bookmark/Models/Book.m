@@ -35,15 +35,16 @@
     [[APIManager shared] getBookInformation:bookID completion:^(NSDictionary *book, NSError *error) {
         if (book) {
             NSDictionary *volumeInfo = book[@"volumeInfo"];
-
             NSDictionary *coverImages = volumeInfo[@"imageLinks"];
-            NSString *urlString = coverImages[@"thumbnail"];
-            if([urlString containsString:@"http:"])
-            {
-                urlString = [urlString substringFromIndex:4];
-                urlString = [@"https" stringByAppendingString:urlString];
+            if(coverImages) {
+                NSString *urlString = coverImages[@"thumbnail"];
+                if([urlString containsString:@"http:"])
+                {
+                    urlString = [urlString substringFromIndex:4];
+                    urlString = [@"https" stringByAppendingString:urlString];
+                }
+                newBook.coverURL = urlString;
             }
-            newBook.coverURL = urlString;
             newBook.bookTitle = volumeInfo[@"title"];
             newBook.bookAuthors = volumeInfo[@"authors"];
             
@@ -56,16 +57,6 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-}
-
-//TODO: restructure to allow for posting of multiple books by list
-+ (NSMutableArray *)booksWithArray:(NSDictionary *)dictionaries{
-    NSMutableArray *books = [NSMutableArray array];
-    NSArray *bookResults = dictionaries[@"items"];
-    for (NSDictionary *dictionary in bookResults) {
-        
-    }
-    return books;
 }
 
 //TODO: potentially move to apimanager so this function can be accessed by multiple classes

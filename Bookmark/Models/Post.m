@@ -44,7 +44,6 @@
     [bookQuery orderByDescending:@"updatedAt"];
     bookQuery.limit = 5;
     
-    // fetch data asynchronously
     [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
         if (books) {
             Book *modelBook = [books firstObject];
@@ -73,11 +72,19 @@
     newList.postText = listText;
     newList.likeCount = @(0);
     
-    // TODO: change book posting in list to post all books in list to database if not already posted
-    [Book postNewBook:[arrayOfBookIDs objectAtIndex:0] withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
-        [newList saveInBackgroundWithBlock: completion];
-    }];
-    
+    for(NSString *bookID in arrayOfBookIDs) {
+        PFQuery *bookQuery = [Book query];
+        [bookQuery whereKey:@"googleBookID" equalTo: bookID];
+        [bookQuery orderByDescending:@"updatedAt"];
+        bookQuery.limit = 5;
+        
+        [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
+            if (books.count == 0) {
+                [Book postNewBook:bookID withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
+                }];
+            }
+        }];
+    }
     [newList saveInBackgroundWithBlock: completion];
 }
 

@@ -49,9 +49,8 @@
     [[APIManager shared] getBookInformation:[newList.arrayOfBookIDs objectAtIndex:0] completion:^(NSDictionary *book, NSError *error) {
         if (book) {
             NSDictionary *volumeInfo = book[@"volumeInfo"];
-
             NSDictionary *coverImages = volumeInfo[@"imageLinks"];
-            self.bookCoverImageView.image = [self getBookCoverImage:coverImages];
+            self.bookCoverImageView.image = coverImages ? [self getBookCoverImage:coverImages] : [UIImage systemImageNamed:@"book"];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
