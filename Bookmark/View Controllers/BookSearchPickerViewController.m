@@ -71,14 +71,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *book = self.filteredData[indexPath.row];
-
-    if([book isMemberOfClass:[Book class]]) {
-        Book *modelBook = book;
-        self.rowDescriptor.value = modelBook.googleBookID;
-    }
-    else {
-        self.rowDescriptor.value = book[@"id"];
-    }
+    self.rowDescriptor.value = book;
     
     UIViewController *popoverController = self.presentedViewController;
     if (popoverController && popoverController.modalPresentationStyle == UIModalPresentationPopover) {

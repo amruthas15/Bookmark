@@ -29,8 +29,14 @@
 - (id)transformedValue:(id)value
 {
     if (!value) return nil;
-    NSDictionary *user = (NSDictionary *) value;
-    return [user valueForKeyPath:@"user.name"];
+        if([value isMemberOfClass:[Book class]]) {
+            Book *modelBook = value;
+            return modelBook.bookTitle;
+        }
+        else {
+            NSDictionary *volumeInfo = value[@"volumeInfo"];
+            return volumeInfo[@"title"];
+        }
 }
 
 @end
@@ -122,25 +128,48 @@
 }
 
 - (IBAction)confirmPostButtonClicked:(id)sender {
-    NSDictionary *formResults = [self.form formValues];
-    NSString *postType = [formResults valueForKey:@"postType"];
-    if(postType.intValue == 0){
-        NSNumber *reviewBook = [formResults valueForKey:@"reviewBook"];
-        NSString *reviewText = [formResults valueForKey:@"reviewText"];
-        NSNumber *reviewRating = [formResults valueForKey:@"ratingStep"];
-        [Post postNewReview:reviewText withBook:reviewBook withRating:reviewRating withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
-            [self.delegate didPost];
-            [self dismissViewControllerAnimated:true completion:nil];
-        }];
-    }
-    else if(postType.intValue == 1){
-        NSString *listTitle = [formResults valueForKey:@"listTitle"];
-        NSString *listText = [formResults valueForKey:@"listText"];
-        [Post postNewList:listTitle withBooks:Nil withDescription:listText withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
-            [self.delegate didPost];
-            [self dismissViewControllerAnimated:true completion:nil];
-        }];
-    }
+    NSDictionary *formResults = [self getFormResults];
+        XLFormOptionsObject *postType = [formResults valueForKey:@"postType"];
+        if([postType.formDisplaytext isEqualToString:@"Review"]){
+            Book *reviewBook = [formResults valueForKey:@"reviewBook"];
+            NSString *reviewText = [formResults valueForKey:@"reviewText"];
+            NSNumber *reviewRating = [formResults valueForKey:@"ratingStep"];
+            [Post postNewReview:reviewText withBook:reviewBook.googleBookID withRating:reviewRating withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
+                [self.delegate didPost];
+                [self dismissViewControllerAnimated:true completion:nil];
+            }];
+        }
+        else if([postType.formDisplaytext isEqualToString:@"List"]){
+            NSString *listTitle = [formResults valueForKey:@"listTitle"];
+            NSString *listText = [formResults valueForKey:@"listText"];
+            [Post postNewList:listTitle withBooks:Nil withDescription:listText withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
+                [self.delegate didPost];
+                [self dismissViewControllerAnimated:true completion:nil];
+            }];
+        }
+}
+
+-(NSDictionary *)getFormResults {
+    NSMutableDictionary * result = [NSMutableDictionary dictionary];
+     for (XLFormSectionDescriptor * section in self.form.formSections) {
+         if (!section.isMultivaluedSection){
+             for (XLFormRowDescriptor * row in section.formRows) {
+                 if (row.tag && ![row.tag isEqualToString:@""]){
+                     [result setObject:(row.value ?: [NSNull null]) forKey:row.tag];
+                 }
+             }
+         }
+         else{
+             NSMutableArray * multiValuedValuesArray = [NSMutableArray new];
+             for (XLFormRowDescriptor * row in section.formRows) {
+                 if (row.value){
+                     [multiValuedValuesArray addObject:row.value];
+                 }
+             }
+             [result setObject:multiValuedValuesArray forKey:section.multivaluedTag];
+         }
+     }
+    return result;
 }
 
 @end
