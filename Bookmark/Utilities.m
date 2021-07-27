@@ -37,4 +37,19 @@
     return timeDiff;
 }
 
++(NSString *)getAuthorsOfBook: (NSDictionary *)bookAuthorList {
+    NSString *authorString = @" ";
+    long additionalAuthors = bookAuthorList.count - 1;
+    for(id key in bookAuthorList)
+    {
+        authorString = [authorString stringByAppendingString:key];
+        if(additionalAuthors > 0)
+        {
+            authorString = [authorString stringByAppendingString:@", "];
+        }
+        additionalAuthors--;
+    }
+    return authorString;
+}
+
 @end

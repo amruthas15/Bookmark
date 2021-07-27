@@ -27,7 +27,7 @@
     self.bookTitleLabel.text = volumeInfo[@"title"];
     
     NSDictionary *bookAuthorList = volumeInfo[@"authors"];
-    self.bookAuthorLabel.text = [self getAuthorsOfBook:bookAuthorList];
+    self.bookAuthorLabel.text = [Utilities getAuthorsOfBook:bookAuthorList];
     
     NSDictionary *coverImages = volumeInfo[@"imageLinks"];
     self.coverPhotoImageView.image = coverImages ? [Utilities getBookCoverImageFromDictionary:coverImages] : [UIImage systemImageNamed:@"book"];
@@ -36,23 +36,8 @@
 -(void)initWithBook:(Book *)book {
     self.googleBookID = book.googleBookID;
     self.bookTitleLabel.text = book.bookTitle;
-    self.bookAuthorLabel.text = [self getAuthorsOfBook:book.bookAuthors];
+    self.bookAuthorLabel.text = [Utilities getAuthorsOfBook:book.bookAuthors];
     self.coverPhotoImageView.image = book.coverURL ? [Utilities getBookCoverImageFromString:book.coverURL]: [UIImage systemImageNamed:@"book"];
-}
-
--(NSString *)getAuthorsOfBook: (NSDictionary *)bookAuthorList {
-    NSString *authorString = @" ";
-    long additionalAuthors = bookAuthorList.count - 1;
-    for(id key in bookAuthorList)
-    {
-        authorString = [authorString stringByAppendingString:key];
-        if(additionalAuthors > 0)
-        {
-            authorString = [authorString stringByAppendingString:@", "];
-        }
-        additionalAuthors--;
-    }
-    return authorString;
 }
 
 @end

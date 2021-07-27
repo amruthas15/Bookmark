@@ -17,6 +17,8 @@
 
 +(NSString *)getTimeText:(NSDate *)timeCreated;
 
++(NSString *)getAuthorsOfBook: (NSDictionary *)bookAuthorList;
+
 @end
 
 #endif /* Utilities_h */

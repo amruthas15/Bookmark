@@ -43,6 +43,7 @@
             Book *book = [books firstObject];
             self.bookTitleLabel.text = book.bookTitle;
             self.bookCoverImageView.image = book.coverURL ? [Utilities getBookCoverImageFromString:book.coverURL] : [UIImage systemImageNamed:@"book"];
+            self.authorLabel.text = [Utilities getAuthorsOfBook:book.bookAuthors];
         }
         else {
             NSLog(@"%@", error.localizedDescription);

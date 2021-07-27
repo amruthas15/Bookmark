@@ -234,27 +234,40 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7On-ab-NZa">
-                                        <rect key="frame" x="0.0" y="0.0" width="156.5" height="235"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PopularCollectionCell" id="hh8-qF-RDi" customClass="PopularCollectionCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="138" height="207"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="C2S-df-zWS">
-                                            <rect key="frame" x="0.0" y="0.0" width="156.5" height="235"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="siz-pT-xOG">
+                                            <rect key="frame" x="0.0" y="0.0" width="138" height="207"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TLc-Mr-7Ze">
-                                                    <rect key="frame" x="0.0" y="0.0" width="156.5" height="235"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="TLc-Mr-7Ze" secondAttribute="height" multiplier="6:9" id="8R6-QY-ni2"/>
-                                                    </constraints>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dq6-7Y-nnD">
+                                                    <rect key="frame" x="0.0" y="0.0" width="138" height="207"/>
                                                 </imageView>
+                                                <textField hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12" borderStyle="roundedRect" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="k3j-Qx-Sco">
+                                                    <rect key="frame" x="53" y="0.0" width="32" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="32" id="7Q8-GF-UTk"/>
+                                                        <constraint firstAttribute="height" constant="30" id="wPT-pC-Nqv"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="TLc-Mr-7Ze" firstAttribute="top" secondItem="C2S-df-zWS" secondAttribute="top" id="2v4-Z5-vE3"/>
-                                                <constraint firstItem="TLc-Mr-7Ze" firstAttribute="leading" secondItem="C2S-df-zWS" secondAttribute="leading" id="Cgb-5v-faj"/>
-                                                <constraint firstAttribute="bottom" secondItem="TLc-Mr-7Ze" secondAttribute="bottom" id="P5c-R0-43g"/>
-                                                <constraint firstAttribute="trailing" secondItem="TLc-Mr-7Ze" secondAttribute="trailing" id="m12-HD-o4k"/>
+                                                <constraint firstItem="k3j-Qx-Sco" firstAttribute="centerX" secondItem="Dq6-7Y-nnD" secondAttribute="centerX" id="4Sz-pC-Mrf"/>
+                                                <constraint firstItem="Dq6-7Y-nnD" firstAttribute="leading" secondItem="siz-pT-xOG" secondAttribute="leading" id="9k4-Ns-vGQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="Dq6-7Y-nnD" secondAttribute="bottom" id="JOm-Bl-Hhk"/>
+                                                <constraint firstItem="k3j-Qx-Sco" firstAttribute="top" secondItem="siz-pT-xOG" secondAttribute="top" id="aNZ-dC-gbM"/>
+                                                <constraint firstItem="Dq6-7Y-nnD" firstAttribute="top" secondItem="siz-pT-xOG" secondAttribute="top" id="fwP-Fm-xok"/>
+                                                <constraint firstAttribute="trailing" secondItem="Dq6-7Y-nnD" secondAttribute="trailing" id="oNO-U9-9uQ"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="138" height="207"/>
+                                        <connections>
+                                            <outlet property="bookCoverImageView" destination="Dq6-7Y-nnD" id="Hye-tr-VeO"/>
+                                            <outlet property="rankingLabel" destination="k3j-Qx-Sco" id="cow-H8-y6x"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
