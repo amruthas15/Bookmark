@@ -28,12 +28,23 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
+
+    CGFloat cellsPerLine = 3;
+    CGFloat itemWidth = self.collectionView.frame.size.width / cellsPerLine;
+    CGFloat itemHeight = itemWidth * 1.5;
+    layout.itemSize = CGSizeMake(itemWidth - 8, itemHeight);
+    
     self.usernameLabel.text = self.list.author.username;
     self.listTitle.text = self.list.listTitle;
     self.postDescriptionTextView.text = self.list.postText;
     
     self.timeLabel.text = [Utilities getTimeText:self.list.createdAt];
     
+    [self fetchData];
+}
+
+-(void)fetchData {
     for(NSString *googleBookID in self.list.arrayOfBookIDs)
     {
         PFQuery *bookQuery = [Book query];
@@ -53,7 +64,6 @@
             }
         }];
     }
-    //TODO: Add collection view of books in list
 }
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
