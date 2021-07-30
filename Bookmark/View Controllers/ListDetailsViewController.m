@@ -31,9 +31,9 @@
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
 
     CGFloat cellsPerLine = 3;
-    CGFloat itemWidth = self.collectionView.frame.size.width / cellsPerLine;
+    CGFloat itemWidth = (self.collectionView.frame.size.width / cellsPerLine) - 8;
     CGFloat itemHeight = itemWidth * 1.5;
-    layout.itemSize = CGSizeMake(itemWidth - 8, itemHeight);
+    layout.itemSize = CGSizeMake(itemWidth, itemHeight);
     
     self.usernameLabel.text = self.list.author.username;
     self.listTitle.text = self.list.listTitle;
