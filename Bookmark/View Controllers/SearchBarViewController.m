@@ -57,7 +57,7 @@
         
         [[APIManager shared] getBookSearchQueries:searchText completion:^(NSArray *books, NSError *error) {
             if (books) {
-                self.filteredData = [[NSMutableArray alloc] initWithArray:books];
+                self.filteredData = [self filterDuplicateBooks:books];
                 self.tableView.dataSource = self;
                 self.tableView.delegate = self;
                 [self.tableView reloadData];
@@ -71,6 +71,27 @@
     }
     
     [self.tableView reloadData];
+}
+
+-(NSArray *)filterDuplicateBooks:(NSArray *)books {
+    NSMutableArray *filteredBooks = [[NSMutableArray alloc] initWithArray:books];
+    NSMutableArray *filteredTitles = [[NSMutableArray alloc] init];
+    NSMutableArray *filteredAuthors = [[NSMutableArray alloc] init];
+    for(NSDictionary *book in books)
+    {
+        NSDictionary *volumeInfo = book[@"volumeInfo"];
+        NSUInteger titleIndex = [filteredTitles indexOfObject:volumeInfo[@"title"]];
+        if((titleIndex != NSNotFound) && ([[filteredAuthors objectAtIndex:titleIndex] isEqualToArray:volumeInfo[@"authors"]]))
+        {
+            [filteredBooks removeObject:book];
+        }
+        else
+        {
+            [filteredTitles addObject:volumeInfo[@"title"]];
+            [filteredAuthors addObject:volumeInfo[@"authors"]];
+        }
+    }
+    return filteredBooks;
 }
 
 
