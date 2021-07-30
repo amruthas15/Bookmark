@@ -462,6 +462,7 @@
                                                 <constraint firstItem="QC5-xC-4gn" firstAttribute="trailing" secondItem="OUA-ux-Ylg" secondAttribute="trailing" id="zHv-VG-FkD"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
                                         <connections>
                                             <outlet property="bookCoverImageView" destination="A40-YE-FC2" id="Z7l-ud-gLN"/>
                                             <outlet property="likeButton" destination="aMi-ur-gmc" id="krM-3R-JEb"/>
@@ -478,12 +479,16 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KYo-kC-ZjS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="YOe-Lt-aYL" firstAttribute="top" secondItem="NiN-1e-32w" secondAttribute="top" id="Ip0-91-ikX"/>
                             <constraint firstAttribute="bottom" secondItem="YOe-Lt-aYL" secondAttribute="bottom" id="JA2-Rq-fqr"/>
                             <constraint firstItem="YOe-Lt-aYL" firstAttribute="leading" secondItem="KYo-kC-ZjS" secondAttribute="leading" id="ZA7-IC-6Lx"/>
                             <constraint firstAttribute="trailing" secondItem="YOe-Lt-aYL" secondAttribute="trailing" id="mGM-rq-YFf"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="urR-HQ-p5f" appends="YES" id="y6O-tT-cxh"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Main Feed" id="F0m-Tr-vtv">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="compose" id="Du6-Zl-CR3">
@@ -501,6 +506,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZGQ-3m-CHn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="urR-HQ-p5f">
+                    <connections>
+                        <action selector="didPanCell:" destination="fSX-ea-jvi" id="Rv0-dO-sZq"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1330" y="1335"/>
         </scene>

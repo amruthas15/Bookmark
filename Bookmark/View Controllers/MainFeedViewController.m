@@ -92,6 +92,21 @@
 - (void)didPost {
     [self fetchData];
 }
+- (IBAction)didPanCell:(UIPanGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        CGPoint location = [sender locationInView:self.tableView];
+        NSIndexPath *cellIndexPath = [self.tableView indexPathForRowAtPoint:location];
+        UITableViewCell *tappedCell = [self.tableView cellForRowAtIndexPath:cellIndexPath];
+        Post *currentPost = self.posts[cellIndexPath.row];
+        if(currentPost.reviewStatus.boolValue){
+            [self performSegueWithIdentifier:@"feedReviewCellSegue" sender:tappedCell];
+        }
+        else {
+            [self performSegueWithIdentifier:@"feedListCellSegue" sender:tappedCell];
+        }
+    }
+}
 
 #pragma mark - Table View Delegate Methods
 
@@ -112,16 +127,6 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.posts.count;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Post *currentPost = self.posts[indexPath.row];
-    if(currentPost.reviewStatus.boolValue){
-        [self performSegueWithIdentifier:@"feedReviewCellSegue" sender:[tableView cellForRowAtIndexPath:indexPath]];
-    }
-    else {
-        [self performSegueWithIdentifier:@"feedListCellSegue" sender:[tableView cellForRowAtIndexPath:indexPath]];
-    }
 }
 
 #pragma mark - Scroll View Delegate Methods
