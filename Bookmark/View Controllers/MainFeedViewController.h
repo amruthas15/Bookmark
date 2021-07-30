@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface MainFeedViewController : UIViewController
+@interface MainFeedViewController : UIViewController <UIScrollViewDelegate>
 
 @end
 

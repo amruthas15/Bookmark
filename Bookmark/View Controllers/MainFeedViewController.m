@@ -28,6 +28,8 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    [self scrollViewDidScroll:self.tableView];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchData) forControlEvents:UIControlEventValueChanged];
@@ -47,6 +49,7 @@
         if (posts) {
             self.posts = posts;
             [self.tableView reloadData];
+            
         }
         else {
             NSLog(@"%@", error.localizedDescription);
@@ -86,6 +89,12 @@
      }
  }
 
+- (void)didPost {
+    [self fetchData];
+}
+
+#pragma mark - Table View Delegate Methods
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     FeedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"feedCell" forIndexPath:indexPath];
     Post *currentPost = self.posts[indexPath.row];
@@ -96,6 +105,7 @@
     else if(currentPost.reviewStatus.boolValue == FALSE) {
         [cell initWithList:self.posts[indexPath.row]];
     }
+    
 
     return cell;
 }
@@ -114,9 +124,42 @@
     }
 }
 
-- (void)didPost {
-    [self fetchData];
+#pragma mark - Scroll View Delegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    NSArray *visibleCells = [self.tableView visibleCells];
+
+    if (visibleCells != nil  &&  [visibleCells count] != 0) {
+
+        UITableViewCell *topCell = [visibleCells objectAtIndex:0];
+        UITableViewCell *bottomCell = [visibleCells lastObject];
+
+        
+        for (UITableViewCell *cell in visibleCells) {
+            cell.contentView.alpha = 1.0;
+        }
+
+        NSInteger cellHeight = topCell.frame.size.height - 1;
+        NSInteger tableViewTopPosition = self.tableView.frame.origin.y;
+        NSInteger tableViewBottomPosition = self.tableView.frame.origin.y + self.tableView.frame.size.height;
+
+        CGRect topCellPositionInTableView = [self.tableView rectForRowAtIndexPath:[self.tableView indexPathForCell:topCell]];
+        CGRect bottomCellPositionInTableView = [self.tableView rectForRowAtIndexPath:[self.tableView indexPathForCell:bottomCell]];
+        CGFloat topCellPosition = [self.tableView convertRect:topCellPositionInTableView toView:[self.tableView superview]].origin.y;
+        CGFloat bottomCellPosition = ([self.tableView convertRect:bottomCellPositionInTableView toView:[self.tableView superview]].origin.y + cellHeight);
+
+        CGFloat fadingModifier = 1.5;
+        CGFloat topCellOpacity = (1.0f - ((tableViewTopPosition - topCellPosition) / cellHeight) * fadingModifier);
+        CGFloat bottomCellOpacity = (1.0f - ((bottomCellPosition - tableViewBottomPosition) / cellHeight) * fadingModifier);
+
+        if (topCell) {
+            topCell.contentView.alpha = topCellOpacity;
+        }
+        if (bottomCell) {
+            bottomCell.contentView.alpha = bottomCellOpacity;
+        }
+    }
 }
 
 @end
-
