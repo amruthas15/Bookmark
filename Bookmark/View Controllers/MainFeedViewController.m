@@ -17,6 +17,7 @@
 @interface MainFeedViewController () <UITableViewDelegate, UITableViewDataSource, PostCreationViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *posts;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -28,16 +29,11 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchData) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+        
     [self fetchData];
-    
-    //TODO: get rid of following book posting once posting functionality through form is finished
-//    [Book postNewBook:@"J74zCwAAQBAJ" withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
-//        NSLog(@"Book out");
-//    }];
-//    NSArray *bookList = [[NSArray alloc] initWithObjects:@"uU3sPAAACAAJ", @"l51szQEACAAJ", nil];
-//    [Post postNewList:@"Wow" withBooks:bookList withDescription:@"Wow" withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
-//        NSLog(@"Book out");
-//    }];
 }
 
 -(void)fetchData {
@@ -56,6 +52,7 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+    [self.refreshControl endRefreshing];
 }
 
 - (IBAction)composeButtonClicked:(id)sender {
@@ -122,3 +119,4 @@
 }
 
 @end
+
