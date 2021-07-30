@@ -54,7 +54,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    BookCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SearchTableViewCell"
+    BookCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SearchBookTableViewCell"
                                                                  forIndexPath:indexPath];
     NSDictionary *book = self.filteredData[indexPath.row];
     if([book isMemberOfClass:[Book class]]) {

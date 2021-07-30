@@ -13,6 +13,8 @@ target 'Bookmark' do
   pod 'XLForm', '~> 4.3'
   pod 'AFNetworking'
 
+  pod 'SVProgressHUD'
+
 
 
 
