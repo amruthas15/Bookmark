@@ -12,6 +12,7 @@ target 'Bookmark' do
   pod 'GoogleAPIClientForREST'
   pod 'XLForm', '~> 4.3'
   pod 'AFNetworking'
+  pod 'ChameleonFramework', '~> 2.1'
 
   pod 'SVProgressHUD'
 

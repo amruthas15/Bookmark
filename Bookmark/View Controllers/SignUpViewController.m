@@ -7,11 +7,14 @@
 
 #import "SignUpViewController.h"
 #import "Parse/Parse.h"
+#import <ChameleonFramework/Chameleon.h>
+
 
 @interface SignUpViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordCheckField;
+@property (weak, nonatomic) IBOutlet UIView *backgroundView;
 
 @end
 
@@ -19,6 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSArray<UIColor *> *colors = (@[[UIColor colorNamed:@"MediumDarkAccentColor"], [UIColor colorNamed:@"CentralAccentColor"], [UIColor colorNamed:@"MediumLightAccentColor"]]);
+    self.backgroundView.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.backgroundView.frame andColors:(NSArray<UIColor *> *)colors];
 }
 - (IBAction)signUpButtonClicked:(id)sender {
     [self registerUser];

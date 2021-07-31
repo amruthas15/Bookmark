@@ -18,9 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GradientBackground" translatesAutoresizingMaskIntoConstraints="NO" id="L2r-f2-H4W">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ugk-Oi-B4e">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="362"/>
-                            </imageView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bookmark" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zP6-zF-ZjB">
                                 <rect key="frame" x="86" y="154" width="242.5" height="74"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="54"/>
@@ -71,24 +72,25 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="RtW-yj-3U4" firstAttribute="top" secondItem="S8j-aY-8s3" secondAttribute="bottom" constant="36" id="0wo-3F-qgj"/>
+                            <constraint firstItem="ugk-Oi-B4e" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="348-tt-pOd"/>
                             <constraint firstItem="S8j-aY-8s3" firstAttribute="top" secondItem="th4-wO-Omi" secondAttribute="bottom" constant="36" id="3Ha-rw-OEu"/>
-                            <constraint firstItem="L2r-f2-H4W" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9SG-DG-d0e"/>
+                            <constraint firstAttribute="trailing" secondItem="ugk-Oi-B4e" secondAttribute="trailing" id="4pU-4T-70d"/>
+                            <constraint firstItem="th4-wO-Omi" firstAttribute="bottom" secondItem="ugk-Oi-B4e" secondAttribute="bottom" constant="15" id="5Es-ol-2yj"/>
                             <constraint firstItem="th4-wO-Omi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="IHq-zP-dWF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ugk-Oi-B4e" secondAttribute="bottom" constant="500" id="IMP-Sv-g4i"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tEQ-sA-6Tk" secondAttribute="bottom" constant="36" id="L2e-1A-cbU"/>
-                            <constraint firstItem="L2r-f2-H4W" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="MTk-Lw-6Am"/>
+                            <constraint firstItem="zP6-zF-ZjB" firstAttribute="centerY" secondItem="ugk-Oi-B4e" secondAttribute="centerY" constant="10" id="OUe-8H-4VI"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="th4-wO-Omi" secondAttribute="trailing" constant="50" id="RLT-eH-auP"/>
-                            <constraint firstItem="zP6-zF-ZjB" firstAttribute="centerX" secondItem="L2r-f2-H4W" secondAttribute="centerX" id="VTz-8F-9v0"/>
+                            <constraint firstItem="zP6-zF-ZjB" firstAttribute="centerX" secondItem="ugk-Oi-B4e" secondAttribute="centerX" id="ZOk-Jg-amE"/>
+                            <constraint firstItem="ugk-Oi-B4e" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="czi-ei-rhu"/>
                             <constraint firstItem="tEQ-sA-6Tk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jPV-CY-haL"/>
                             <constraint firstItem="S8j-aY-8s3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="loS-Jb-Vpy"/>
-                            <constraint firstItem="th4-wO-Omi" firstAttribute="bottom" secondItem="L2r-f2-H4W" secondAttribute="bottom" constant="15" id="ni1-A1-zbN"/>
-                            <constraint firstItem="L2r-f2-H4W" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="pUp-QM-OOW"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="L2r-f2-H4W" secondAttribute="bottom" constant="500" id="qhz-iC-f8w"/>
                             <constraint firstItem="RtW-yj-3U4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tgV-iY-biY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="S8j-aY-8s3" secondAttribute="trailing" constant="50" id="voD-Ul-RCy"/>
-                            <constraint firstItem="zP6-zF-ZjB" firstAttribute="centerY" secondItem="L2r-f2-H4W" secondAttribute="centerY" constant="10" id="wsU-ki-wEt"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="ugk-Oi-B4e" id="mHs-ka-8ju"/>
                         <outlet property="passwordField" destination="S8j-aY-8s3" id="SdA-Kz-Xlt"/>
                         <outlet property="usernameField" destination="th4-wO-Omi" id="teN-cb-HGU"/>
                         <segue destination="gNZ-SO-CQf" kind="show" identifier="loginToSignupSegue" id="tpH-Ff-ccX"/>
@@ -97,7 +99,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-116" y="-944"/>
+            <point key="canvasLocation" x="-117.39130434782609" y="-944.19642857142856"/>
         </scene>
         <!--Review Details View Controller-->
         <scene sceneID="teU-Mv-vce">
@@ -653,9 +655,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GradientBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Y1O-Fc-hWy">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTu-D1-Alq">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                            </imageView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bookmark" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5Q-dX-jWm">
                                 <rect key="frame" x="86" y="110" width="242.5" height="74"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="54"/>
@@ -697,19 +700,19 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="PCA-ec-GaA" firstAttribute="top" secondItem="At3-Rz-6Wn" secondAttribute="bottom" constant="36" id="2pb-FI-7Z2"/>
-                            <constraint firstAttribute="bottom" secondItem="Y1O-Fc-hWy" secondAttribute="bottom" id="8F2-r5-cdq"/>
                             <constraint firstItem="At3-Rz-6Wn" firstAttribute="leading" secondItem="aRL-6C-wBJ" secondAttribute="leading" constant="50" id="9Ug-Dh-Pdg"/>
-                            <constraint firstItem="Y1O-Fc-hWy" firstAttribute="trailing" secondItem="aRL-6C-wBJ" secondAttribute="trailing" id="C3d-5b-NZu"/>
+                            <constraint firstItem="mTu-D1-Alq" firstAttribute="trailing" secondItem="aRL-6C-wBJ" secondAttribute="trailing" id="DLR-p0-PNP"/>
                             <constraint firstItem="m5Q-dX-jWm" firstAttribute="top" secondItem="aRL-6C-wBJ" secondAttribute="top" constant="110" id="DnW-Ss-EqO"/>
                             <constraint firstItem="At3-Rz-6Wn" firstAttribute="top" secondItem="qZc-sr-lvH" secondAttribute="bottom" constant="36" id="HcW-4r-M03"/>
                             <constraint firstItem="qZc-sr-lvH" firstAttribute="leading" secondItem="aRL-6C-wBJ" secondAttribute="leading" constant="50" id="JJs-hU-X6b"/>
+                            <constraint firstItem="mTu-D1-Alq" firstAttribute="top" secondItem="aRL-6C-wBJ" secondAttribute="top" id="LWa-8j-Vge"/>
                             <constraint firstItem="G5F-Q5-k5R" firstAttribute="leading" secondItem="aRL-6C-wBJ" secondAttribute="leading" constant="50" id="cZl-ZR-G54"/>
-                            <constraint firstItem="Y1O-Fc-hWy" firstAttribute="leading" secondItem="aRL-6C-wBJ" secondAttribute="leading" id="dHF-yW-w6e"/>
                             <constraint firstItem="G5F-Q5-k5R" firstAttribute="top" secondItem="m5Q-dX-jWm" secondAttribute="bottom" constant="115" id="deo-yo-1ro"/>
                             <constraint firstItem="aRL-6C-wBJ" firstAttribute="trailing" secondItem="At3-Rz-6Wn" secondAttribute="trailing" constant="50" id="e79-Tp-h9a"/>
                             <constraint firstItem="qZc-sr-lvH" firstAttribute="top" secondItem="G5F-Q5-k5R" secondAttribute="bottom" constant="36" id="g2n-Y9-uv8"/>
+                            <constraint firstAttribute="bottom" secondItem="mTu-D1-Alq" secondAttribute="bottom" id="hMe-Su-JP4"/>
                             <constraint firstItem="m5Q-dX-jWm" firstAttribute="centerX" secondItem="BAM-uz-cEd" secondAttribute="centerX" id="heR-tM-lRT"/>
-                            <constraint firstItem="Y1O-Fc-hWy" firstAttribute="top" secondItem="BAM-uz-cEd" secondAttribute="top" id="mNX-mE-jfv"/>
+                            <constraint firstItem="mTu-D1-Alq" firstAttribute="leading" secondItem="aRL-6C-wBJ" secondAttribute="leading" id="rM7-dn-K3E"/>
                             <constraint firstItem="aRL-6C-wBJ" firstAttribute="trailing" secondItem="G5F-Q5-k5R" secondAttribute="trailing" constant="50" id="sYQ-ll-Tvm"/>
                             <constraint firstItem="aRL-6C-wBJ" firstAttribute="trailing" secondItem="qZc-sr-lvH" secondAttribute="trailing" constant="50" id="tXI-QB-IuH"/>
                             <constraint firstItem="PCA-ec-GaA" firstAttribute="centerX" secondItem="BAM-uz-cEd" secondAttribute="centerX" id="vr3-1b-wk5"/>
@@ -717,6 +720,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="gpg-0A-TuH"/>
                     <connections>
+                        <outlet property="backgroundView" destination="mTu-D1-Alq" id="bLi-7H-uQg"/>
                         <outlet property="passwordCheckField" destination="At3-Rz-6Wn" id="maB-jz-3uS"/>
                         <outlet property="passwordField" destination="qZc-sr-lvH" id="yJd-nj-Bh9"/>
                         <outlet property="usernameField" destination="G5F-Q5-k5R" id="9ZI-va-cXN"/>
@@ -725,7 +729,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8jx-QJ-gaZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="900" y="-944"/>
+            <point key="canvasLocation" x="900.00000000000011" y="-944.19642857142856"/>
         </scene>
         <!--Home-->
         <scene sceneID="u2O-8c-tZs">
@@ -1097,10 +1101,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="l56-ge-3pQ"/>
+        <segue reference="uG5-zT-iuZ"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="GradientBackground" width="799.5" height="555.5"/>
         <image name="book" catalog="system" width="128" height="102"/>
         <image name="books.vertical" catalog="system" width="128" height="103"/>
         <image name="favor-icon" width="30" height="30"/>
