@@ -13,7 +13,9 @@
 @interface ProfileViewController ()
 @property (weak, nonatomic) IBOutlet PFImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-@property (weak, nonatomic) IBOutlet UITextView *bioTextView;
+@property (weak, nonatomic) IBOutlet UILabel *biographyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *reviewCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *listCountLabel;
 
 @end
 
@@ -27,7 +29,11 @@
 
     self.profileImageView.file = currentUser[@"profileImage"];
     [self.profileImageView loadInBackground];
-    self.bioTextView.text = currentUser[@"bioText"];
+    self.biographyLabel.text = currentUser[@"bioText"];
+    self.reviewCountLabel.text = [currentUser[@"reviewCount"] stringValue];
+    self.listCountLabel.text = [currentUser[@"listCount"] stringValue];
+    NSLog(@"%@", [currentUser[@"reviewCount"] stringValue]);
+    NSLog(@"%@", [currentUser[@"listCount"] stringValue]);
 }
 
 - (IBAction)logOutButtonClicked:(id)sender {
