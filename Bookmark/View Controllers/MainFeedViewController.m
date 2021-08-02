@@ -13,11 +13,13 @@
 #import "ReviewDetailsViewController.h"
 #import "ListDetailsViewController.h"
 #import "PostCreationViewController.h"
+#import "InfiniteScrollActivityView.h"
 
 @interface MainFeedViewController () <UITableViewDelegate, UITableViewDataSource, PostCreationViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *posts;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) InfiniteScrollActivityView *loadingMoreView;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 
 
@@ -36,6 +38,14 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchInitialData) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
+    CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+    self.loadingMoreView = [[InfiniteScrollActivityView alloc] initWithFrame:frame];
+    self.loadingMoreView.hidden = true;
+    [self.tableView addSubview:self.loadingMoreView];
+    UIEdgeInsets insets = self.tableView.contentInset;
+    insets.bottom += InfiniteScrollActivityView.defaultHeight;
+    self.tableView.contentInset = insets;
         
     [self fetchInitialData];
 }
@@ -63,6 +73,8 @@
                 self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
             }
             self.isMoreDataLoading = false;
+            [self.loadingMoreView stopAnimating];
+            [self.refreshControl endRefreshing];
             [self.tableView reloadData];
             
         }
@@ -70,7 +82,6 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    [self.refreshControl endRefreshing];
 }
 
 - (IBAction)composeButtonClicked:(id)sender {
@@ -154,6 +165,11 @@
             
         if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
             self.isMoreDataLoading = true;
+            
+            CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+            self.loadingMoreView.frame = frame;
+            [self.loadingMoreView startAnimating];
+            
             [self fetchMoreData:self.posts.count];
         }
     }
