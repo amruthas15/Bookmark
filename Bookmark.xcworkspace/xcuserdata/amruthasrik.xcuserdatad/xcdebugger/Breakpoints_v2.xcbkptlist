@@ -87,32 +87,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "86942B6E-08E8-40E1-8BC4-EDBD16333C0C"
+            uuid = "E325FFB0-71CF-4E2D-A244-1E11CFF00556"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Bookmark/View Controllers/MainFeedViewController.m"
+            filePath = "Bookmark/APIManager.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
-            landmarkName = "-scrollViewDidScroll:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "09CC85EB-DD15-4215-96FD-5D4DD0EACB3E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bookmark/View Controllers/MainFeedViewController.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "-fetchMoreData:"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "-getBookInformation:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

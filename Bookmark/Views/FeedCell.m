@@ -19,7 +19,18 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
 
+-(void)prepareForReuse{
+    [super prepareForReuse];
+    self.usernameLabel.text = @"";
+    self.timeLabel.text = @"";
+    self.postTitleLabel.text = @"";
+    self.postDescriptionLabel.text = @"";
+    self.likeCountLabel.text = @"";
+
+    self.bookCoverImageView.image = [UIImage systemImageNamed:@"book"];
+    self.ratingLabel.text = @"";
 }
 
 -(void)initWithReview:(Post *)newReview {

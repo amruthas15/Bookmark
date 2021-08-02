@@ -31,7 +31,7 @@ Bookmark is a entertainment-based app focused on building a community through bo
 - [X] User can Logout
 
 - [X] User can view all reviews and lists in their main feed 
-- [ ] User can load more posts once they reach the bottom of the feed using infinite loading
+- [X] User can load more posts once they reach the bottom of the feed using infinite loading
 - [X] In the main feed, user can view review with the user profile picture, username, star ranking, review text, and timestamp.
 - [X] In the main feed, user can view book list with the user profile picture, username, list title, picture of first book cover, and timestamp.
 - [X] User can pull to refresh.
