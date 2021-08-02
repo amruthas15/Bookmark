@@ -30,14 +30,13 @@
     self.bookAuthorLabel.text = [Utilities getAuthorsOfBook:bookAuthorList];
     
     NSDictionary *coverImages = volumeInfo[@"imageLinks"];
-    self.coverPhotoImageView.image = coverImages ? [Utilities getBookCoverImageFromDictionary:coverImages] : [UIImage systemImageNamed:@"book"];
+    self.coverPhotoImageView.image = coverImages ? [Utilities getBookCoverImageFromDictionary:coverImages] : [[UIImage systemImageNamed:@"book"] imageWithTintColor:[UIColor colorNamed:@"MediumDarkAccentColor"]];
 }
 
 -(void)initWithBook:(Book *)book {
     self.googleBookID = book.googleBookID;
     self.bookTitleLabel.text = book.bookTitle;
     self.bookAuthorLabel.text = [Utilities getAuthorsOfBook:book.bookAuthors];
-    self.coverPhotoImageView.image = book.coverURL ? [Utilities getBookCoverImageFromString:book.coverURL]: [UIImage systemImageNamed:@"book"];
-}
+    self.coverPhotoImageView.image = book.coverURL ? [Utilities getBookCoverImageFromString:book.coverURL] : [[UIImage systemImageNamed:@"book"] imageWithTintColor:[UIColor colorNamed:@"MediumDarkAccentColor"]];}
 
 @end
