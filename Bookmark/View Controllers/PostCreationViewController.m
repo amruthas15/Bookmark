@@ -161,9 +161,15 @@
             NSString *listText = [formResults valueForKey:@"listText"];
             NSArray *bookList = [formResults valueForKey:@"textFieldRow"];
             NSMutableArray *bookIDList = [[NSMutableArray alloc]init];
-            for(Book* book in bookList)
+            for(NSDictionary* book in bookList)
             {
-                [bookIDList addObject:book.googleBookID];
+                if([book isMemberOfClass:[Book class]]) {
+                    Book *modelBook = book;
+                    [bookIDList addObject:modelBook.googleBookID];
+                }
+                else {
+                    [bookIDList addObject:book[@"id"]];
+                }
             }
             [Post postNewList:listTitle withBooks:bookIDList withDescription:listText withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
                 [self.delegate didPost];

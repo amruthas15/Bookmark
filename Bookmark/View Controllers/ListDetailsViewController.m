@@ -45,25 +45,18 @@
 }
 
 -(void)fetchData {
-    for(NSString *googleBookID in self.list.arrayOfBookIDs)
-    {
-        PFQuery *bookQuery = [Book query];
-        [bookQuery whereKey:@"googleBookID" equalTo: googleBookID];
-        [bookQuery orderByDescending:@"updatedAt"];
-        bookQuery.limit = 1;
-        
-        [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
-            if (books) {
-                NSMutableArray *bookInfo = [[NSMutableArray alloc] initWithArray:self.listOfBooks];
-                [bookInfo addObject:[books firstObject]];
-                self.listOfBooks = bookInfo;
-                [self.collectionView reloadData];
-            }
-            else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
-    }
+    PFQuery *bookQuery = [Book query];
+    [bookQuery whereKey:@"googleBookID" containedIn:self.list.arrayOfBookIDs];
+    [bookQuery orderByDescending:@"updatedAt"];
+    [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
+        if (books) {
+            self.listOfBooks = books;
+            [self.collectionView reloadData];
+        }
+        else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
