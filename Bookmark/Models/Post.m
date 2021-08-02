@@ -41,11 +41,11 @@
     
     PFQuery *bookQuery = [Book query];
     [bookQuery whereKey:@"googleBookID" equalTo: bookID];
-    [bookQuery orderByDescending:@"updatedAt"];
-    bookQuery.limit = 5;
+    //[bookQuery orderByDescending:@"updatedAt"];
+    bookQuery.limit = 1;
     
     [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
-        if (books) {
+        if (books.count != 0) {
             Book *modelBook = [books firstObject];
             modelBook.numReviews = @([modelBook.numReviews intValue] + 1);
             modelBook.avgRating = @((([modelBook.avgRating intValue] * ([modelBook.numReviews intValue] - 1)) + [newReview.rating intValue]) / [modelBook.numReviews intValue]);
