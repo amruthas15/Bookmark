@@ -35,13 +35,18 @@
 
 -(void)initWithReview:(Post *)newReview {
     _post = newReview;
-    [[APIManager shared] getBookInformation:newReview.bookID completion:^(NSDictionary *book, NSError *error) {
-        if (book) {
-            NSDictionary *volumeInfo = book[@"volumeInfo"];
-            NSDictionary *coverImages = volumeInfo[@"imageLinks"];
-            self.bookCoverImageView.image = coverImages ? [Utilities getBookCoverImageFromDictionary:coverImages] : [UIImage systemImageNamed:@"book"];
-            self.postTitleLabel.text = volumeInfo[@"title"];
-        } else {
+    PFQuery *bookQuery = [Book query];
+    [bookQuery whereKey:@"googleBookID" equalTo: newReview.bookID];
+    [bookQuery orderByDescending:@"updatedAt"];
+    bookQuery.limit = 1;
+    
+    [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
+        if (books) {
+            Book *book = [books firstObject];
+            self.postTitleLabel.text = book.bookTitle;
+            self.bookCoverImageView.image = book.coverURL ? [Utilities getBookCoverImageFromString:book.coverURL] : [UIImage systemImageNamed:@"book"];
+        }
+        else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
@@ -57,12 +62,17 @@
 
 -(void)initWithList:(Post *)newList {
     _post = newList;
-    [[APIManager shared] getBookInformation:[newList.arrayOfBookIDs objectAtIndex:0] completion:^(NSDictionary *book, NSError *error) {
-        if (book) {
-            NSDictionary *volumeInfo = book[@"volumeInfo"];
-            NSDictionary *coverImages = volumeInfo[@"imageLinks"];
-            self.bookCoverImageView.image = coverImages ? [Utilities getBookCoverImageFromDictionary:coverImages] : [UIImage systemImageNamed:@"book"];
-        } else {
+    PFQuery *bookQuery = [Book query];
+    [bookQuery whereKey:@"googleBookID" equalTo: [newList.arrayOfBookIDs firstObject]];
+    [bookQuery orderByDescending:@"updatedAt"];
+    bookQuery.limit = 1;
+
+    [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
+        if (books) {
+            Book *book = [books firstObject];
+            self.bookCoverImageView.image = book.coverURL ? [Utilities getBookCoverImageFromString:book.coverURL] : [UIImage systemImageNamed:@"book"];
+        }
+        else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
