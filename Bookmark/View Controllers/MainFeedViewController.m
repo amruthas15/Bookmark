@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *posts;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
+
 
 @end
 
@@ -32,22 +34,35 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(fetchData) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(fetchInitialData) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
         
-    [self fetchData];
+    [self fetchInitialData];
 }
 
--(void)fetchData {
+-(void)fetchInitialData {
+    [self fetchMoreData:0];
+}
+
+-(void)fetchMoreData:(NSInteger *)querySkip {
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
     [postQuery includeKey:@"createdAt"];
     postQuery.limit = 20;
+    postQuery.skip = querySkip;
 
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
-            self.posts = posts;
+            if(querySkip == 0)
+            {
+                self.posts = posts;
+            }
+            else
+            {
+                self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
+            }
+            self.isMoreDataLoading = false;
             [self.tableView reloadData];
             
         }
@@ -90,7 +105,7 @@
  }
 
 - (void)didPost {
-    [self fetchData];
+    [self fetchInitialData];
 }
 - (IBAction)didPanCell:(UIPanGestureRecognizer *)sender {
     
@@ -133,6 +148,16 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    if(!self.isMoreDataLoading){
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+            
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            self.isMoreDataLoading = true;
+            [self fetchMoreData:self.posts.count];
+        }
+    }
+    
     NSArray *visibleCells = [self.tableView visibleCells];
 
     if (visibleCells != nil  &&  [visibleCells count] != 0) {
