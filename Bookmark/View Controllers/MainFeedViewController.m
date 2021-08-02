@@ -64,19 +64,20 @@
 
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
-            if(querySkip == 0)
-            {
-                self.posts = posts;
-            }
-            else
-            {
-                self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
+            if(posts.count != 0) {
+                if(querySkip == 0)
+                {
+                    self.posts = posts;
+                }
+                else
+                {
+                    self.posts = [self.posts arrayByAddingObjectsFromArray:posts];
+                }
+                [self.tableView reloadData];
             }
             self.isMoreDataLoading = false;
             [self.loadingMoreView stopAnimating];
             [self.refreshControl endRefreshing];
-            [self.tableView reloadData];
-            
         }
         else {
             NSLog(@"%@", error.localizedDescription);
