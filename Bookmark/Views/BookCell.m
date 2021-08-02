@@ -20,6 +20,15 @@
     [super setSelected:selected animated:animated];
 }
 
+-(void)prepareForReuse{
+    [super prepareForReuse];
+    
+    self.googleBookID = @"";
+    self.bookTitleLabel.text = @"";
+    self.bookAuthorLabel.text = @"";
+    self.coverPhotoImageView.image = [UIImage systemImageNamed:@"book"];
+}
+
 -(void)initWithDictionary:(NSDictionary *)book {
     self.googleBookID = book[@"id"];
     
