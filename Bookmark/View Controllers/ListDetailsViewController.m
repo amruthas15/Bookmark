@@ -9,6 +9,7 @@
 #import "DateTools.h"
 #import "Utilities.h"
 #import "BookCollectionCell.h"
+#import "BookDetailsViewController.h"
 
 @interface ListDetailsViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -71,5 +72,19 @@
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.listOfBooks.count;
 }
+
+#pragma mark - Navigation
+
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+     if([sender isKindOfClass:[UICollectionViewCell class]])
+     {
+         UICollectionViewCell *tappedCell = sender;
+         NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
+         Book *currentBook = self.listOfBooks[indexPath.row];
+         
+         BookDetailsViewController *bookDetailsViewController = [segue destinationViewController];
+         bookDetailsViewController.googleBookID = currentBook.googleBookID;
+     }
+ }
 
 @end
