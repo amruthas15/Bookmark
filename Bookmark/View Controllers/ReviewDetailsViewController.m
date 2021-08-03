@@ -9,6 +9,7 @@
 #import "DateTools.h"
 #import "APIManager.h"
 #import "Utilities.h"
+#import "BookDetailsViewController.h"
 
 @interface ReviewDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -50,5 +51,19 @@
         }
     }];
 }
+
+- (IBAction)didTapBookCover:(UITapGestureRecognizer *)sender {
+    [self performSegueWithIdentifier:@"listCellToBookDetailSegue" sender:nil];
+}
+
+#pragma mark - Navigation
+
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+     if ([segue.identifier isEqualToString: @"listCellToBookDetailSegue"])
+     {
+         BookDetailsViewController *bookDetailsViewController = [segue destinationViewController];
+         bookDetailsViewController.googleBookID = self.review.bookID;
+     }
+ }
 
 @end
