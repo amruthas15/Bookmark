@@ -9,6 +9,7 @@
 #import "BookCollectionCell.h"
 #import "Book.h"
 #import "Utilities.h"
+#import "BookDetailsViewController.h"
 
 @interface PopularScreenViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -64,5 +65,19 @@
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.books.count;
 }
+
+#pragma mark - Navigation
+
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+     if([sender isKindOfClass:[UICollectionViewCell class]])
+     {
+         UICollectionViewCell *tappedCell = sender;
+         NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
+         Book *currentBook = self.books[indexPath.row];
+         
+         BookDetailsViewController *bookDetailsViewController = [segue destinationViewController];
+         bookDetailsViewController.googleBookID = currentBook.googleBookID;
+     }
+ }
 
 @end

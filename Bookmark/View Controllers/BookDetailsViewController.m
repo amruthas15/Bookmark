@@ -38,8 +38,8 @@
             self.bookTitleLabel.text = book.bookTitle;
             self.bookAuthorLabel.text = [Utilities getAuthorsOfBook:book.bookAuthors];
             self.averageRatingLabel.text = [[book.avgRating stringValue] stringByAppendingString:@"★"];
-            self.reviewCountLabel.text = [book.numReviews stringValue];
-            self.listCountLabel.text = [book.numLists stringValue];
+            self.reviewCountLabel.text = [book.numReviews stringValue] ? [book.numReviews stringValue] : [@(0) stringValue];
+            self.listCountLabel.text = [book.numLists stringValue] ? [book.numLists stringValue] : [@(0) stringValue];
         }
         else {
             NSLog(@"%@", error.localizedDescription);

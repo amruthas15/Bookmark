@@ -53,13 +53,13 @@
 }
 
 - (IBAction)didTapBookCover:(UITapGestureRecognizer *)sender {
-    [self performSegueWithIdentifier:@"listCellToBookDetailSegue" sender:nil];
+    [self performSegueWithIdentifier:@"reviewCellToBookDetailSegue" sender:nil];
 }
 
 #pragma mark - Navigation
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     if ([segue.identifier isEqualToString: @"listCellToBookDetailSegue"])
+     if ([segue.identifier isEqualToString: @"reviewCellToBookDetailSegue"])
      {
          BookDetailsViewController *bookDetailsViewController = [segue destinationViewController];
          bookDetailsViewController.googleBookID = self.review.bookID;

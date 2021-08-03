@@ -192,7 +192,7 @@
                         <outlet property="ratingLabel" destination="CGa-VD-klU" id="qNw-qd-yFC"/>
                         <outlet property="timeLabel" destination="Kb5-4q-L8H" id="AqA-bN-9R7"/>
                         <outlet property="usernameLabel" destination="dYz-sf-CCx" id="iHJ-HD-Yys"/>
-                        <segue destination="InV-jf-WvC" kind="show" identifier="listCellToBookDetailSegue" id="3jd-bo-lmc"/>
+                        <segue destination="InV-jf-WvC" kind="show" identifier="reviewCellToBookDetailSegue" id="3jd-bo-lmc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oJ0-7x-AHD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -216,13 +216,13 @@
                                 <rect key="frame" x="0.0" y="56" width="414" height="703"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17L" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qt8-gl-mhh">
-                                        <rect key="frame" x="262" y="264.5" width="31" height="21"/>
+                                        <rect key="frame" x="258" y="264.5" width="31" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17R" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1q-a7-Rgf">
-                                        <rect key="frame" x="291.5" y="235.5" width="33" height="21"/>
+                                        <rect key="frame" x="287.5" y="235.5" width="33" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -239,15 +239,15 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5★" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wnk-C4-P40">
-                                        <rect key="frame" x="333" y="112" width="33" height="25"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.5★" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wnk-C4-P40">
+                                        <rect key="frame" x="328" y="112" width="48" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                         <color key="textColor" name="MediumDarkAccentColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avg. Rating:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="koE-qU-ed4">
-                                        <rect key="frame" x="211" y="112" width="114" height="25"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                                        <rect key="frame" x="211" y="112" width="109" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                         <color key="textColor" name="MediumDarkAccentColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -276,9 +276,8 @@
                                             <constraint firstAttribute="width" secondItem="n27-rP-7Ug" secondAttribute="height" multiplier="6:9" id="HhO-5E-EGm"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4v-h7-bX4">
-                                        <rect key="frame" x="20" y="305.5" width="374" height="440.5"/>
-                                        <mutableString key="text">Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography Biography </mutableString>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Biography" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4v-h7-bX4">
+                                        <rect key="frame" x="20" y="305.5" width="374" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -304,16 +303,17 @@
                                     <constraint firstItem="aQJ-cz-o9m" firstAttribute="leading" secondItem="H7N-02-XmO" secondAttribute="leading" id="OyZ-vA-3Wf"/>
                                     <constraint firstItem="n4v-h7-bX4" firstAttribute="leading" secondItem="2W2-l3-nEC" secondAttribute="leading" constant="20" id="PKq-sw-Bbj"/>
                                     <constraint firstItem="2W2-l3-nEC" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qt8-gl-mhh" secondAttribute="trailing" constant="20" id="PZC-DJ-zHO"/>
-                                    <constraint firstItem="qt8-gl-mhh" firstAttribute="leading" secondItem="H7N-02-XmO" secondAttribute="trailing" constant="8" id="ReI-Ry-sjl"/>
+                                    <constraint firstItem="qt8-gl-mhh" firstAttribute="leading" secondItem="H7N-02-XmO" secondAttribute="trailing" constant="4" id="ReI-Ry-sjl"/>
                                     <constraint firstItem="H7N-02-XmO" firstAttribute="leading" secondItem="koE-qU-ed4" secondAttribute="leading" id="Ry6-Qj-GGe"/>
                                     <constraint firstItem="Wnk-C4-P40" firstAttribute="bottom" secondItem="koE-qU-ed4" secondAttribute="bottom" id="YK1-IN-RHQ"/>
                                     <constraint firstItem="2W2-l3-nEC" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Wnk-C4-P40" secondAttribute="trailing" constant="20" id="ZFk-K7-yKf"/>
+                                    <constraint firstItem="e1q-a7-Rgf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="koE-qU-ed4" secondAttribute="bottom" constant="8" id="bmF-e8-hWE"/>
                                     <constraint firstItem="2W2-l3-nEC" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="e1q-a7-Rgf" secondAttribute="trailing" constant="20" id="c3v-y9-Jvo"/>
                                     <constraint firstItem="n27-rP-7Ug" firstAttribute="leading" secondItem="2W2-l3-nEC" secondAttribute="leading" constant="20" id="dhh-dO-3rS"/>
                                     <constraint firstItem="2W2-l3-nEC" firstAttribute="trailing" secondItem="ARO-wE-Wwf" secondAttribute="trailing" constant="20" id="fH5-hf-rch"/>
                                     <constraint firstItem="e1q-a7-Rgf" firstAttribute="bottom" secondItem="aQJ-cz-o9m" secondAttribute="bottom" id="ggx-g6-FwA"/>
                                     <constraint firstItem="H7N-02-XmO" firstAttribute="bottom" secondItem="n27-rP-7Ug" secondAttribute="bottom" id="oKn-CK-tRr"/>
-                                    <constraint firstItem="e1q-a7-Rgf" firstAttribute="leading" secondItem="aQJ-cz-o9m" secondAttribute="trailing" constant="8" id="riR-gi-S4P"/>
+                                    <constraint firstItem="e1q-a7-Rgf" firstAttribute="leading" secondItem="aQJ-cz-o9m" secondAttribute="trailing" constant="4" id="riR-gi-S4P"/>
                                     <constraint firstItem="n27-rP-7Ug" firstAttribute="width" secondItem="ARO-wE-Wwf" secondAttribute="width" multiplier="1:1" id="sRm-Og-9BX"/>
                                     <constraint firstItem="e1q-a7-Rgf" firstAttribute="top" secondItem="aQJ-cz-o9m" secondAttribute="top" id="siN-PS-vvP"/>
                                     <constraint firstItem="Wnk-C4-P40" firstAttribute="leading" secondItem="koE-qU-ed4" secondAttribute="trailing" constant="8" id="tyg-h0-7nm"/>
@@ -424,7 +424,7 @@
                                         <connections>
                                             <outlet property="bookCoverImageView" destination="Dq6-7Y-nnD" id="Hye-tr-VeO"/>
                                             <outlet property="rankingLabel" destination="k3j-Qx-Sco" id="cow-H8-y6x"/>
-                                            <segue destination="InV-jf-WvC" kind="show" id="Btt-Cj-sfR"/>
+                                            <segue destination="InV-jf-WvC" kind="show" identifier="" id="Btt-Cj-sfR"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1083,6 +1083,7 @@
                                         <connections>
                                             <outlet property="bookCoverImageView" destination="UX4-C3-eJR" id="cUv-PG-Jq4"/>
                                             <outlet property="rankingLabel" destination="ceb-GQ-BlH" id="2jw-LZ-OCa"/>
+                                            <segue destination="InV-jf-WvC" kind="show" id="wrC-Vk-ATq"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1262,7 +1263,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="uG5-zT-iuZ"/>
-        <segue reference="Btt-Cj-sfR"/>
+        <segue reference="wrC-Vk-ATq"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>
