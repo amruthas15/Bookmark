@@ -11,6 +11,7 @@
 		5801807426AF2C9800037A73 /* BookSearchPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5801807326AF2C9800037A73 /* BookSearchPickerViewController.m */; };
 		5801807726AFBEEE00037A73 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5801807626AFBEEE00037A73 /* Utilities.m */; };
 		5801807D26B86ED900037A73 /* InfiniteScrollActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5801807C26B86ED900037A73 /* InfiniteScrollActivityView.m */; };
+		5801808326B8C5CA00037A73 /* BookDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5801808226B8C5CA00037A73 /* BookDetailsViewController.m */; };
 		580F28E4269E59760052404A /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28E3269E59760052404A /* Book.m */; };
 		580F28E7269F40BF0052404A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28E6269F40BF0052404A /* User.m */; };
 		580F28F0269F5A850052404A /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28EF269F5A850052404A /* FeedCell.m */; };
@@ -67,6 +68,8 @@
 		5801807626AFBEEE00037A73 /* Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		5801807B26B86ED900037A73 /* InfiniteScrollActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollActivityView.h; sourceTree = "<group>"; };
 		5801807C26B86ED900037A73 /* InfiniteScrollActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollActivityView.m; sourceTree = "<group>"; };
+		5801808126B8C5CA00037A73 /* BookDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookDetailsViewController.h; sourceTree = "<group>"; };
+		5801808226B8C5CA00037A73 /* BookDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookDetailsViewController.m; sourceTree = "<group>"; };
 		580F28E2269E59760052404A /* Book.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		580F28E3269E59760052404A /* Book.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		580F28E5269F40BF0052404A /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -238,6 +241,8 @@
 				5870868926A66858000C69AA /* ReviewDetailsViewController.m */,
 				58204171269E439C00161EF8 /* SignUpViewController.h */,
 				58204172269E439C00161EF8 /* SignUpViewController.m */,
+				5801808126B8C5CA00037A73 /* BookDetailsViewController.h */,
+				5801808226B8C5CA00037A73 /* BookDetailsViewController.m */,
 				5870868B26A68E3A000C69AA /* ListDetailsViewController.h */,
 				5870868C26A68E3A000C69AA /* ListDetailsViewController.m */,
 				58204174269E4F6A00161EF8 /* MainFeedViewController.h */,
@@ -540,6 +545,7 @@
 				58204173269E439C00161EF8 /* SignUpViewController.m in Sources */,
 				5870869826A9331F000C69AA /* BookCell.m in Sources */,
 				58204149269C9B6C00161EF8 /* main.m in Sources */,
+				5801808326B8C5CA00037A73 /* BookDetailsViewController.m in Sources */,
 				5801807D26B86ED900037A73 /* InfiniteScrollActivityView.m in Sources */,
 				5870868A26A66858000C69AA /* ReviewDetailsViewController.m in Sources */,
 				580F28F0269F5A850052404A /* FeedCell.m in Sources */,
