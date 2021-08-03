@@ -42,9 +42,9 @@ Bookmark is a entertainment-based app focused on building a community through bo
 - [X] User should display the relative timestamp for each post "8m", "7h"
 - [X] Review Details Page: User can tap on a review to view it, with controls to like.
 - [X] List Details Page: User can tap on a list to view it, with pictures of all books included in a collection view and controls to like the list.
-- [ ] User can view their profile in a *profile tab*
+- [X] User can view their profile in a *profile tab*
   - [X] Contains the user header view: picture and username and bio
-  - [ ] Contains a section with the users basic stats: # review, # lists
+  - [X] Contains a section with the users basic stats: # review, # lists
 - [ ] Page for book that can be accessed by clicking on book cover picture in review/list
     - [ ] Contains a section with the books basic stats: author, publication date, average star ranking
 

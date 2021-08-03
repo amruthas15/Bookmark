@@ -50,6 +50,29 @@
     self.filteredData = self.data;
 }
 
+-(NSArray *)filterDuplicateBooks:(NSArray *)books {
+    NSMutableArray *filteredBooks = [[NSMutableArray alloc] initWithArray:books];
+    NSMutableArray *filteredTitles = [[NSMutableArray alloc] init];
+    NSMutableArray *filteredAuthors = [[NSMutableArray alloc] init];
+    for(NSDictionary *book in books)
+    {
+        NSDictionary *volumeInfo = book[@"volumeInfo"];
+        NSUInteger titleIndex = [filteredTitles indexOfObject:volumeInfo[@"title"]];
+        if((titleIndex != NSNotFound) && ([[filteredAuthors objectAtIndex:titleIndex] isEqualToArray:volumeInfo[@"authors"]]))
+        {
+            [filteredBooks removeObject:book];
+        }
+        else
+        {
+            [filteredTitles addObject:volumeInfo[@"title"]];
+            [filteredAuthors addObject:volumeInfo[@"authors"]];
+        }
+    }
+    return filteredBooks;
+}
+
+#pragma mark - Navigation
+
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSString *searchText = searchBar.text;
     
@@ -73,26 +96,11 @@
     [self.tableView reloadData];
 }
 
--(NSArray *)filterDuplicateBooks:(NSArray *)books {
-    NSMutableArray *filteredBooks = [[NSMutableArray alloc] initWithArray:books];
-    NSMutableArray *filteredTitles = [[NSMutableArray alloc] init];
-    NSMutableArray *filteredAuthors = [[NSMutableArray alloc] init];
-    for(NSDictionary *book in books)
-    {
-        NSDictionary *volumeInfo = book[@"volumeInfo"];
-        NSUInteger titleIndex = [filteredTitles indexOfObject:volumeInfo[@"title"]];
-        if((titleIndex != NSNotFound) && ([[filteredAuthors objectAtIndex:titleIndex] isEqualToArray:volumeInfo[@"authors"]]))
-        {
-            [filteredBooks removeObject:book];
-        }
-        else
-        {
-            [filteredTitles addObject:volumeInfo[@"title"]];
-            [filteredAuthors addObject:volumeInfo[@"authors"]];
-        }
-    }
-    return filteredBooks;
+- (IBAction)composeButtonClicked:(id)sender {
+    [self performSegueWithIdentifier:@"searchToPostSegue" sender:nil];
 }
+
+
 
 
 #pragma mark - Table View Delegate Methods

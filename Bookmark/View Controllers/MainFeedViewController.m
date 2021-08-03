@@ -86,7 +86,7 @@
 }
 
 - (IBAction)composeButtonClicked:(id)sender {
-    [self performSegueWithIdentifier:@"postSegue" sender:nil];
+    [self performSegueWithIdentifier:@"feedToPostSegue" sender:nil];
 }
 
 #pragma mark - Navigation
@@ -107,7 +107,7 @@
              listDetailsViewController.list = currentPost;
          }
      }
-     else if ([segue.identifier isEqualToString: @"postSegue"])
+     else if ([segue.identifier isEqualToString: @"feedToPostSegue"])
      {
          UINavigationController *navigationController = [segue destinationViewController];
          PostCreationViewController *postCreationViewController = (PostCreationViewController*)navigationController.topViewController;

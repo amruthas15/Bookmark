@@ -32,8 +32,6 @@
     self.biographyLabel.text = currentUser[@"bioText"];
     self.reviewCountLabel.text = [currentUser[@"reviewCount"] stringValue];
     self.listCountLabel.text = [currentUser[@"listCount"] stringValue];
-    NSLog(@"%@", [currentUser[@"reviewCount"] stringValue]);
-    NSLog(@"%@", [currentUser[@"listCount"] stringValue]);
 }
 
 - (IBAction)logOutButtonClicked:(id)sender {
