@@ -167,7 +167,16 @@ Book (using book api, this might not be necessary)
 -Search Screen
     - (Read/GET) Query all posts related to search term
 
-        
+## Credits
+
+List any 3rd party libraries, icons, graphics, or other assets you used in your app.
+
+- [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
+- [DateTools](https://github.com/MatthewYork/DateTools) - date formatting library
+- [XLForm](https://github.com/xmartlabs/XLForm) - dynamic table-view form creating library
+- [ChameleonFramework](https://github.com/BigZaphod/Chameleon) - UI coloring and polish library
+- App Icon made by Freepik (https://www.freepik.com)
+
 
     
 
