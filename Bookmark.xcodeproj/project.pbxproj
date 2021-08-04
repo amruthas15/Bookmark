@@ -12,6 +12,7 @@
 		5801807726AFBEEE00037A73 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5801807626AFBEEE00037A73 /* Utilities.m */; };
 		5801807D26B86ED900037A73 /* InfiniteScrollActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5801807C26B86ED900037A73 /* InfiniteScrollActivityView.m */; };
 		5801808326B8C5CA00037A73 /* BookDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5801808226B8C5CA00037A73 /* BookDetailsViewController.m */; };
+		5801808B26BA672A00037A73 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5801808A26BA672A00037A73 /* SettingsViewController.m */; };
 		580F28E4269E59760052404A /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28E3269E59760052404A /* Book.m */; };
 		580F28E7269F40BF0052404A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28E6269F40BF0052404A /* User.m */; };
 		580F28F0269F5A850052404A /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 580F28EF269F5A850052404A /* FeedCell.m */; };
@@ -70,6 +71,8 @@
 		5801807C26B86ED900037A73 /* InfiniteScrollActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollActivityView.m; sourceTree = "<group>"; };
 		5801808126B8C5CA00037A73 /* BookDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookDetailsViewController.h; sourceTree = "<group>"; };
 		5801808226B8C5CA00037A73 /* BookDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookDetailsViewController.m; sourceTree = "<group>"; };
+		5801808926BA672A00037A73 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		5801808A26BA672A00037A73 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		580F28E2269E59760052404A /* Book.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		580F28E3269E59760052404A /* Book.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		580F28E5269F40BF0052404A /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -168,6 +171,52 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		5801808526BA65A700037A73 /* LoginFlowViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				58204171269E439C00161EF8 /* SignUpViewController.h */,
+				58204172269E439C00161EF8 /* SignUpViewController.m */,
+				5820416E269E40D700161EF8 /* LoginViewController.h */,
+				5820416F269E40D700161EF8 /* LoginViewController.m */,
+			);
+			path = LoginFlowViewControllers;
+			sourceTree = "<group>";
+		};
+		5801808626BA663600037A73 /* DetailsViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5870868826A66858000C69AA /* ReviewDetailsViewController.h */,
+				5870868926A66858000C69AA /* ReviewDetailsViewController.m */,
+				5801808126B8C5CA00037A73 /* BookDetailsViewController.h */,
+				5801808226B8C5CA00037A73 /* BookDetailsViewController.m */,
+				5870868B26A68E3A000C69AA /* ListDetailsViewController.h */,
+				5870868C26A68E3A000C69AA /* ListDetailsViewController.m */,
+			);
+			path = DetailsViewControllers;
+			sourceTree = "<group>";
+		};
+		5801808826BA66D200037A73 /* ComposeViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5801807226AF2C9800037A73 /* BookSearchPickerViewController.h */,
+				5801807326AF2C9800037A73 /* BookSearchPickerViewController.m */,
+				5820417A269E501B00161EF8 /* PostCreationViewController.h */,
+				5820417B269E501B00161EF8 /* PostCreationViewController.m */,
+			);
+			path = ComposeViewControllers;
+			sourceTree = "<group>";
+		};
+		5801808C26BA673300037A73 /* UserViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				58204180269E514900161EF8 /* ProfileViewController.h */,
+				58204181269E514900161EF8 /* ProfileViewController.m */,
+				5801808926BA672A00037A73 /* SettingsViewController.h */,
+				5801808A26BA672A00037A73 /* SettingsViewController.m */,
+			);
+			path = UserViewControllers;
+			sourceTree = "<group>";
+		};
 		5820412A269C9B6B00161EF8 = {
 			isa = PBXGroup;
 			children = (
@@ -235,28 +284,16 @@
 		5820416B269E0B5500161EF8 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5820416E269E40D700161EF8 /* LoginViewController.h */,
-				5820416F269E40D700161EF8 /* LoginViewController.m */,
-				5870868826A66858000C69AA /* ReviewDetailsViewController.h */,
-				5870868926A66858000C69AA /* ReviewDetailsViewController.m */,
-				58204171269E439C00161EF8 /* SignUpViewController.h */,
-				58204172269E439C00161EF8 /* SignUpViewController.m */,
-				5801808126B8C5CA00037A73 /* BookDetailsViewController.h */,
-				5801808226B8C5CA00037A73 /* BookDetailsViewController.m */,
-				5870868B26A68E3A000C69AA /* ListDetailsViewController.h */,
-				5870868C26A68E3A000C69AA /* ListDetailsViewController.m */,
+				5801808526BA65A700037A73 /* LoginFlowViewControllers */,
+				5801808626BA663600037A73 /* DetailsViewControllers */,
+				5801808826BA66D200037A73 /* ComposeViewControllers */,
+				5801808C26BA673300037A73 /* UserViewControllers */,
 				58204174269E4F6A00161EF8 /* MainFeedViewController.h */,
 				58204175269E4F6A00161EF8 /* MainFeedViewController.m */,
-				5801807226AF2C9800037A73 /* BookSearchPickerViewController.h */,
-				5801807326AF2C9800037A73 /* BookSearchPickerViewController.m */,
-				58204180269E514900161EF8 /* ProfileViewController.h */,
-				58204181269E514900161EF8 /* ProfileViewController.m */,
 				5820417D269E50A800161EF8 /* PopularScreenViewController.h */,
 				5820417E269E50A800161EF8 /* PopularScreenViewController.m */,
 				58204177269E4F8700161EF8 /* SearchBarViewController.h */,
 				58204178269E4F8700161EF8 /* SearchBarViewController.m */,
-				5820417A269E501B00161EF8 /* PostCreationViewController.h */,
-				5820417B269E501B00161EF8 /* PostCreationViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -540,6 +577,7 @@
 				5870869526A7DD0E000C69AA /* APIManager.m in Sources */,
 				5820417F269E50A800161EF8 /* PopularScreenViewController.m in Sources */,
 				58204138269C9B6B00161EF8 /* AppDelegate.m in Sources */,
+				5801808B26BA672A00037A73 /* SettingsViewController.m in Sources */,
 				5820417C269E501B00161EF8 /* PostCreationViewController.m in Sources */,
 				580F28E7269F40BF0052404A /* User.m in Sources */,
 				58204173269E439C00161EF8 /* SignUpViewController.m in Sources */,
