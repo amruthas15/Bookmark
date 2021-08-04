@@ -55,9 +55,19 @@
     [self.ratingLabel setHidden:FALSE];
     self.ratingLabel.text = [[newReview.rating stringValue] stringByAppendingString:@"★"];
     self.usernameLabel.text = newReview.author.username;
-    self.likeCountLabel.text = [newReview.likeCount stringValue];
-    
     self.timeLabel.text = [Utilities getTimeText:self.post.createdAt];
+    
+    self.likeCountLabel.text = [newReview.likeCount stringValue];
+    if([newReview.likeCount intValue] > 0)
+    {
+        BOOL check = [newReview.userLikes containsObject:[PFUser currentUser].objectId];
+        if(check) {
+            NSLog(@"Yes");
+        } else {
+            NSLog(@"No");
+        }
+        self.likeButton.selected = check;
+    }
 }
 
 -(void)initWithList:(Post *)newList {
@@ -85,5 +95,32 @@
     
     self.timeLabel.text = [Utilities getTimeText:self.post.createdAt];
 }
+
+- (IBAction)didTapLikeButton:(id)sender {
+    if(self.likeButton.selected) {
+        self.likeButton.selected = false;
+        self.likeCountLabel.text = [NSString stringWithFormat:@"%d",([self.likeCountLabel.text intValue] - 1)];
+        //[self.likeButton setSelected:false];
+        [Post unlikePost:_post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+              if(succeeded) {
+                  NSLog(@"Yes");
+              } else {
+                  NSLog(@"No");
+              }
+        }];
+    } else {
+        self.likeButton.selected = true;
+        //[self.likeButton setSelected:false];
+        self.likeCountLabel.text = [NSString stringWithFormat:@"%d",([self.likeCountLabel.text intValue] + 1)];
+        [Post likePost:_post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+              if(succeeded) {
+                  NSLog(@"Yes");
+              } else {
+                  NSLog(@"No");
+              }
+        }];
+    }
+}
+
 
 @end
