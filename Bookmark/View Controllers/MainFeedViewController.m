@@ -147,8 +147,6 @@
     else if(currentPost.reviewStatus.boolValue == FALSE) {
         [cell initWithList:self.posts[indexPath.row]];
     }
-    
-
     return cell;
 }
 

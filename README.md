@@ -25,7 +25,7 @@ Bookmark is a entertainment-based app focused on building a community through bo
 
 **Required Must-have Stories**
 
-- [ ] User sees app icon in home screen and styled launch screen
+- [X] User sees app icon in home screen and styled launch screen
 - [X] User can sign in using proper login flow
 - [X] New Account creation page
 - [X] User can Logout

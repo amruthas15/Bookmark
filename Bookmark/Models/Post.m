@@ -21,6 +21,7 @@
 @dynamic listTitle;
 
 @dynamic postText;
+@dynamic userLikes;
 @dynamic likeCount;
 @dynamic createdAt;
 @dynamic updatedAt;
@@ -86,6 +87,20 @@
         }];
     }
     [newList saveInBackgroundWithBlock: completion];
+}
+
++(void)likePost: (Post *)post withCompletion: (PFBooleanResultBlock  _Nullable)completion {
+    [post addObject:[PFUser currentUser].objectId forKey:@"userLikes"];
+    float likeCount = [post.likeCount doubleValue];
+    post.likeCount = [NSNumber numberWithFloat:(likeCount + 1)];
+    [post saveInBackgroundWithBlock:completion];
+}
+
++(void)unlikePost: (Post *)post withCompletion: (PFBooleanResultBlock  _Nullable)completion {
+    [post removeObject:[PFUser currentUser].objectId forKey:@"userLikes"];
+    float likeCount = [post.likeCount doubleValue];
+    post.likeCount = [NSNumber numberWithFloat:(likeCount - 1)];
+    [post saveInBackgroundWithBlock:completion];
 }
 
 @end
