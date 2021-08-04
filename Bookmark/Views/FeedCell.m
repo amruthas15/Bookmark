@@ -58,16 +58,7 @@
     self.timeLabel.text = [Utilities getTimeText:self.post.createdAt];
     
     self.likeCountLabel.text = [newReview.likeCount stringValue];
-    if([newReview.likeCount intValue] > 0)
-    {
-        BOOL check = [newReview.userLikes containsObject:[PFUser currentUser].objectId];
-        if(check) {
-            NSLog(@"Yes");
-        } else {
-            NSLog(@"No");
-        }
-        self.likeButton.selected = check;
-    }
+    self.likeButton.selected = [newReview.userLikes containsObject:[PFUser currentUser].objectId];
 }
 
 -(void)initWithList:(Post *)newList {
@@ -91,9 +82,10 @@
     self.postDescriptionLabel.text = newList.postText;
     [self.ratingLabel setHidden:TRUE];
     self.usernameLabel.text = newList.author.username;
-    self.likeCountLabel.text = [newList.likeCount stringValue];
-    
     self.timeLabel.text = [Utilities getTimeText:self.post.createdAt];
+
+    self.likeCountLabel.text = [newList.likeCount stringValue];
+    self.likeButton.selected = [newList.userLikes containsObject:[PFUser currentUser].objectId];
 }
 
 - (IBAction)didTapLikeButton:(id)sender {
@@ -101,24 +93,12 @@
         self.likeButton.selected = false;
         self.likeCountLabel.text = [NSString stringWithFormat:@"%d",([self.likeCountLabel.text intValue] - 1)];
         //[self.likeButton setSelected:false];
-        [Post unlikePost:_post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-              if(succeeded) {
-                  NSLog(@"Yes");
-              } else {
-                  NSLog(@"No");
-              }
-        }];
+        [Post unlikePost:_post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {}];
     } else {
         self.likeButton.selected = true;
         //[self.likeButton setSelected:false];
         self.likeCountLabel.text = [NSString stringWithFormat:@"%d",([self.likeCountLabel.text intValue] + 1)];
-        [Post likePost:_post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-              if(succeeded) {
-                  NSLog(@"Yes");
-              } else {
-                  NSLog(@"No");
-              }
-        }];
+        [Post likePost:_post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {}];
     }
 }
 
