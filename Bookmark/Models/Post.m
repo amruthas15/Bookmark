@@ -92,36 +92,39 @@
 +(void)likePost: (Post *)post withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     [post addObject:[PFUser currentUser].objectId forKey:@"userLikes"];
     post.likeCount = @([post.likeCount intValue] + 1);
-    PFQuery *bookQuery = [Book query];
-    [bookQuery whereKey:@"googleBookID" equalTo: post.bookID];
-    [bookQuery orderByDescending:@"updatedAt"];
-    bookQuery.limit = 1;
-
-    [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
-        Book *modelBook = [books firstObject];
-        int newPopularityIndex = [modelBook.popularityIndex intValue] + ([post.rating intValue] - 3);
-        modelBook.popularityIndex = @(newPopularityIndex);
-        [modelBook saveInBackgroundWithBlock: completion];
-    }];
     [post saveInBackgroundWithBlock:completion];
+    if([post.reviewStatus boolValue] == true) {
+        PFQuery *bookQuery = [Book query];
+        [bookQuery whereKey:@"googleBookID" equalTo: post.bookID];
+        [bookQuery orderByDescending:@"updatedAt"];
+        bookQuery.limit = 1;
+
+        [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
+            Book *modelBook = [books firstObject];
+            int newPopularityIndex = [modelBook.popularityIndex intValue] + ([post.rating intValue] - 3);
+            modelBook.popularityIndex = @(newPopularityIndex);
+            [modelBook saveInBackgroundWithBlock: completion];
+        }];
+    }
 }
 
 +(void)unlikePost: (Post *)post withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     [post removeObject:[PFUser currentUser].objectId forKey:@"userLikes"];
-    float likeCount = [post.likeCount doubleValue];
-    post.likeCount = [NSNumber numberWithFloat:(likeCount - 1)];
-    PFQuery *bookQuery = [Book query];
-    [bookQuery whereKey:@"googleBookID" equalTo: post.bookID];
-    [bookQuery orderByDescending:@"updatedAt"];
-    bookQuery.limit = 1;
-
-    [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
-        Book *modelBook = [books firstObject];
-        int newPopularityIndex = [modelBook.popularityIndex intValue] - ([post.rating intValue] - 3);
-        modelBook.popularityIndex = @(newPopularityIndex);
-        [modelBook saveInBackgroundWithBlock: completion];
-    }];
+    post.likeCount = @([post.likeCount intValue] - 1);
     [post saveInBackgroundWithBlock:completion];
+    if([post.reviewStatus boolValue] == true) {
+        PFQuery *bookQuery = [Book query];
+        [bookQuery whereKey:@"googleBookID" equalTo: post.bookID];
+        [bookQuery orderByDescending:@"updatedAt"];
+        bookQuery.limit = 1;
+
+        [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
+            Book *modelBook = [books firstObject];
+            int newPopularityIndex = [modelBook.popularityIndex intValue] - ([post.rating intValue] - 3);
+            modelBook.popularityIndex = @(newPopularityIndex);
+            [modelBook saveInBackgroundWithBlock: completion];
+        }];
+    }
 }
 
 @end

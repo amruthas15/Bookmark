@@ -92,11 +92,9 @@
     if(self.likeButton.selected) {
         self.likeButton.selected = false;
         self.likeCountLabel.text = [NSString stringWithFormat:@"%d",([self.likeCountLabel.text intValue] - 1)];
-        //[self.likeButton setSelected:false];
         [Post unlikePost:_post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {}];
     } else {
         self.likeButton.selected = true;
-        //[self.likeButton setSelected:false];
         self.likeCountLabel.text = [NSString stringWithFormat:@"%d",([self.likeCountLabel.text intValue] + 1)];
         [Post likePost:_post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {}];
     }
