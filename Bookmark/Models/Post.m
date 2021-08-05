@@ -6,6 +6,7 @@
 //
 
 #import "Post.h"
+#include <math.h>
 
 @implementation Post
 
@@ -42,18 +43,17 @@
     
     PFQuery *bookQuery = [Book query];
     [bookQuery whereKey:@"googleBookID" equalTo: bookID];
-    //[bookQuery orderByDescending:@"updatedAt"];
     bookQuery.limit = 1;
     
     [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
         if (books.count != 0) {
             Book *modelBook = [books firstObject];
             modelBook.numReviews = @([modelBook.numReviews intValue] + 1);
-            modelBook.avgRating = @((([modelBook.avgRating intValue] * ([modelBook.numReviews intValue] - 1)) + [newReview.rating intValue]) / [modelBook.numReviews intValue]);
+            float rawAvgRating = (([modelBook.avgRating floatValue] * ([modelBook.numReviews intValue] - 1)) + [newReview.rating intValue]) / [modelBook.numReviews intValue];
+            modelBook.avgRating = @(roundf(rawAvgRating*10)/10);
             modelBook.popularityIndex = @(pow(modelBook.avgRating.floatValue - 1, modelBook.numReviews.floatValue / 10));
             [modelBook saveInBackgroundWithBlock: completion];
             [newReview saveInBackgroundWithBlock: completion];
-
         }
         else {
             [Book postNewBook:bookID withCompletion:(PFBooleanResultBlock)^(BOOL succeeded, NSError *error) {
@@ -91,8 +91,18 @@
 
 +(void)likePost: (Post *)post withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     [post addObject:[PFUser currentUser].objectId forKey:@"userLikes"];
-    float likeCount = [post.likeCount doubleValue];
-    post.likeCount = [NSNumber numberWithFloat:(likeCount + 1)];
+    post.likeCount = @([post.likeCount intValue] + 1);
+    PFQuery *bookQuery = [Book query];
+    [bookQuery whereKey:@"googleBookID" equalTo: post.bookID];
+    [bookQuery orderByDescending:@"updatedAt"];
+    bookQuery.limit = 1;
+
+    [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
+        Book *modelBook = [books firstObject];
+        int newPopularityIndex = [modelBook.popularityIndex intValue] + ([post.rating intValue] - 3);
+        modelBook.popularityIndex = @(newPopularityIndex);
+        [modelBook saveInBackgroundWithBlock: completion];
+    }];
     [post saveInBackgroundWithBlock:completion];
 }
 
@@ -100,6 +110,17 @@
     [post removeObject:[PFUser currentUser].objectId forKey:@"userLikes"];
     float likeCount = [post.likeCount doubleValue];
     post.likeCount = [NSNumber numberWithFloat:(likeCount - 1)];
+    PFQuery *bookQuery = [Book query];
+    [bookQuery whereKey:@"googleBookID" equalTo: post.bookID];
+    [bookQuery orderByDescending:@"updatedAt"];
+    bookQuery.limit = 1;
+
+    [bookQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable books, NSError * _Nullable error) {
+        Book *modelBook = [books firstObject];
+        int newPopularityIndex = [modelBook.popularityIndex intValue] - ([post.rating intValue] - 3);
+        modelBook.popularityIndex = @(newPopularityIndex);
+        [modelBook saveInBackgroundWithBlock: completion];
+    }];
     [post saveInBackgroundWithBlock:completion];
 }
 

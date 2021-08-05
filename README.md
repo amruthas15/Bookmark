@@ -51,8 +51,8 @@ Bookmark is a entertainment-based app focused on building a community through bo
 **Optional Nice-to-have Stories**
 
 - [ ] User can follow other users and only view the reviews and lists of users they follow in their feed
-- [ ] User can tap the like button in the review cell or list cell to "like" the post.
-- [ ] User can unlike the review/list, decrementing the like count.
+- [X] User can tap the like button in the review cell or list cell to "like" the post.
+- [X] User can unlike the review/list, decrementing the like count.
 - [ ] Profile view includes that user's reviews and lists.
 - [ ] User can tap the username in any post to see another user's profile
   - Contains the user header view: picture and tagline

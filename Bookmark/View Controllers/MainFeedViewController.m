@@ -48,6 +48,9 @@
     self.tableView.contentInset = insets;
         
     [self fetchInitialData];
+    NSLog(@"%f", roundf(3.65*10)/10);
+    NSLog(@"%@", @(roundf(3.65*10)/10));
+
 }
 
 -(void)fetchInitialData {
