@@ -25,6 +25,10 @@
     NSArray<UIColor *> *colors = (@[[UIColor colorNamed:@"MediumDarkAccentColor"], [UIColor colorNamed:@"CentralAccentColor"], [UIColor colorNamed:@"MediumLightAccentColor"]]);
     self.backgroundView.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.backgroundView.frame andColors:(NSArray<UIColor *> *)colors];
 }
+- (IBAction)logInButtonClicked:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)signUpButtonClicked:(id)sender {
     [self registerUser];
 }
