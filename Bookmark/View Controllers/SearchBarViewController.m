@@ -10,6 +10,8 @@
 #import "Book.h"
 #import "APIManager.h"
 #import "BookCell.h"
+#import "MBProgressHUD.h"
+
 
 @interface SearchBarViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -30,6 +32,7 @@
     [self scrollViewDidScroll:self.tableView];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFQuery *bookQuery = [Book query];
     [bookQuery orderByDescending:@"updatedAt"];
     [bookQuery includeKey:@"bookAuthor"];
@@ -45,6 +48,7 @@
         else {
             NSLog(@"%@", error.localizedDescription);
         }
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 
     self.filteredData = self.data;

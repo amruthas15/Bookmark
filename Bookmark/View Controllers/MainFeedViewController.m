@@ -14,6 +14,7 @@
 #import "ListDetailsViewController.h"
 #import "PostCreationViewController.h"
 #import "InfiniteScrollActivityView.h"
+#import "MBProgressHUD.h"
 
 @interface MainFeedViewController () <UITableViewDelegate, UITableViewDataSource, PostCreationViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -47,6 +48,7 @@
     insets.bottom += InfiniteScrollActivityView.defaultHeight;
     self.tableView.contentInset = insets;
         
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self fetchInitialData];
 }
 
@@ -82,6 +84,7 @@
         else {
             NSLog(@"%@", error.localizedDescription);
         }
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 

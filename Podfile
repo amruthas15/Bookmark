@@ -13,9 +13,7 @@ target 'Bookmark' do
   pod 'XLForm', '~> 4.3'
   pod 'AFNetworking'
   pod 'ChameleonFramework', '~> 2.1'
-
-  pod 'SVProgressHUD'
-
+  pod 'MBProgressHUD', '~> 1.2.0'
 
 
 
