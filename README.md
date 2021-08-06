@@ -47,6 +47,8 @@ Bookmark is a entertainment-based app focused on building a community through bo
   - [X] Contains a section with the users basic stats: # review, # lists
 - [X] Page for book that can be accessed by clicking on book cover picture in review/list
     - [X] Contains a section with the books basic stats: author, publication date, average star ranking
+- [ ]
+- [ ]
 
 **Optional Nice-to-have Stories**
 

@@ -11,6 +11,7 @@
 #import "APIManager.h"
 #import "BookCell.h"
 #import "MBProgressHUD.h"
+#import "BookDetailsViewController.h"
 
 
 @interface SearchBarViewController ()
@@ -100,13 +101,6 @@
     [self.tableView reloadData];
 }
 
-- (IBAction)composeButtonClicked:(id)sender {
-    [self performSegueWithIdentifier:@"searchToPostSegue" sender:nil];
-}
-
-
-
-
 #pragma mark - Table View Delegate Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -127,6 +121,20 @@
     }
     return cell;
 }
+
+
+- (IBAction)didPanCell:(UIPanGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        CGPoint location = [sender locationInView:self.tableView];
+        NSIndexPath *cellIndexPath = [self.tableView indexPathForRowAtPoint:location];
+        UITableViewCell *tappedCell = [self.tableView cellForRowAtIndexPath:cellIndexPath];
+        if([self.filteredData[cellIndexPath.row] isMemberOfClass:[Book class]])
+        {
+            [self performSegueWithIdentifier:@"searchToBookCellSegue" sender:tappedCell];
+        }
+    }
+}
+
 
 #pragma mark - Scroll View Delegate Methods
 
@@ -163,6 +171,20 @@
         if (bottomCell) {
             bottomCell.contentView.alpha = bottomCellOpacity;
         }
+    }
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([sender isKindOfClass:[UITableViewCell class]])
+    {
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        Book *currentBook = self.filteredData[indexPath.row];
+        
+        BookDetailsViewController *bookDetailsViewController = [segue destinationViewController];
+        bookDetailsViewController.googleBookID = currentBook.googleBookID;
     }
 }
 

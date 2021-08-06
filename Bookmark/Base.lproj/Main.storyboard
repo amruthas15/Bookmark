@@ -36,7 +36,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S8j-aY-8s3">
                                 <rect key="frame" x="50" y="413" width="314" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RtW-yj-3U4">
                                 <rect key="frame" x="156" y="483" width="102" height="36"/>
@@ -732,6 +732,7 @@
                                                 <constraint firstItem="dRq-jO-fSr" firstAttribute="top" secondItem="9yN-SA-XEl" secondAttribute="bottom" constant="8" id="oCD-e0-oXI"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
                                         <connections>
                                             <outlet property="bookAuthorLabel" destination="dRq-jO-fSr" id="6xg-ZQ-sc0"/>
                                             <outlet property="bookTitleLabel" destination="9yN-SA-XEl" id="HOd-d7-rUF"/>
@@ -743,20 +744,30 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MGg-wZ-kAs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Kf6-00-tUS" firstAttribute="leading" secondItem="MGg-wZ-kAs" secondAttribute="leading" id="BT2-Dj-Ph2"/>
                             <constraint firstItem="MGg-wZ-kAs" firstAttribute="trailing" secondItem="Kf6-00-tUS" secondAttribute="trailing" id="SmF-EB-03x"/>
                             <constraint firstItem="Kf6-00-tUS" firstAttribute="top" secondItem="MGg-wZ-kAs" secondAttribute="top" id="elx-Gy-iz5"/>
                             <constraint firstItem="MGg-wZ-kAs" firstAttribute="bottom" secondItem="Kf6-00-tUS" secondAttribute="bottom" constant="-83" id="sL4-mE-cXr"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="NCd-Yf-Icf" appends="YES" id="u4x-wZ-MrQ"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="WDb-E3-mQT"/>
                     <connections>
                         <outlet property="searchBar" destination="fHl-c0-XPi" id="kOC-2G-twR"/>
                         <outlet property="tableView" destination="Kf6-00-tUS" id="TCD-a4-ukp"/>
+                        <segue destination="InV-jf-WvC" kind="show" identifier="searchToBookCellSegue" id="p3o-ha-IlS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PWV-g4-wEz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="NCd-Yf-Icf">
+                    <connections>
+                        <action selector="didPanCell:" destination="5nN-jW-jET" id="UHi-qC-q9e"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-433" y="1335"/>
         </scene>
@@ -802,7 +813,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qZc-sr-lvH">
                                 <rect key="frame" x="50" y="369" width="314" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCA-ec-GaA">
                                 <rect key="frame" x="156" y="509" width="102" height="34"/>
@@ -822,7 +833,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reenter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="At3-Rz-6Wn">
                                 <rect key="frame" x="50" y="439" width="314" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aRL-6C-wBJ"/>
@@ -1249,21 +1260,6 @@
             </objects>
             <point key="canvasLocation" x="2069.5652173913045" y="1362.7232142857142"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="eSw-j9-Xwf">
-            <objects>
-                <viewController id="YVT-6B-jjS" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="SCW-bw-thD">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="yW8-6C-o4v"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nh9-CC-dQ3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2848" y="1363"/>
-        </scene>
         <!--Popular-->
         <scene sceneID="ol9-Ap-TpX">
             <objects>
@@ -1305,7 +1301,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="uG5-zT-iuZ"/>
-        <segue reference="3jd-bo-lmc"/>
+        <segue reference="p3o-ha-IlS"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>
