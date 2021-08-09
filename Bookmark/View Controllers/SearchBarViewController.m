@@ -69,8 +69,8 @@
         }
         else
         {
-            [filteredTitles addObject:volumeInfo[@"title"]];
-            [filteredAuthors addObject:volumeInfo[@"authors"]];
+            if(volumeInfo[@"title"]) { [filteredTitles addObject:volumeInfo[@"title"]];}
+            if(volumeInfo[@"authors"]) { [filteredAuthors addObject:volumeInfo[@"authors"]];}
         }
     }
     return filteredBooks;

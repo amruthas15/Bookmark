@@ -8,7 +8,9 @@
 
 ## Overview
 ### Description
-Bookmark is a entertainment-based app focused on building a community through books. Users can review their favorite (or least favorite) books and create lists of books as well. Users can also follow other profiles and authors.
+Bookmark is a entertainment-based app focused on building a community through books. Users can review their favorite (or least favorite) books and create lists of books as well.
+
+Link to App Demo and Walkthrough: https://clipchamp.com/watch/xDxGYFyaZdr
 
 ### App Evaluation
 [Evaluation of your app across the following attributes]
@@ -20,6 +22,8 @@ Bookmark is a entertainment-based app focused on building a community through bo
 - **Scope:** It should be possible to create a minimum-viable product version of this app within the 5 weeks, given its more clear premise: a place to review and organize books. As long as I am clear about the distinction between required and optional user stories and prioritize the required stories, I should be able to finish this project in time.
 
 ## Product Spec
+
+### App Walkthrough/Demo: https://drive.google.com/file/d/1ILk_97Xq-PRYKMX78Cly88r_jSdG-lFj/view?usp=sharing
 
 ### 1. User Stories (Required and Optional)
 
@@ -47,8 +51,8 @@ Bookmark is a entertainment-based app focused on building a community through bo
   - [X] Contains a section with the users basic stats: # review, # lists
 - [X] Page for book that can be accessed by clicking on book cover picture in review/list
     - [X] Contains a section with the books basic stats: author, publication date, average star ranking
-- [ ]
-- [ ]
+- [X] Utilizes a gesture to transition from model feed to detail cell page
+- [X] Fading animation on table views
 
 **Optional Nice-to-have Stories**
 

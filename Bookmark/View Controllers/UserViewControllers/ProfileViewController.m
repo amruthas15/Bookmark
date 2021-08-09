@@ -28,6 +28,7 @@
     self.usernameLabel.text = currentUser.username;
 
     self.profileImageView.file = currentUser[@"profileImage"];
+    self.profileImageView.layer.cornerRadius = 20;
     [self.profileImageView loadInBackground];
     self.biographyLabel.text = currentUser[@"bioText"];
     self.reviewCountLabel.text = [currentUser[@"reviewCount"] stringValue];

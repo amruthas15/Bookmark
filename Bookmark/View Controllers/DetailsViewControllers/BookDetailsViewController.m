@@ -37,7 +37,8 @@
             self.bookCoverImageView.image = book.coverURL ? [Utilities getBookCoverImageFromString:book.coverURL] : [UIImage systemImageNamed:@"book"];
             self.bookTitleLabel.text = book.bookTitle;
             self.bookAuthorLabel.text = [Utilities getAuthorsOfBook:book.bookAuthors];
-            self.averageRatingLabel.text = [[book.avgRating stringValue] stringByAppendingString:@"★"];
+            NSNumber *rating = @(roundf([book.avgRating floatValue]*100)/100);
+            self.averageRatingLabel.text = [[rating stringValue] stringByAppendingString:@"★"];
             self.reviewCountLabel.text = [book.numReviews stringValue] ? [book.numReviews stringValue] : [@(0) stringValue];
             self.listCountLabel.text = [book.numLists stringValue] ? [book.numLists stringValue] : [@(0) stringValue];
         }
