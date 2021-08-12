@@ -37,6 +37,7 @@
 		5870868F26A74E5A000C69AA /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5870868E26A74E5A000C69AA /* keys.plist */; };
 		5870869526A7DD0E000C69AA /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5870869426A7DD0E000C69AA /* APIManager.m */; };
 		5870869826A9331F000C69AA /* BookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5870869726A9331F000C69AA /* BookCell.m */; };
+		58828C4126C5AC5D00998155 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58828C4026C5AC5D00998155 /* ProfileCell.m */; };
 		58BB908926AA2EC500197C74 /* BookCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BB908826AA2EC500197C74 /* BookCollectionCell.m */; };
 		6379FA900A222EA87E1D7A35 /* Pods_BookmarkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4783FF575043ADDF2FE0D724 /* Pods_BookmarkTests.framework */; };
 		C98464EDBA79117B97DE097D /* Pods_Bookmark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CD0D00CAE4D697F632D253 /* Pods_Bookmark.framework */; };
@@ -120,6 +121,8 @@
 		5870869426A7DD0E000C69AA /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		5870869626A9331F000C69AA /* BookCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookCell.h; sourceTree = "<group>"; };
 		5870869726A9331F000C69AA /* BookCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookCell.m; sourceTree = "<group>"; };
+		58828C3F26C5AC5D00998155 /* ProfileCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
+		58828C4026C5AC5D00998155 /* ProfileCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
 		58BB908726AA2EC500197C74 /* BookCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookCollectionCell.h; sourceTree = "<group>"; };
 		58BB908826AA2EC500197C74 /* BookCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookCollectionCell.m; sourceTree = "<group>"; };
 		731449577341F760E0B7D832 /* Pods-Bookmark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookmark.debug.xcconfig"; path = "Target Support Files/Pods-Bookmark/Pods-Bookmark.debug.xcconfig"; sourceTree = "<group>"; };
@@ -317,6 +320,8 @@
 				580F28EE269F5A850052404A /* FeedCell.h */,
 				580F28EF269F5A850052404A /* FeedCell.m */,
 				58BB908726AA2EC500197C74 /* BookCollectionCell.h */,
+				58828C3F26C5AC5D00998155 /* ProfileCell.h */,
+				58828C4026C5AC5D00998155 /* ProfileCell.m */,
 				58BB908826AA2EC500197C74 /* BookCollectionCell.m */,
 				5870869626A9331F000C69AA /* BookCell.h */,
 				5870869726A9331F000C69AA /* BookCell.m */,
@@ -593,6 +598,7 @@
 				580F28F326A0F5C10052404A /* Post.m in Sources */,
 				58204176269E4F6A00161EF8 /* MainFeedViewController.m in Sources */,
 				5820413B269C9B6B00161EF8 /* SceneDelegate.m in Sources */,
+				58828C4126C5AC5D00998155 /* ProfileCell.m in Sources */,
 				58204182269E514900161EF8 /* ProfileViewController.m in Sources */,
 				58204179269E4F8700161EF8 /* SearchBarViewController.m in Sources */,
 				580F28E4269E59760052404A /* Book.m in Sources */,
