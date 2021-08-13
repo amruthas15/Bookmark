@@ -7,11 +7,17 @@
 
 #import <UIKit/UIKit.h>
 #import "Parse/Parse.h"
+#import "FeedCell.h"
 
+@protocol FeedCellProtocol
+
+-(void)didLike: (FeedCell *)cell;
+
+@end
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ProfileViewController : UIViewController
+@interface ProfileViewController : UIViewController <UIScrollViewDelegate>
 
 @end
 
