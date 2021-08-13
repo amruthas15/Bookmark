@@ -20,4 +20,15 @@
     // Configure the view for the selected state
 }
 
+- (void)initWithUser: (PFUser *)currentUser {
+    self.usernameLabel.text = currentUser.username;
+
+    self.profileImageView.file = currentUser[@"profileImage"];
+    self.profileImageView.layer.cornerRadius = 20;
+    [self.profileImageView loadInBackground];
+    self.biographyLabel.text = currentUser[@"bioText"];
+    self.reviewCountLabel.text = [currentUser[@"reviewCount"] stringValue];
+    self.listCountLabel.text = [currentUser[@"listCount"] stringValue];
+}
+
 @end
